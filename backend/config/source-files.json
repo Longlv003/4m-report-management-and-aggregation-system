@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "sources": {
+    "wcsScan": {
+      "name": "WCS Scan (AOI & AOM)",
+      "type": "CSV",
+      "directory": "data_input/WCS_Scan",
+      "subDirectory": "WCS_Scan",
+      "pattern": "^(R_R.*AOI|S_S.*AOM).*\\.csv$",
+      "encoding": "utf-8",
+      "enabled": true
+    },
+    "wcsCvr": {
+      "name": "WCS CVR (Verify)",
+      "type": "CSV",
+      "directory": "data_input/WCS_CVR",
+      "subDirectory": "WCS_CVR",
+      "pattern": "^S_S.*Verify.*\\.csv$",
+      "encoding": "utf-8",
+      "enabled": true
+    },
+    "plusExcel": {
+      "name": "Plus Production Data",
+      "type": "EXCEL",
+      "directory": "data_input/Plus",
+      "subDirectory": "Plus",
+      "pattern": "^ayda.*\\.(xls|xlsx)$",
+      "sheetName": "Sheet0",
+      "headerRow": 0,
+      "enabled": true
+    },
+    "plusError": {
+      "name": "Plus Error Logs",
+      "type": "EXCEL",
+      "directory": "data_input/Plus_Error_Log",
+      "subDirectory": "Plus_Error_Log",
+      "pattern": "^ayqa.*\\.(xls|xlsx)$",
+      "sheetName": "Sheet0",
+      "headerRow": 0,
+      "enabled": true
+    }
+  }
+}

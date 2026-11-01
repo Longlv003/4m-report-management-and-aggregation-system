@@ -1,0 +1,43 @@
+
+> scan4m-backend@1.0.0 test:config
+> node "node_modules/tsx/dist/cli.mjs" tests/config.test.ts
+
+2026-11-01T14:22:16.409Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:22:16.411Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:22:16.412Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+
+=============================================
+   TESTING STEP 1: PATHS & CONFIGURATION    
+=============================================
+
+[TEST 1] Verifying PathProvider...
+Paths resolved successfully:
+ - Base dir: D:\0._Long\SEI\4M Report Management & Aggregation System
+ - Database file: D:\0._Long\SEI\4M Report Management & Aggregation System\data\database\4m-aom-report.sqlite
+ - Log dir: D:\0._Long\SEI\4M Report Management & Aggregation System\data\logs
+ - Backup dir: D:\0._Long\SEI\4M Report Management & Aggregation System\data\backups
+ - Temp dir: D:\0._Long\SEI\4M Report Management & Aggregation System\data\temp
+-> PathProvider PASSED: All runtime directories verified!
+
+[TEST 2] Verifying ConfigurationProvider...
+ - Mapping keys count: 30
+ - WCS required columns count: 13
+ - Output schema columns count: 30
+-> Output Schema PASSED: Exactly 30 columns configured!
+
+[TEST 3] Verifying LayerRules...
+ - Layer rules count: 4
+   "7M0510MOL-REV01" -> L1 S_S (Expected: L1 S_S)
+   "7M0180COPPER-REV01" -> L2 S_S (Expected: L2 S_S)
+   "7S4723MIL-REV01" -> L1 R_R (Expected: L1 S_S)
+-> LayerRules PASSED!
+
+[TEST 4] Verifying CalculationRules...
+ - Total time unit: minute
+ - OP separator: "\n"
+-> CalculationRules PASSED!
+
+=============================================
+      ALL STEP 1 TESTS PASSED 100%!         
+=============================================
+

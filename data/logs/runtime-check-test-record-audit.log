@@ -1,0 +1,38 @@
+
+> scan4m-backend@1.0.0 test:record-audit
+> node "node_modules/tsx/dist/cli.mjs" tests/record-audit.test.ts
+
+2026-11-01T14:22:34.303Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:22:34.305Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:22:35.291Z INFO  [Database] Connecting to SQLite database: file:C:/Users/long1/AppData/Local/Temp/4m-integration-y2jB1P/test.sqlite {"module":"Database"}
+2026-11-01T14:22:35.294Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T14:22:35.515Z INFO  [Migrations] Created initial administrator account (username: admin) {"module":"Migrations"}
+2026-11-01T14:22:35.601Z INFO  [Migrations] Created initial user account (username: user) {"module":"Migrations"}
+2026-11-01T14:22:35.605Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:35.607Z INFO  [RematchEngine] Rematch completed. Rematched 0 records. {"module":"RematchEngine"}
+2026-11-01T14:22:35.608Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T14:22:35.767Z INFO  [ScannerEngine] Parsed 1 rows from CSV scan.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:35.769Z INFO  [ScannerEngine] WCS import done: 0 matched, 1 unmatched, 0 skipped (no change), 0 updated | file=scan.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:35.800Z INFO  [ScannerEngine] Parsed 1 records from CVR CSV verify.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:35.801Z INFO  [CvrMatchingEngine] CVR Matching complete: 1 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:35.801Z INFO  [ScannerEngine] CVR WCS import done: 1 inserted, 0 updated | file=verify.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:35.956Z INFO  [ScannerEngine] Parsed 1 rows from CSV scan-updated.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:35.957Z INFO  [ScannerEngine] WCS import done: 0 matched, 1 unmatched, 0 skipped (no change), 0 updated | file=scan-updated.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:36.176Z INFO  [ScannerEngine] Parsed 1 records from CVR CSV verify-updated.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:36.177Z INFO  [CvrMatchingEngine] CVR Matching complete: 1 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.177Z INFO  [ScannerEngine] CVR WCS import done: 1 inserted, 0 updated | file=verify-updated.csv {"module":"ScannerEngine"}
+2026-11-01T14:22:36.244Z ERROR [ErrorHandler] [UNHANDLED_ERROR] SQLITE_CONSTRAINT_TRIGGER: audit unavailable {"module":"ErrorHandler","requestId":"d652d169-1606-4ea9-9d98-6acf9f194f91","stack":"LibsqlError: SQLITE_CONSTRAINT_TRIGGER: audit unavailable\n    at mapSqliteError (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:396:16)\n    at executeStmt (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:301:15)\n    at Sqlite3Transaction.execute (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:211:16)\n    at SqlAuditRepository.append (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\infrastructure\\repositories\\audit-repository.ts:16:19)\n    at <anonymous> (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\application\\record-management.ts:15:19)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async <anonymous> (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\database\\transaction.ts:10:21)"}
+2026-11-01T14:22:36.434Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Bạn không có quyền: scan4m:manage {"module":"ErrorHandler","requestId":"cf8b1c4b-a1ec-48ff-8964-8ea29aea4391"}
+2026-11-01T14:22:36.441Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Không có quyền thực hiện thao tác này {"module":"ErrorHandler","requestId":"069e369e-eb13-45da-8256-837e21f030c0"}
+2026-11-01T14:22:36.449Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Bạn không có quyền: audit:view {"module":"ErrorHandler","requestId":"1b097f76-6e35-4671-8fe6-9fe15ef06153"}
+2026-11-01T14:22:36.883Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.893Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.904Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.914Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.949Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T14:22:36.956Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:36.957Z INFO  [RematchEngine] Rematch completed. Rematched 0 records. {"module":"RematchEngine"}
+2026-11-01T14:22:36.961Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:36.961Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+Record/audit tests passed: both reports hide from list/stats/Excel, survive rebuild, restore, require permission, rollback on audit failure; account/mapping/auth/export/manual/read audit and redaction verified
+2026-11-01T14:22:36.962Z INFO  [Database] Database connection closed gracefully {"module":"Database"}

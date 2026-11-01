@@ -1,0 +1,62 @@
+
+> scan4m-backend@1.0.0 test:api
+> node "node_modules/tsx/dist/cli.mjs" tests/api.test.ts
+
+2026-11-01T14:22:29.214Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:22:29.217Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:22:30.277Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+
+=============================================
+       TESTING STEP 4: API, AUTH & EXPORT    
+=============================================
+2026-11-01T14:22:30.279Z INFO  [Database] Connecting to SQLite database: file:C:/Users/long1/AppData/Local/Temp/4m-integration-jhHySd/test.sqlite {"module":"Database"}
+2026-11-01T14:22:30.282Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T14:22:30.495Z INFO  [Migrations] Created initial administrator account (username: admin) {"module":"Migrations"}
+2026-11-01T14:22:30.577Z INFO  [Migrations] Created initial user account (username: user) {"module":"Migrations"}
+2026-11-01T14:22:30.582Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:30.584Z INFO  [RematchEngine] Rematch completed. Rematched 0 records. {"module":"RematchEngine"}
+2026-11-01T14:22:30.584Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+
+[TEST 1] Testing Admin Login...
+-> Admin login PASSED! Token generated.
+
+[TEST 2] Testing User Login...
+-> User login PASSED! Token generated.
+
+[TEST 3] Testing GET /scan4m/records with User Token...
+ - Retrieved 0 records, Total: 0
+-> User view records PASSED!
+
+[TEST 4] Testing GET /scan4m/stats...
+ - Stats: {
+  totalRecords: 0,
+  matchedRecords: 0,
+  unmatchedRecords: 0,
+  anomalyRecords: 0,
+  failedFiles: 0,
+  failedFileNames: null,
+  processedFiles: 0,
+  lastScanTime: null
+}
+-> Stats API PASSED!
+
+[TEST 5] Testing RBAC: User calling /scan4m/export (Must be 403 Forbidden)...
+2026-11-01T14:22:30.877Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Bạn không có quyền: scan4m:export {"module":"ErrorHandler","requestId":"4f863792-fa95-4397-9e56-50b067829fc0"}
+ - User export status code: 403 (Expected: 403)
+-> RBAC Security PASSED: User was strictly blocked from export!
+
+[TEST 6] Testing RBAC: Admin calling /scan4m/export (Must be 200 OK with Excel file)...
+ - Admin export status code: 200
+ - Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+ - Downloaded Excel byte size: 7343 bytes
+-> Admin Excel export stream PASSED!
+
+[TEST 7] Testing Account Management...
+ - Total accounts: 2
+-> Account management PASSED!
+
+=============================================
+      ALL STEP 4 TESTS PASSED 100%!         
+=============================================
+
+2026-11-01T14:22:30.955Z INFO  [Database] Database connection closed gracefully {"module":"Database"}

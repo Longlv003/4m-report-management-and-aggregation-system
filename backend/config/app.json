@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "app": {
+    "name": "Scan 4M Report Management & Aggregation System",
+    "port": 4000,
+    "corsOrigins": ["http://localhost:5173", "http://127.0.0.1:5173"],
+    "jwt": {
+      "expiresIn": "24h"
+    },
+    "environment": "production"
+  }
+}

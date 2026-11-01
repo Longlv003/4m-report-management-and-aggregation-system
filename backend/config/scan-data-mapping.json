@@ -1,0 +1,230 @@
+{
+  "version": 1,
+  "wcsRequiredColumns": [
+    "Mã item",
+    "Số lot",
+    "Công đoạn số",
+    "Thời gian thao tác",
+    "Ngày tháng",
+    "Ca",
+    "Tên thiết bị",
+    "Tên sản phẩm",
+    "Công đoạn",
+    "Tên chương trình",
+    "Số tấm input (Block)",
+    "Người thao tác C",
+    "Tên người thao tác"
+  ],
+  "mappings": {
+    "date": {
+      "outputColumn": "Date",
+      "source": "WCS",
+      "sourceColumn": "Ngày tháng",
+      "dataType": "string",
+      "required": false
+    },
+    "machine": {
+      "outputColumn": "Machine",
+      "source": "WCS",
+      "sourceColumn": "Tên thiết bị",
+      "dataType": "string",
+      "required": false
+    },
+    "shift": {
+      "outputColumn": "Shift",
+      "source": "WCS",
+      "sourceColumn": "Ca",
+      "dataType": "string",
+      "required": false
+    },
+    "startTime": {
+      "outputColumn": "Start time",
+      "source": "WCS",
+      "sourceColumn": "Thời gian thao tác",
+      "dataType": "datetime",
+      "required": true
+    },
+    "finishTime": {
+      "outputColumn": "Finish time",
+      "source": "PLUS",
+      "sourceColumn": "Work Result",
+      "dataType": "datetime",
+      "required": false
+    },
+    "totalTime": {
+      "outputColumn": "Total time",
+      "source": "CALCULATED",
+      "rule": "totalTimeMinutes",
+      "dataType": "string",
+      "required": false
+    },
+    "itemName": {
+      "outputColumn": "Item name",
+      "source": "WCS",
+      "sourceColumn": "Tên sản phẩm",
+      "dataType": "string",
+      "required": false
+    },
+    "itemCode": {
+      "outputColumn": "Item code",
+      "source": "WCS",
+      "sourceColumn": "Mã item",
+      "dataType": "string",
+      "required": true
+    },
+    "lotNo": {
+      "outputColumn": "Lot no",
+      "source": "WCS",
+      "sourceColumn": "Số lot",
+      "dataType": "string",
+      "required": true
+    },
+    "seqNo": {
+      "outputColumn": "Seq no",
+      "source": "WCS",
+      "sourceColumn": "Công đoạn số",
+      "dataType": "string",
+      "required": true
+    },
+    "process": {
+      "outputColumn": "Process",
+      "source": "WCS",
+      "sourceColumn": "Công đoạn",
+      "dataType": "string",
+      "required": false
+    },
+    "layer": {
+      "outputColumn": "Layer",
+      "source": "CALCULATED",
+      "rule": "inferLayerFromProgram",
+      "dataType": "string",
+      "required": false
+    },
+    "programName": {
+      "outputColumn": "Program name",
+      "source": "WCS",
+      "sourceColumn": "Tên chương trình",
+      "dataType": "string",
+      "required": false
+    },
+    "totalSheetIndi": {
+      "outputColumn": "Total sheet (Indi)",
+      "source": "PLUS",
+      "sourceColumn": "Production Qty",
+      "dataType": "integer",
+      "required": false
+    },
+    "totalSheetScan": {
+      "outputColumn": "Total sheet (Scan)",
+      "source": "WCS",
+      "sourceColumn": "Số tấm input (Block)",
+      "dataType": "integer",
+      "required": false
+    },
+    "op": {
+      "outputColumn": "OP",
+      "source": "CALCULATED",
+      "rule": "combineOP",
+      "dataType": "string",
+      "required": false
+    },
+    "outerTopAvgA": {
+      "outputColumn": "Đường kính ngoài Outer (Top) Aver A side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Đường kính Top trung bình_Mặt A",
+      "dataType": "float",
+      "required": false
+    },
+    "cpkOuterTopA": {
+      "outputColumn": "Cpk Đường kính ngoài Outer (Top) A side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Cpk Top_Mặt A",
+      "dataType": "float",
+      "required": false
+    },
+    "innerBottomAvgA": {
+      "outputColumn": "Đường kính trong Inner (Bottom) Aver A side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Đường kính Bottom trung bình_Mặt A",
+      "dataType": "float",
+      "required": false
+    },
+    "cpkInnerBottomA": {
+      "outputColumn": "Cpk Đường kính trong Inner (Bottom) A side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Cpk Bottom_Mặt A",
+      "dataType": "float",
+      "required": false
+    },
+    "outerTopAvgB": {
+      "outputColumn": "Đường kính ngoài Outer (Top) Aver B side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Đường kính Top trung bình_Mặt B",
+      "dataType": "float",
+      "required": false
+    },
+    "cpkOuterTopB": {
+      "outputColumn": "Cpk Đường kính ngoài Outer (Top) B side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Cpk Top_Mặt B",
+      "dataType": "float",
+      "required": false
+    },
+    "innerBottomAvgB": {
+      "outputColumn": "Đường kính trong Inner (Bottom) Aver B side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Đường kính Bottom trung bình_Mặt B",
+      "dataType": "float",
+      "required": false
+    },
+    "cpkInnerBottomB": {
+      "outputColumn": "Cpk Đường kính trong Inner (Bottom) B side",
+      "source": "WCS",
+      "sourceColumn": "Lỗ #1_Cpk Bottom_Mặt B",
+      "dataType": "float",
+      "required": false
+    },
+    "checkLight": {
+      "outputColumn": "Kiểm tra đèn sáng",
+      "source": "WCS",
+      "sourceColumn": "Kiểm tra đèn sáng",
+      "dataType": "string",
+      "required": false
+    },
+    "checkMasterMachine": {
+      "outputColumn": "Kiểm tra máy bằng Master sample",
+      "source": "WCS",
+      "sourceColumn": "Kiểm tra máy bằng Master sample",
+      "dataType": "string",
+      "required": false
+    },
+    "checkMasterSample": {
+      "outputColumn": "Kiểm tra master sample",
+      "source": "WCS",
+      "sourceColumn": "Kiểm tra master sample",
+      "dataType": "string",
+      "required": false
+    },
+    "expMasterSample": {
+      "outputColumn": "Hạn sử dụng mẫu Master sample",
+      "source": "WCS",
+      "sourceColumn": "Hạn sử dụng mẫu Master sample",
+      "dataType": "string",
+      "required": false
+    },
+    "rollCleaning": {
+      "outputColumn": "Bóc roll làm sạch",
+      "source": "WCS",
+      "sourceColumn": "Bóc roll làm sạch",
+      "dataType": "string",
+      "required": false
+    },
+    "airPressure": {
+      "outputColumn": "Áp suất khí đầu vào",
+      "source": "WCS",
+      "sourceColumn": "Áp suất khí đầu vào",
+      "dataType": "float",
+      "required": false
+    }
+  }
+}

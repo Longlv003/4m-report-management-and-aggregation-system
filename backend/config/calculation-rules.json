@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "calculations": {
+    "totalTime": {
+      "unit": "minute",
+      "format": "integer",
+      "anomalyHandling": {
+        "condition": "finishBeforeStart",
+        "fallbackValue": "N/A",
+        "anomalyFlag": "Lệch giờ"
+      }
+    },
+    "op": {
+      "separator": "\n",
+      "innerSeparator": " - ",
+      "fields": [
+        { "code": "Người thao tác C", "name": "Tên người thao tác" },
+        { "code": "Người thao tác C2", "name": "Tên người thao tác2" }
+      ]
+    }
+  }
+}

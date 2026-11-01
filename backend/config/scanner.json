@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "scanner": {
+    "enabled": true,
+    "pollIntervalMs": 86400000,
+    "stabilityCheckMs": 3000,
+    "stabilityChecks": 2,
+    "maxConcurrentFiles": 2,
+    "retryAttempts": 3,
+    "retryDelayMs": 5000,
+    "backup": {
+      "enabled": true,
+      "intervalHours": 24,
+      "maxRetentionCopies": 30
+    }
+  }
+}

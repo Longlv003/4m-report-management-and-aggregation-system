@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "paths": {
+    "appRoot": "../",
+    "databaseDir": "./data/database",
+    "databaseFile": "./data/database/4m-aom-report.sqlite",
+    "logDir": "./data/logs",
+    "backupDir": "./data/backups",
+    "tempDir": "./data/temp",
+    "configBackupDir": "./data/config-backups",
+    "runtimeDir": "./runtime",
+    "networkInputBaseDir": "\\\\10.212.9.4\\aoi-data\\0. 4M report aom\\data_input",
+    "localInputBaseDir": "../data_input"
+  }
+}

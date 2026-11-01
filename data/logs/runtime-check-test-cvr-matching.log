@@ -1,0 +1,23 @@
+
+> scan4m-backend@1.0.0 test:cvr-matching
+> node "node_modules/tsx/dist/cli.mjs" tests/cvr-matching.test.ts
+
+2026-11-01T14:23:32.050Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:23:32.053Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:23:32.289Z INFO  [CvrMatchingEngine] CVR Matching complete: 1 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.291Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.292Z INFO  [CvrMatchingEngine] CVR Matching complete: 1 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.341Z INFO  [CvrMatchingEngine] CVR Matching complete: 1 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.343Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.344Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.345Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.346Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.347Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.348Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.349Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.350Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.351Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.352Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.353Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:23:32.354Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+CVR tests passed: A+B, Indi pcs denominator, side percentages, export positions, rematch and missing/zero denominators

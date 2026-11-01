@@ -1,0 +1,398 @@
+
+> scan4m-backend@1.0.0 start
+> node "node_modules/tsx/dist/cli.mjs" src/server.ts
+
+2026-11-01T14:58:11.480Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:58:11.536Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:58:20.758Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+2026-11-01T14:58:20.759Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-11-01T14:58:20.760Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-11-01T14:58:20.765Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T14:58:20.824Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:58:21.114Z INFO  [RematchEngine] Rematch completed. Rematched 85 records. {"module":"RematchEngine"}
+2026-11-01T14:58:21.126Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.137Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.146Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.155Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.165Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.174Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.183Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.192Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.201Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.213Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.222Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.231Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.240Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.250Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.258Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.268Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.277Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.286Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.294Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.304Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.312Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.321Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.330Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.339Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.347Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.356Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.366Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.375Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.385Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.394Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.404Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.415Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.424Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.434Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.444Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.453Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.462Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.471Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.479Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.488Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.497Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.506Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.515Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.524Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.533Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.542Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.551Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.560Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.570Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.579Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.588Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.596Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.605Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.614Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.622Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.632Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.640Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.650Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.659Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.669Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.678Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.687Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.696Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.706Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.715Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.723Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.733Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.742Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.752Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.761Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.771Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.781Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.792Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.801Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.810Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.820Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.829Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.839Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.847Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:58:21.847Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T14:58:21.848Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-11-01T14:58:21.852Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_215821.sqlite (7240.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_215821.sqlite","fileSize":7413760}
+2026-11-01T14:58:21.859Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+
+======================================================
+  SCAN 4M SERVER IS RUNNING AT: http://localhost:4000 
+======================================================
+
+2026-11-01T14:58:21.859Z INFO  [ScannerEngine] Starting background periodic scanner every 86400s... {"module":"ScannerEngine"}
+2026-11-01T14:59:24.298Z WARN  [ErrorHandler] [HTTP_401] AUTHENTICATION_ERROR: Vui lòng đăng nhập để truy cập hệ thống {"module":"ErrorHandler","requestId":"2b63f5a4-ff6c-4c3a-83d5-ed2661054007"}
+2026-11-01T14:59:24.829Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-11-01T15:07:47.884Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T15:07:47.887Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T15:07:48.609Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+2026-11-01T15:07:48.609Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-11-01T15:07:48.610Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-11-01T15:07:48.613Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T15:07:48.674Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T15:07:48.964Z INFO  [RematchEngine] Rematch completed. Rematched 85 records. {"module":"RematchEngine"}
+2026-11-01T15:07:48.976Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:48.985Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:48.994Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.003Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.013Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.021Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.030Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.041Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.049Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.058Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.067Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.076Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.085Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.093Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.102Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.110Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.119Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.128Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.138Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.147Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.155Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.164Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.173Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.182Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.191Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.200Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.208Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.219Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.228Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.236Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.245Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.254Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.263Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.271Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.281Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.289Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.298Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.306Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.315Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.324Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.332Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.341Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.350Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.358Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.366Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.374Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.383Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.391Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.400Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.409Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.418Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.427Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.435Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.445Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.454Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.463Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.471Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.480Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.489Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.498Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.506Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.515Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.523Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.532Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.540Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.548Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.557Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.565Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.575Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.583Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.591Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.599Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.608Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.617Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.626Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.635Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.643Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.652Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.661Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:07:49.662Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T15:07:49.662Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-11-01T15:07:49.666Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_220749.sqlite (7240.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_220749.sqlite","fileSize":7413760}
+2026-11-01T15:07:49.674Z INFO  [Server] Scan 4M Server is running at http://192.168.1.51:4000 {"module":"Server","port":4000}
+
+======================================================
+  SCAN 4M SERVER IS RUNNING AT: http://192.168.1.51:4000 
+======================================================
+
+2026-11-01T15:07:49.674Z INFO  [ScannerEngine] Starting background periodic scanner every 86400s... {"module":"ScannerEngine"}
+2026-11-01T15:07:50.767Z WARN  [ErrorHandler] [HTTP_401] AUTHENTICATION_ERROR: Vui lòng đăng nhập để truy cập hệ thống {"module":"ErrorHandler","requestId":"625977c2-6b22-4e25-bf94-69a324a320ee"}
+2026-11-01T15:10:32.955Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T15:10:32.958Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T15:10:33.596Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+2026-11-01T15:10:33.596Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-11-01T15:10:33.597Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-11-01T15:10:33.600Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T15:10:33.654Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T15:10:33.941Z INFO  [RematchEngine] Rematch completed. Rematched 85 records. {"module":"RematchEngine"}
+2026-11-01T15:10:33.953Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:33.963Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:33.972Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:33.982Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:33.990Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:33.998Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.008Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.017Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.026Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.035Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.044Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.053Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.062Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.071Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.080Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.089Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.098Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.106Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.115Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.124Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.133Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.142Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.152Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.161Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.170Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.179Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.188Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.197Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.206Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.215Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.224Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.233Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.242Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.252Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.261Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.270Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.279Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.288Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.297Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.307Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.315Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.324Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.333Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.341Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.349Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.357Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.366Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.374Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.383Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.391Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.398Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.407Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.415Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.423Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.431Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.440Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.448Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.455Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.464Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.472Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.481Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.489Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.498Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.506Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.517Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.525Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.534Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.542Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.550Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.558Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.567Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.575Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.583Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.591Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.599Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.607Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.615Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.623Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.632Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:10:34.632Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T15:10:34.633Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-11-01T15:10:34.637Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_221034.sqlite (7240.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_221034.sqlite","fileSize":7413760}
+2026-11-01T15:10:34.643Z INFO  [Server] Scan 4M Server is running at http://192.168.1.51:4000 {"module":"Server","port":4000}
+
+======================================================
+  SCAN 4M SERVER IS RUNNING AT: http://192.168.1.51:4000 
+======================================================
+
+2026-11-01T15:10:34.644Z INFO  [ScannerEngine] Starting background periodic scanner every 86400s... {"module":"ScannerEngine"}
+2026-11-01T15:10:34.730Z WARN  [ErrorHandler] [HTTP_401] AUTHENTICATION_ERROR: Vui lòng đăng nhập để truy cập hệ thống {"module":"ErrorHandler","requestId":"04f612c1-9121-478b-8455-3a272304f693"}
+2026-11-01T15:10:41.029Z WARN  [ErrorHandler] [HTTP_401] AUTHENTICATION_ERROR: Vui lòng đăng nhập để truy cập hệ thống {"module":"ErrorHandler","requestId":"905e1f9d-dbbd-47f9-9352-92603c87a750"}
+2026-11-01T15:11:07.109Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T15:11:07.112Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T15:11:07.747Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-11-01.log"}
+2026-11-01T15:11:07.748Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-11-01T15:11:07.748Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-11-01T15:11:07.750Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T15:11:07.809Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T15:11:08.102Z INFO  [RematchEngine] Rematch completed. Rematched 85 records. {"module":"RematchEngine"}
+2026-11-01T15:11:08.113Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.122Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.131Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.140Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.149Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.158Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.167Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.176Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.185Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.194Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.202Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.210Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.219Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.228Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.236Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.245Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.254Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.263Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.272Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.281Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.289Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.298Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.307Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.316Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.325Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.334Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.343Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.351Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.360Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.368Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.377Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.386Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.395Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.404Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.414Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.422Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.431Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.440Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.449Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.458Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.468Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.476Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.485Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.494Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.502Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.511Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.520Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.529Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.538Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.547Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.555Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.564Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.573Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.583Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.593Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.602Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.610Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.619Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.628Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.637Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.645Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.655Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.664Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.672Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.682Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.691Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.700Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.709Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.717Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.726Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.734Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.743Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.751Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.759Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.767Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.776Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.785Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.794Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.802Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T15:11:08.803Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T15:11:08.803Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-11-01T15:11:08.809Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_221108.sqlite (7244.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_221108.sqlite","fileSize":7417856}
+2026-11-01T15:11:08.816Z INFO  [Server] Scan 4M Server is running at http://192.168.1.51:4000 {"module":"Server","port":4000}
+
+======================================================
+  SCAN 4M SERVER IS RUNNING AT: http://192.168.1.51:4000 
+======================================================
+
+2026-11-01T15:11:08.817Z INFO  [ScannerEngine] Starting background periodic scanner every 86400s... {"module":"ScannerEngine"}
+2026-11-01T15:11:08.916Z WARN  [ErrorHandler] [HTTP_401] AUTHENTICATION_ERROR: Vui lòng đăng nhập để truy cập hệ thống {"module":"ErrorHandler","requestId":"8c18f302-3c5a-40f0-9fce-ceba7b2de9f6"}

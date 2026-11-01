@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "requiredMatchingKeys": [
+    "itemCode",
+    "lotNo",
+    "seqNo"
+  ],
+  "rules": {
+    "shift": {
+      "allowedValues": ["A", "B", "C", "Day", "Night"]
+    },
+    "airPressure": {
+      "min": 0.4,
+      "max": 0.6,
+      "unit": "Mpa"
+    },
+    "cpk": {
+      "minRecommended": 1.4
+    }
+  }
+}

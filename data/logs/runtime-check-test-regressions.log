@@ -1,0 +1,40 @@
+
+> scan4m-backend@1.0.0 test:regressions
+> node "node_modules/tsx/dist/cli.mjs" tests/regressions.test.ts
+
+2026-11-01T14:22:31.941Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:22:31.944Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+2026-11-01T14:22:32.650Z INFO  [Database] Connecting to SQLite database: file:C:/Users/long1/AppData/Local/Temp/4m-regressions-gosBNm/test.sqlite {"module":"Database"}
+2026-11-01T14:22:32.653Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-11-01T14:22:32.882Z INFO  [Migrations] Created initial administrator account (username: admin) {"module":"Migrations"}
+2026-11-01T14:22:32.978Z INFO  [Migrations] Created initial user account (username: user) {"module":"Migrations"}
+2026-11-01T14:22:32.982Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:32.984Z INFO  [RematchEngine] Rematch completed. Rematched 0 records. {"module":"RematchEngine"}
+2026-11-01T14:22:32.984Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-11-01T14:22:33.015Z INFO  [ScannerEngine] Parsed 1 records from Excel ayda-first.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.016Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:33.016Z INFO  [RematchEngine] Rematch completed. Rematched 0 records. {"module":"RematchEngine"}
+2026-11-01T14:22:33.016Z INFO  [ScannerEngine] Plus import done: 1 ok, 0 updated, 0 Scan rematched, 0 CVR rematched | file=ayda-first.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.042Z INFO  [ScannerEngine] Parsed 1 records from Excel ayda-second.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.042Z WARN  [ScannerEngine] Plus record updated: match_key=ITEM_00001_0070 | file=ayda-second.xlsx {"module":"ScannerEngine","matchKey":"ITEM_00001_0070","before":{"work_start":"2026-11-01 07:00:00","work_result":"2026-11-01 08:00:00","prod_qty":10,"accepted_qty":10,"bad_qty":0},"after":{"work_start":"2026-11-01 07:00:00","work_result":"2026-11-01 08:00:00","prod_qty":25,"accepted_qty":25,"bad_qty":0}}
+2026-11-01T14:22:33.043Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:33.043Z INFO  [RematchEngine] Rematch completed. Rematched 1 records. {"module":"RematchEngine"}
+2026-11-01T14:22:33.043Z INFO  [ScannerEngine] Plus import done: 1 ok, 1 updated, 1 Scan rematched, 0 CVR rematched | file=ayda-second.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.104Z INFO  [ScannerEngine] Parsed 2 records from Excel ayda-broken.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.136Z INFO  [ScannerEngine] Parsed 2 records from Excel ayda-broken.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.137Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:33.137Z INFO  [RematchEngine] Rematch completed. Rematched 1 records. {"module":"RematchEngine"}
+2026-11-01T14:22:33.137Z INFO  [ScannerEngine] Plus import done: 2 ok, 0 updated, 1 Scan rematched, 0 CVR rematched | file=ayda-broken.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.184Z INFO  [ScannerEngine] Parsed 1 records from Excel ayda-background.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.185Z INFO  [RematchEngine] Refreshing Scan records from current Plus data... {"module":"RematchEngine"}
+2026-11-01T14:22:33.185Z INFO  [RematchEngine] Rematch completed. Rematched 1 records. {"module":"RematchEngine"}
+2026-11-01T14:22:33.185Z INFO  [ScannerEngine] Plus import done: 1 ok, 0 updated, 1 Scan rematched, 0 CVR rematched | file=ayda-background.xlsx {"module":"ScannerEngine"}
+2026-11-01T14:22:33.392Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:33.405Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:33.417Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:33.428Z INFO  [CvrMatchingEngine] CVR Matching complete: 0 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-11-01T14:22:33.439Z WARN  [ErrorHandler] [HTTP_400] VALIDATION_ERROR: Tên item, process và số pcs/sheet nguyên không âm là bắt buộc {"module":"ErrorHandler","requestId":"02d12626-a6ed-4c73-bd17-5a6bffa27e20"}
+2026-11-01T14:22:33.458Z ERROR [ErrorHandler] [UNHANDLED_ERROR] SQLITE_CONSTRAINT_TRIGGER: CVR failure {"module":"ErrorHandler","requestId":"be2e50e3-a43e-425c-a1d6-ef75e2b0ef33","stack":"LibsqlError: SQLITE_CONSTRAINT_TRIGGER: CVR failure\n    at mapSqliteError (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:396:16)\n    at executeStmt (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:301:15)\n    at Sqlite3Transaction.execute (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\node_modules\\@libsql\\client\\lib-cjs\\sqlite3.js:211:16)\n    at CvrMatchingEngine.processAndMatchCvrRecords (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\modules\\matcher\\cvr-matching-engine.ts:163:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async CvrMatchingEngine.rematchCvrRecords (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\modules\\matcher\\cvr-matching-engine.ts:208:22)\n    at async <anonymous> (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\controllers\\mapping.controller.ts:54:9)\n    at async AuditedChangeService.run (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\application\\audited-change.ts:7:20)\n    at async <anonymous> (D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\backend\\src\\database\\transaction.ts:10:21)"}
+Regression tests passed: atomic import/retry, unique Plus migration/upsert, matched Scan refresh, background SSE, concurrency, mapping CRUD rollback/rematch, CVR permissions, CORS and JWT config
+2026-11-01T14:22:33.589Z INFO  [Database] Database connection closed gracefully {"module":"Database"}
+Temporary SQLite files pending process exit: C:\Users\long1\AppData\Local\Temp\4m-regressions-gosBNm

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "description": "Rules for determining Layer (L1 or L2) from WCS Program Name",
+  "rules": [
+    {
+      "pattern": "MOL",
+      "targetLayer": "L1 S_S",
+      "sourceHint": "S_S"
+    },
+    {
+      "pattern": "COPPER",
+      "targetLayer": "L2 S_S",
+      "sourceHint": "S_S"
+    },
+    {
+      "pattern": "MIL",
+      "targetLayer": "L1 R_R",
+      "sourceHint": "R_R"
+    },
+    {
+      "pattern": "HIL",
+      "targetLayer": "L1 R_R",
+      "sourceHint": "R_R"
+    }
+  ],
+  "defaultLayer": "NA"
+}

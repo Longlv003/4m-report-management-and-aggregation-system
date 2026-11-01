@@ -1,0 +1,39 @@
+{
+  "name": "scan4m-backend",
+  "version": "1.0.0",
+  "description": "Backend engine for Scan 4M Report Management & Aggregation System",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "node \"node_modules/tsx/dist/cli.mjs\" watch src/server.ts",
+    "build": "node \"node_modules/typescript/bin/tsc\"",
+    "start": "node \"node_modules/tsx/dist/cli.mjs\" src/server.ts",
+    "test:config": "node \"node_modules/tsx/dist/cli.mjs\" tests/config.test.ts",
+    "test:cvr-mapping": "node \"node_modules/tsx/dist/cli.mjs\" tests/cvr-mapping.test.ts",
+    "test:cvr-matching": "node \"node_modules/tsx/dist/cli.mjs\" tests/cvr-matching.test.ts",
+    "test:db": "node \"node_modules/tsx/dist/cli.mjs\" tests/database.test.ts",
+    "test:scanner": "node \"node_modules/tsx/dist/cli.mjs\" tests/scanner-and-matching.test.ts",
+    "test:api": "node \"node_modules/tsx/dist/cli.mjs\" tests/api.test.ts",
+    "test:regressions": "node \"node_modules/tsx/dist/cli.mjs\" tests/regressions.test.ts",
+    "test:record-audit": "node \"node_modules/tsx/dist/cli.mjs\" tests/record-audit.test.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.14.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

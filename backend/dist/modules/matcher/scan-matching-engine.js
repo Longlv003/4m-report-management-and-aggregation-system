@@ -1,0 +1,170 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolveLayer = resolveLayer;
+exports.formatOp = formatOp;
+exports.calculateTotalTime = calculateTotalTime;
+exports.parseNullableFloat = parseNullableFloat;
+exports.parseNullableInt = parseNullableInt;
+exports.aggregateWcsAndPlus = aggregateWcsAndPlus;
+exports.rematchScanRecords = rematchScanRecords;
+const configuration_provider_js_1 = require("../../config/configuration-provider.js");
+const logger_js_1 = require("../../logging/logger.js");
+const app_error_js_1 = require("../../errors/app-error.js");
+function resolveLayer(programName) {
+    const layerConfig = configuration_provider_js_1.configurationProvider.getLayerRules();
+    const upper = programName.toUpperCase();
+    for (const r of layerConfig.rules) {
+        if (upper.includes(r.pattern.toUpperCase())) {
+            return r.targetLayer;
+        }
+    }
+    return layerConfig.defaultLayer;
+}
+function formatOp(c1, name1, c2, name2) {
+    const parts = [];
+    const config = configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.op;
+    const p1 = [c1, name1].filter(Boolean).map(s => s?.trim()).filter(Boolean).join(config.innerSeparator);
+    if (p1)
+        parts.push(p1);
+    const p2 = [c2, name2].filter(Boolean).map(s => s?.trim()).filter(Boolean).join(config.innerSeparator);
+    if (p2)
+        parts.push(p2);
+    // Join with newline as requested by user
+    return parts.join(config.separator);
+}
+function calculateTotalTime(startTimeStr, finishTimeStr) {
+    if (!startTimeStr || !finishTimeStr) {
+        return { totalTime: null, anomalyFlag: null };
+    }
+    const startMs = new Date(startTimeStr.replace(' ', 'T')).getTime();
+    const finishMs = new Date(finishTimeStr.replace(' ', 'T')).getTime();
+    if (isNaN(startMs) || isNaN(finishMs)) {
+        return { totalTime: null, anomalyFlag: 'Thời gian không hợp lệ' };
+    }
+    if (finishMs < startMs) {
+        // Work Result (Plus) < Start time (WCS) due to clock sync: display N/A with label 'Lệch giờ'
+        const handling = configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling;
+        return { totalTime: handling.fallbackValue, anomalyFlag: handling.anomalyFlag };
+    }
+    // Calculated in integer minutes as requested by user
+    const diffMinutes = Math.round((finishMs - startMs) / (1000 * 60));
+    return { totalTime: String(diffMinutes), anomalyFlag: null };
+}
+function parseNullableFloat(val) {
+    if (val === undefined || val === null || val === '')
+        return null;
+    const num = parseFloat(String(val).trim());
+    return isNaN(num) ? null : num;
+}
+function parseNullableInt(val) {
+    if (val === undefined || val === null || val === '')
+        return null;
+    const num = parseInt(String(val).trim(), 10);
+    return isNaN(num) ? null : num;
+}
+function aggregateWcsAndPlus(id, wcsRecordId, wcsRow, plusRecord) {
+    const itemCode = (wcsRow['Mã item'] || '').trim();
+    const lotNo = (wcsRow['Số lot'] || '').trim();
+    const seqNo = (wcsRow['Công đoạn số'] || '').trim();
+    const matchKey = `${itemCode}_${lotNo}_${seqNo}`;
+    const keys = { itemCode, lotNo, seqNo };
+    const validation = configuration_provider_js_1.configurationProvider.getValidationRules();
+    if (validation.requiredMatchingKeys.some(key => !keys[key]))
+        throw new app_error_js_1.FileProcessingError('Thiếu khóa ghép dữ liệu Scan');
+    const startTime = (wcsRow['Thời gian thao tác'] || '').trim();
+    const finishTime = plusRecord ? plusRecord.workResult : null;
+    const { totalTime, anomalyFlag } = calculateTotalTime(startTime, finishTime || undefined);
+    const warnings = anomalyFlag ? [anomalyFlag] : [];
+    const shift = (wcsRow['Ca'] || '').trim();
+    if (shift && !validation.rules.shift.allowedValues.includes(shift))
+        warnings.push('Ca không hợp lệ');
+    const pressure = parseNullableFloat(wcsRow['Áp suất khí đầu vào']);
+    if (pressure !== null && (pressure < validation.rules.airPressure.min || pressure > validation.rules.airPressure.max))
+        warnings.push('Áp suất ngoài giới hạn');
+    if (Object.entries(wcsRow).some(([key, value]) => key.includes('Cpk') && value !== '' &&
+        parseNullableFloat(value) !== null && Number(value) < validation.rules.cpk.minRecommended))
+        warnings.push('Cpk dưới mức khuyến nghị');
+    const programName = (wcsRow['Tên chương trình'] || '').trim();
+    const layer = resolveLayer(programName);
+    const opConfig = configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.op;
+    const op = opConfig.fields.map(field => [wcsRow[field.code], wcsRow[field.name]]
+        .map(value => (value || '').trim()).filter(Boolean).join(opConfig.innerSeparator))
+        .filter(Boolean).join(opConfig.separator);
+    return {
+        id,
+        matchKey,
+        wcsRecordId,
+        plusRecordId: null, // linked during DB insert
+        matchStatus: plusRecord ? 'MATCHED' : 'UNMATCHED_PLUS',
+        date: (wcsRow['Ngày tháng'] || '').trim(),
+        machine: (wcsRow['Tên thiết bị'] || '').trim(),
+        shift: (wcsRow['Ca'] || '').trim(),
+        startTime,
+        finishTime,
+        totalTime,
+        itemName: (wcsRow['Tên sản phẩm'] || '').trim(),
+        itemCode,
+        lotNo,
+        seqNo,
+        process: (wcsRow['Công đoạn'] || '').trim(),
+        layer,
+        programName,
+        totalSheetIndi: plusRecord?.prodQty ?? null,
+        totalSheetScan: parseNullableInt(wcsRow['Số tấm input (Block)']),
+        op,
+        outerTopAvgA: parseNullableFloat(wcsRow['Lỗ #1_Đường kính Top trung bình_Mặt A']),
+        cpkOuterTopA: parseNullableFloat(wcsRow['Lỗ #1_Cpk Top_Mặt A']),
+        innerBottomAvgA: parseNullableFloat(wcsRow['Lỗ #1_Đường kính Bottom trung bình_Mặt A']),
+        cpkInnerBottomA: parseNullableFloat(wcsRow['Lỗ #1_Cpk Bottom_Mặt A']),
+        outerTopAvgB: parseNullableFloat(wcsRow['Lỗ #1_Đường kính Top trung bình_Mặt B']),
+        cpkOuterTopB: parseNullableFloat(wcsRow['Lỗ #1_Cpk Top_Mặt B']),
+        innerBottomAvgB: parseNullableFloat(wcsRow['Lỗ #1_Đường kính Bottom trung bình_Mặt B']),
+        cpkInnerBottomB: parseNullableFloat(wcsRow['Lỗ #1_Cpk Bottom_Mặt B']),
+        checkLight: (wcsRow['Kiểm tra đèn sáng'] || 'NA').trim(),
+        checkMasterMachine: (wcsRow['Kiểm tra máy bằng Master sample'] || 'NA').trim(),
+        checkMasterSample: (wcsRow['Kiểm tra master sample'] || 'NA').trim(),
+        expMasterSample: (wcsRow['Hạn sử dụng mẫu Master sample'] || 'NA').trim(),
+        rollCleaning: (wcsRow['Bóc roll làm sạch'] || 'NA').trim(),
+        airPressure: parseNullableFloat(wcsRow['Áp suất khí đầu vào']),
+        anomalyFlag: warnings.join('; ') || null
+    };
+}
+async function rematchScanRecords(db) {
+    logger_js_1.logger.info('Refreshing Scan records from current Plus data...', { module: 'RematchEngine' });
+    // Refresh existing matches too, so revised Plus exports replace stale quantities/times.
+    const unmatched = await db.execute(`
+    SELECT id, match_key, start_time, anomaly_flag FROM scan4m_records ;
+  `);
+    let rematchedCount = 0;
+    for (const row of unmatched.rows) {
+        const scanId = row.id;
+        const key = row.match_key;
+        const startTime = row.start_time;
+        // Check if Plus record is now available
+        const plusRes = await db.execute({
+            sql: `SELECT id, work_result, prod_qty FROM plus_records WHERE match_key = ? LIMIT 1;`,
+            args: [key]
+        });
+        if (plusRes.rows.length > 0) {
+            const p = plusRes.rows[0];
+            const finishTime = p.work_result;
+            const prodQty = p.prod_qty;
+            const plusRecordId = p.id;
+            const time = calculateTotalTime(startTime, finishTime);
+            const totalTime = time.totalTime;
+            const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning => !['Lệch giờ', 'Thời gian không hợp lệ', configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
+            const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
+            const now = new Date().toISOString();
+            await db.execute({
+                sql: `UPDATE scan4m_records 
+              SET plus_record_id = ?, finish_time = ?, total_time = ?, total_sheet_indi = ?, 
+                  anomaly_flag = ?, match_status = 'MATCHED', updated_at = ?
+              WHERE id = ?;`,
+                args: [plusRecordId, finishTime, totalTime, prodQty, anomalyFlag, now, scanId]
+            });
+            rematchedCount++;
+        }
+    }
+    logger_js_1.logger.info(`Rematch completed. Rematched ${rematchedCount} records.`, { module: 'RematchEngine' });
+    return { rematchedCount };
+}

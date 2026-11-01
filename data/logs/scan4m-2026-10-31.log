@@ -1,0 +1,1194 @@
+2026-10-31T13:46:51.215Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T13:47:30.865Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T13:49:41.134Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T13:49:41.135Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T13:49:41.143Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T13:49:41.310Z INFO  [Migrations] Created initial administrator account (username: admin) {"module":"Migrations"}
+2026-10-31T13:49:41.391Z INFO  [Migrations] Created initial user account (username: user) {"module":"Migrations"}
+2026-10-31T13:49:41.391Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T13:49:41.470Z INFO  [Database] Database connection closed gracefully {"module":"Database"}
+2026-10-31T13:51:55.759Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T13:51:55.760Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T13:51:55.763Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T13:51:55.767Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T13:52:01.798Z INFO  [ScannerEngine] Processing file: R_R+AOI+#0520261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-539a3220-6beb-49bc-baf4-40600358a3a5"}
+2026-10-31T13:52:01.804Z INFO  [ScannerEngine] Parsed 79 rows from CSV R_R+AOI+#0520261031.csv {"module":"ScannerEngine"}
+2026-10-31T13:52:08.656Z INFO  [ScannerEngine] Processing file: S_S+AOM+#1420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-026643ea-44f3-4d06-9054-4e672200ead8"}
+2026-10-31T13:52:08.659Z INFO  [ScannerEngine] Parsed 28 rows from CSV S_S+AOM+#1420261031.csv {"module":"ScannerEngine"}
+2026-10-31T13:52:15.108Z INFO  [ScannerEngine] Processing file: ayda4170_20261030132235.xls (EXCEL)... {"module":"ScannerEngine","fileId":"file-9d59b9c0-8ea1-4bad-9490-48a8d865a6cb"}
+2026-10-31T13:52:16.551Z INFO  [ScannerEngine] Parsed 15505 records from Excel ayda4170_20261030132235.xls {"module":"ScannerEngine"}
+2026-10-31T13:53:44.340Z INFO  [RematchEngine] Starting rematch for UNMATCHED_PLUS records... {"module":"RematchEngine"}
+2026-10-31T13:53:45.210Z INFO  [RematchEngine] Rematch completed. Rematched 85 records. {"module":"RematchEngine"}
+2026-10-31T13:53:45.210Z INFO  [ScannerEngine] Rematched 85 WCS records against newly imported Plus file {"module":"ScannerEngine"}
+2026-10-31T13:54:03.302Z INFO  [Database] Database connection closed gracefully {"module":"Database"}
+2026-10-31T13:57:39.684Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T13:57:39.685Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T13:57:39.688Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T13:57:39.691Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T13:57:40.018Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Bạn không có quyền: scan4m:export {"module":"ErrorHandler","requestId":"a3c5be6c-f9df-4e68-9d0e-df85eae772ab"}
+2026-10-31T13:57:40.219Z INFO  [Database] Database connection closed gracefully {"module":"Database"}
+2026-10-31T14:01:21.474Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:07:56.941Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:07:56.942Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T14:07:56.943Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T14:07:56.946Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T14:07:56.950Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T14:08:15.038Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T14:08:15.039Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T14:08:15.047Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T14:14:26.297Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:14:26.300Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:14:26.415Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:14:26.427Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:14:26.436Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:14:26.444Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:15:16.626Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:15:52.471Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:15:52.473Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:15:52.584Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:15:52.591Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:15:52.631Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:15:52.634Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:16:46.372Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:16:48.487Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:16:48.509Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:16:48.512Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:16:48.569Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:16:48.573Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:16:55.392Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:25.701Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:25.737Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:25.740Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:25.751Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:25.753Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:30.533Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:30.534Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:30.588Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:30.591Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:36.139Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:37.171Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:37.202Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:37.205Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:17:37.212Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:17:37.214Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.578Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:08.579Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.601Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:08.606Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.856Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:08.857Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.869Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:08.872Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.935Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:08.936Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:08.958Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:08.961Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:11.725Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:11.726Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:11.729Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:11.732Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:13.533Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:13.534Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:13.554Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:13.556Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:14.731Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:14.732Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:14.758Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:14.761Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:15.565Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:15.567Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:15.592Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:15.596Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:16.803Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:16.804Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:16.830Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:16.832Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:18.776Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:18:18.776Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:18.785Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:18.787Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.265Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.267Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.298Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.305Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.313Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.316Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.341Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.343Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.362Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.367Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.401Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.404Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:19.427Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:19.429Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:23.109Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:23.111Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:18:23.147Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:18:23.150Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:20:41.885Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:20:41.886Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:20:41.939Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:20:41.941Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:21:57.411Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:11.328Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:11.342Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:11.344Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:11.369Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:11.371Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:20.220Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:23.199Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:23.214Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:23.216Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:23.239Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:23.241Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:24.448Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:27.276Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:27.307Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:27.309Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:27.315Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:27.321Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:28.438Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:41.797Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:41.824Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:41.827Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:22:41.832Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:22:41.835Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:26:00.560Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:26:00.560Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T14:26:00.561Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T14:26:00.563Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T14:26:00.567Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T14:26:00.567Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T14:26:00.581Z INFO  [BackupManager] Database backup created successfully: scan4m_20261031_212600.sqlite (6224.0 KB) {"module":"BackupManager","backupFileName":"scan4m_20261031_212600.sqlite","fileSize":6373376}
+2026-10-31T14:26:18.669Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T14:26:18.669Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T14:26:18.675Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T14:26:24.150Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:26:24.151Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:26:24.161Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:26:24.163Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:54.401Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:54.437Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:54.618Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:54.857Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:54.968Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:54.975Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:54.990Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:54.998Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:55.003Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:55.008Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:27:55.021Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:27:55.030Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:03.445Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:28:03.469Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:03.510Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:28:03.514Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:03.615Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:28:03.641Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:08.608Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:28:08.625Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:08.860Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:28:08.877Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:25.660Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:28:34.994Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:35.005Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:28:35.070Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:35.075Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:28:35.100Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:28:35.111Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:28:53.362Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:30:34.046Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:30:34.157Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:30:34.163Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:30:34.206Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:30:34.216Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:31:15.789Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:31:25.429Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:31:25.430Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/scan4m.sqlite {"module":"Database"}
+2026-10-31T14:31:25.433Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T14:31:25.437Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T14:31:25.765Z WARN  [ErrorHandler] [HTTP_403] AUTHORIZATION_ERROR: Bạn không có quyền: scan4m:export {"module":"ErrorHandler","requestId":"513e4cf5-2133-4ce4-b187-d48fc47028d2"}
+2026-10-31T14:31:25.987Z INFO  [Database] Database connection closed gracefully {"module":"Database"}
+2026-10-31T14:39:39.598Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:39:39.598Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T14:39:39.599Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T14:39:39.603Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T14:39:39.606Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T14:39:39.606Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T14:39:39.613Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_213939.sqlite (6224.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_213939.sqlite","fileSize":6373376}
+2026-10-31T14:39:57.681Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T14:39:57.682Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T14:39:57.687Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T14:40:31.336Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:40:31.342Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:40:31.450Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:40:31.460Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:40:31.469Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:40:31.476Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:41:09.830Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:41:09.832Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:41:09.859Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:41:09.862Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:46:19.971Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:47:26.833Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:47:26.856Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:47:26.858Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:47:26.890Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:47:26.892Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:49:55.779Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:49:55.781Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:49:55.843Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:49:55.845Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:49:55.860Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:49:55.862Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:05.743Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:50:05.752Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:05.802Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:50:05.805Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:28.967Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:50:28.973Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:29.033Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:50:29.036Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:38.703Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:50:38.706Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:38.707Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:50:38.729Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:50:38.732Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:07.588Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:07.591Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:07.636Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:07.639Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:10.342Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:10.346Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:10.371Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:10.374Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:12.472Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:12.474Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:12.509Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:12.514Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:12.978Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:51:12.981Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:12.983Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:13.004Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:13.006Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:14.161Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:14.162Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:14.182Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:14.185Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:22.392Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:22.396Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:22.418Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:22.421Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.109Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:23.111Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.149Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:23.152Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.429Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:23.429Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.457Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:23.463Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.722Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:23.722Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:23.767Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:23.772Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:24.134Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:24.137Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:24.182Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:24.188Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:30.962Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:30.966Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:31.008Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:31.013Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:31.816Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:31.819Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:31.853Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:31.856Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:33.069Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:33.070Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:33.107Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:33.112Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:33.968Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:33.969Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:33.984Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:33.986Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:34.900Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:34.901Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:34.921Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:34.924Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:36.333Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:36.334Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:36.352Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:36.356Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:38.460Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:38.461Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:38.471Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:38.473Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:39.330Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:39.333Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:39.352Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:39.356Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:40.640Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:40.641Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:40.652Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:40.654Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:40.825Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:40.826Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:40.839Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:40.841Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:41.020Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:41.020Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:41.042Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:41.045Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:41.894Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:41.894Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:41.902Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:41.904Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:46.991Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:46.992Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.014Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.018Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.473Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:47.473Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.508Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.509Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.550Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.555Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.585Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.588Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.617Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.620Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.671Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:47.672Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.674Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.676Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.709Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.716Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.808Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.810Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.863Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.866Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:47.901Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:47.905Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:49.425Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:49.427Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:49.445Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:49.476Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:49.711Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:49.715Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:49.719Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:49.722Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:49.724Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:49.728Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:50.130Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:50.131Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:50.135Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:50.138Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:52.513Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:52.513Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:52.519Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:52.521Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:53.007Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T14:51:53.008Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:53.065Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:53.073Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:51:53.135Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:51:53.138Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:52:30.081Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:52:30.085Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:52:30.089Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:52:30.092Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:52:30.153Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:52:30.156Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:52:37.633Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:52:37.636Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:52:37.688Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:52:37.692Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T14:53:49.432Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T14:53:49.432Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T14:53:49.433Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T14:53:49.436Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T14:53:49.441Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T14:53:49.442Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T14:53:49.448Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_215349.sqlite (6224.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_215349.sqlite","fileSize":6373376}
+2026-10-31T14:54:07.541Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T14:54:07.542Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T14:54:07.547Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T14:54:19.889Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:54:19.891Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:54:19.956Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:54:19.958Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:54:19.981Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:54:19.987Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:55:10.991Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:55:23.228Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:55:23.426Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:55:23.433Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:55:23.491Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:55:23.496Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:56:57.113Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:56:57.114Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:56:57.173Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:56:57.177Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:01.719Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:01.723Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:01.737Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:01.739Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:05.634Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:05.635Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:05.695Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:05.698Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:14.580Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:16.049Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:16.123Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:16.127Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:57:16.148Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:57:16.151Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:58:39.770Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:58:39.774Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:58:39.833Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:58:39.836Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:59:02.594Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T14:59:02.722Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:59:02.724Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:59:02.822Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:59:02.825Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T14:59:02.841Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T14:59:02.843Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:00:56.194Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:00:57.425Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:00:57.494Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:00:57.496Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:00:57.529Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:00:57.531Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:16.277Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:23.206Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:23.263Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:23.266Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:23.287Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:23.290Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:30.724Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:30.727Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:30.750Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:30.753Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:38.278Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:58.469Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:58.528Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:58.530Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:01:58.552Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:01:58.554Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:02:08.341Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:02:40.041Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:02:40.053Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:02:40.070Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:02:40.073Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:02:40.119Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:02:40.122Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:29.270Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:03:29.271Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:29.378Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:03:29.381Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:43.752Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:03:45.104Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:45.168Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:03:45.173Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:45.197Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:03:45.201Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:03:46.296Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:04:53.048Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T15:04:53.049Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T15:04:53.049Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T15:04:53.053Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T15:04:53.058Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T15:04:53.059Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T15:04:53.064Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_220453.sqlite (6224.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_220453.sqlite","fileSize":6373376}
+2026-10-31T15:05:11.140Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T15:05:11.140Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T15:05:11.146Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T15:05:12.674Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:05:12.698Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T15:05:12.700Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:05:12.710Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T15:05:12.713Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:07:04.158Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T15:07:04.333Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:07:04.335Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:04.424Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:07:04.427Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:04.443Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T15:07:04.447Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:10.818Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:10.819Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:07:10.820Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:10.888Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:10.891Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:35.732Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:35.740Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:35.802Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:35.804Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:41.104Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:41.109Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:41.161Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:41.165Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:44.126Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:44.130Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:44.178Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:44.180Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:50.946Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:50.954Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:51.009Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:51.011Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:56.953Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:56.957Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:07:56.961Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:07:56.963Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:02.710Z INFO  [SSE] SSE client disconnected. Active clients: 2 {"module":"SSE"}
+2026-10-31T15:08:03.914Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:03.916Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:08:03.951Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:03.953Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:08:04.015Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:04.019Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:08:15.376Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:15.383Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:08:15.392Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:08:15.399Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:05.035Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:06.575Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:06.641Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:06.645Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:06.677Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:06.681Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:08.525Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:12.347Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:12.445Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:12.449Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:12.492Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:12.495Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:14.004Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:17.239Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:17.301Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:17.304Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:17.336Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:17.342Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:19.614Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:30.366Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:30.431Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:30.434Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:10:30.457Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:10:30.461Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:13:15.609Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:14:00.786Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:14:00.859Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:14:00.862Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:14:00.897Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:14:00.904Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:23:45.803Z INFO  [SSE] SSE client disconnected. Active clients: 3 {"module":"SSE"}
+2026-10-31T15:23:45.806Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:23:45.807Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:29:54.123Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:29:56.683Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:29:56.746Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:29:56.749Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:29:56.777Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:29:56.786Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:31:07.809Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:31:29.539Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:31:29.567Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:31:29.570Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:31:29.633Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:31:29.637Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:35:36.316Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:35:36.317Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:35:36.382Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:35:36.385Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:39:03.320Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:39:03.321Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:39:03.346Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:39:03.350Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:39.463Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:42:40.809Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:40.841Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:42:40.844Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:40.901Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:42:40.904Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:52.992Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T15:42:53.088Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:53.090Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:42:53.126Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:53.131Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:42:53.198Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:53.202Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:42:54.799Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:54.902Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:42:54.934Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:54.939Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:42:54.981Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:42:54.983Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:52:59.987Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-c160b620-da4a-4a23-803c-6c49c2ba177c"}
+2026-10-31T15:52:59.994Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:53:06.024Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-30920872-fbd5-4f2b-8791-25a0d6ecc67e"}
+2026-10-31T15:53:06.031Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:53:11.948Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:54:00.026Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-6bface36-8650-4c2b-bb2a-3cbc996f7149"}
+2026-10-31T15:54:00.030Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:54:06.061Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-6e837e59-0248-4706-ab47-7f51dd5dd2bb"}
+2026-10-31T15:54:06.066Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:54:11.964Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:55:00.040Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-235d7483-5ffd-4363-939c-30e070bd1c01"}
+2026-10-31T15:55:00.045Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:55:06.081Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-a10db023-7696-4586-9c96-7bec125d808d"}
+2026-10-31T15:55:06.085Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:55:11.984Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:56:00.053Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-ee74be6b-81f4-4bde-ab08-8ce3cea9217c"}
+2026-10-31T15:56:00.058Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:56:06.082Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-a67faf0e-d9d9-4ddc-9331-4bcbce6186a0"}
+2026-10-31T15:56:06.087Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:56:11.992Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:57:00.060Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-2b34d60d-4147-4091-9dd0-eafebb57f5af"}
+2026-10-31T15:57:00.066Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:57:06.096Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-6ef67a2a-99d8-421d-8a64-f628175a6e64"}
+2026-10-31T15:57:06.101Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:57:12.001Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:58:00.081Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-ab5bfcef-0c9c-4142-9040-ab1e0602c599"}
+2026-10-31T15:58:00.087Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:58:06.107Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-0abfcd51-2766-4060-9681-b485053cb44c"}
+2026-10-31T15:58:06.113Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:58:12.020Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T15:58:33.423Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:58:34.657Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:58:34.692Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:58:34.695Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:58:34.742Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T15:58:34.750Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T15:59:00.092Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-6a524638-2db9-40d2-b76a-2697ce8692d7"}
+2026-10-31T15:59:00.096Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T15:59:06.110Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-f53dc6ec-8f2e-418d-8544-5cceeb207260"}
+2026-10-31T15:59:06.115Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T15:59:12.044Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:00:00.107Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-04360965-4e2b-4320-9936-99fe64e060ff"}
+2026-10-31T16:00:00.112Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:00:06.169Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-e29e3450-6638-4a5d-ad39-01c8036b2b90"}
+2026-10-31T16:00:06.174Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:00:12.059Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:00:58.305Z INFO  [SSE] SSE client connected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:00:58.305Z INFO  [SSE] SSE client disconnected. Active clients: 6 {"module":"SSE"}
+2026-10-31T16:00:58.307Z INFO  [SSE] SSE client connected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:00:58.336Z INFO  [SSE] SSE client disconnected. Active clients: 6 {"module":"SSE"}
+2026-10-31T16:00:58.339Z INFO  [SSE] SSE client connected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:01:00.125Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-bac492f9-0994-474d-bd0b-95f90a95c722"}
+2026-10-31T16:01:00.129Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:01:06.144Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-c1daf842-6e7a-4f7a-9c70-3511489b9648"}
+2026-10-31T16:01:06.149Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:01:12.075Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:01:13.008Z INFO  [SSE] SSE client disconnected. Active clients: 6 {"module":"SSE"}
+2026-10-31T16:01:13.120Z INFO  [SSE] SSE client connected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:01:13.121Z INFO  [SSE] SSE client connected. Active clients: 8 {"module":"SSE"}
+2026-10-31T16:01:13.200Z INFO  [SSE] SSE client disconnected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:01:13.204Z INFO  [SSE] SSE client connected. Active clients: 8 {"module":"SSE"}
+2026-10-31T16:01:13.213Z INFO  [SSE] SSE client disconnected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:01:13.217Z INFO  [SSE] SSE client connected. Active clients: 8 {"module":"SSE"}
+2026-10-31T16:02:00.149Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-854d754b-8304-418f-8e32-e6ff296c7761"}
+2026-10-31T16:02:00.153Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:02:06.192Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-ce56a613-9730-4123-a6ee-03873ac411ea"}
+2026-10-31T16:02:06.200Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:02:12.078Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:03:00.168Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-df16b719-993d-4384-a21b-9ca59c5b1dbc"}
+2026-10-31T16:03:00.178Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:03:06.210Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-9619844c-b110-465d-964a-157f2ea7583b"}
+2026-10-31T16:03:06.215Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:03:12.095Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:03:24.911Z INFO  [SSE] SSE client disconnected. Active clients: 7 {"module":"SSE"}
+2026-10-31T16:03:24.916Z INFO  [SSE] SSE client connected. Active clients: 8 {"module":"SSE"}
+2026-10-31T16:03:24.918Z INFO  [SSE] SSE client connected. Active clients: 9 {"module":"SSE"}
+2026-10-31T16:04:00.142Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-cb18ec4d-ac7c-42bc-9389-8a6416bce4d3"}
+2026-10-31T16:04:00.147Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:04:06.167Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-8d4ade17-0dc4-4f49-9c79-7909dd9a7981"}
+2026-10-31T16:04:06.172Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:04:12.103Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:05:00.161Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-07e64771-0f9e-4532-b6e7-c08e565b13c3"}
+2026-10-31T16:05:00.167Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:05:06.188Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-f0b6bda6-2897-4ee0-85ab-99b0a8ab85b0"}
+2026-10-31T16:05:06.193Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:05:12.113Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:05:36.528Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T16:05:36.528Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T16:05:36.529Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T16:05:36.533Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T16:05:36.555Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T16:05:36.556Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T16:05:36.562Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_230536.sqlite (6248.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_230536.sqlite","fileSize":6397952}
+2026-10-31T16:05:54.610Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-1983c2ed-f877-4444-9f45-e2a1ba6f6119"}
+2026-10-31T16:05:54.615Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:06:00.637Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-07774fa4-5864-4d8a-9af3-80b0533db33f"}
+2026-10-31T16:06:00.645Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:06:06.701Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":2}
+2026-10-31T16:06:06.702Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T16:06:06.713Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T16:06:54.765Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-74d7dcaf-f805-4586-852c-5616045a9974"}
+2026-10-31T16:06:54.769Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:07:00.790Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-d0c25599-8edf-4c96-bcac-4bd2813e96ca"}
+2026-10-31T16:07:00.794Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:07:06.718Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:07:54.775Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-bb1e9d3c-de62-40a7-b7a5-633ba40c6916"}
+2026-10-31T16:07:54.783Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:08:00.798Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-fb06d794-5405-4f43-bd6e-9e8006435d05"}
+2026-10-31T16:08:00.802Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:08:06.722Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:08:54.790Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-89ba8644-f6eb-48e5-a4c3-4dd12107f3c7"}
+2026-10-31T16:08:54.794Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:09:00.812Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-ed68df95-3f9c-4573-8a23-dd9914fc4161"}
+2026-10-31T16:09:00.816Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:09:06.751Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:09:26.684Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T16:09:26.684Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T16:09:26.685Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T16:09:26.690Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T16:09:26.697Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T16:09:26.698Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T16:09:26.703Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_230926.sqlite (6248.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_230926.sqlite","fileSize":6397952}
+2026-10-31T16:09:44.767Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-4949fcee-b469-44fe-8d25-fd3e0e6e1d08"}
+2026-10-31T16:09:44.773Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:09:50.796Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-3d6b147f-307a-4fe7-a1b8-9ad404987a6c"}
+2026-10-31T16:09:50.801Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:09:56.834Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":2}
+2026-10-31T16:09:56.835Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T16:09:56.842Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T16:10:43.866Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:10:43.934Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:10:43.937Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:10:43.956Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:10:43.959Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:10:44.921Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-3b9576e6-7b3e-4fb1-b7f2-8ec6184162d0"}
+2026-10-31T16:10:44.925Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:10:50.946Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-61d80e2c-5c0b-448a-a8fe-3b0b46259a10"}
+2026-10-31T16:10:50.950Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:10:56.858Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:10:58.426Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:10:58.523Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:10:58.599Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:10:58.601Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:10:58.619Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:10:58.622Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:11:26.099Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:11:31.409Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:11:31.410Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:11:31.437Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:11:31.439Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:11:31.492Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:11:31.495Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:11:34.155Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:11:44.917Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-8f89173a-f755-482c-84d9-e639860a7365"}
+2026-10-31T16:11:44.923Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:11:50.947Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-ea5304bc-150f-4bb2-81e5-a59f6e0d2d28"}
+2026-10-31T16:11:50.952Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:11:56.878Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:12:14.555Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:12:14.617Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:12:14.620Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:12:14.652Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:12:14.655Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:12:44.946Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-8f8d4be0-c5af-476a-b74b-2014ecfec084"}
+2026-10-31T16:12:44.950Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:12:50.967Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-4a25ef37-6cb0-473f-ab55-995649380abe"}
+2026-10-31T16:12:50.974Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:12:56.885Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:13:44.947Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-3ab9d5f1-045f-4ed1-b834-b91b2baad81b"}
+2026-10-31T16:13:44.956Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:13:50.970Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-4e1ad419-5acd-47c8-aa92-3a14215d9b4f"}
+2026-10-31T16:13:50.975Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:13:56.896Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:14:44.967Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-e3bfc392-9864-4e02-85b0-6312f993eaeb"}
+2026-10-31T16:14:44.972Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:14:50.994Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-5cf9bbf3-7517-4657-820e-eb68bdb11bb1"}
+2026-10-31T16:14:51.000Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:14:56.907Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:15:44.962Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-e0107ca5-95bf-4831-88df-5542da13d481"}
+2026-10-31T16:15:44.966Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:15:50.997Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-adf56e29-b7df-409b-a883-bd9c6e92e618"}
+2026-10-31T16:15:51.002Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:15:56.924Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:16:44.996Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-a5b933bd-1780-4f55-929e-fe28810ac033"}
+2026-10-31T16:16:45.002Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:16:51.032Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-296557ee-e4e7-4c6f-8fed-e8106b028b6a"}
+2026-10-31T16:16:51.036Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5620261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5620261031.csv"}
+2026-10-31T16:16:56.927Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T16:17:44.990Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-dabe05da-b968-47c1-8cc8-5ba337b1452d"}
+2026-10-31T16:17:44.995Z ERROR [ScannerEngine] Error processing file S_S+Verify+#5420261031.csv: File CSV thiếu các cột bắt buộc: [Công đoạn, Số tấm input (Block)] {"module":"ScannerEngine","fileName":"S_S+Verify+#5420261031.csv"}
+2026-10-31T16:17:59.283Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T16:17:59.283Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T16:17:59.284Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T16:17:59.288Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T16:17:59.292Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T16:17:59.293Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T16:17:59.297Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_231759.sqlite (6248.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_231759.sqlite","fileSize":6397952}
+2026-10-31T16:18:17.377Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T16:18:17.378Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T16:18:17.383Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T16:26:50.321Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:26:50.401Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:26:50.403Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:26:50.441Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:26:50.444Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:27:55.365Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:31:09.139Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T16:31:09.140Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T16:31:09.141Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T16:31:09.145Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T16:31:09.149Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T16:31:09.150Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T16:31:09.156Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_233109.sqlite (6260.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_233109.sqlite","fileSize":6410240}
+2026-10-31T16:31:27.275Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T16:31:27.275Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T16:31:27.281Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T16:33:15.652Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:15.654Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:33:15.744Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:15.746Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:33:15.762Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:15.765Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:33:28.551Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:30.007Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:33:30.066Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:30.071Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:33:30.084Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:33:30.086Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:37:25.167Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T16:37:25.168Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T16:37:25.168Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T16:37:25.171Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T16:37:25.175Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T16:37:25.175Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T16:37:25.180Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261031_233725.sqlite (6260.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261031_233725.sqlite","fileSize":6410240}
+2026-10-31T16:37:43.258Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T16:37:43.258Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T16:37:43.264Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T16:37:43.452Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:37:43.519Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:37:43.522Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:37:43.534Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:37:43.536Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:37:49.987Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:37:50.074Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:37:50.136Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:37:50.139Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:37:50.166Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:37:50.168Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:38:51.077Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:38:51.164Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:38:51.195Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:38:51.198Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:38:51.244Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:38:51.254Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:44:43.195Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:44:43.198Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:44:43.251Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:44:43.254Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:22.665Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:46:22.668Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:22.690Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:46:22.692Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:25.341Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T16:46:25.342Z INFO  [SSE] SSE client disconnected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:25.390Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:46:25.392Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:38.248Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:46:38.252Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:38.280Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T16:46:38.282Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T16:46:51.611Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T17:24:46.238Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T17:24:46.238Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T17:24:46.239Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T17:24:46.241Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T17:24:46.286Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T17:24:46.287Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T17:24:46.291Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_002446.sqlite (6312.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_002446.sqlite","fileSize":6463488}
+2026-10-31T17:25:11.062Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5420261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-fa2959e8-7cbe-434d-a674-9217d2aad3d5"}
+2026-10-31T17:25:11.068Z INFO  [ScannerEngine] Parsed 37 records from CVR CSV S_S+Verify+#5420261031.csv {"module":"ScannerEngine"}
+2026-10-31T17:25:11.396Z INFO  [CvrMatchingEngine] CVR Matching complete: 37 inserted, 0 updated {"module":"CvrMatchingEngine"}
+2026-10-31T17:25:11.396Z INFO  [ScannerEngine] CVR WCS import done: 37 inserted, 0 updated | file=S_S+Verify+#5420261031.csv {"module":"ScannerEngine"}
+2026-10-31T17:25:17.427Z INFO  [ScannerEngine] Processing file: S_S+Verify+#5620261031.csv (CSV)... {"module":"ScannerEngine","fileId":"file-79da5728-8b15-4d16-b6e8-3abb8859397b"}
+2026-10-31T17:25:17.431Z INFO  [ScannerEngine] Parsed 42 records from CVR CSV S_S+Verify+#5620261031.csv {"module":"ScannerEngine"}
+2026-10-31T17:25:17.787Z INFO  [CvrMatchingEngine] CVR Matching complete: 41 inserted, 1 updated {"module":"CvrMatchingEngine"}
+2026-10-31T17:25:17.787Z INFO  [ScannerEngine] CVR WCS import done: 41 inserted, 1 updated | file=S_S+Verify+#5620261031.csv {"module":"ScannerEngine"}
+2026-10-31T17:26:17.641Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031114831.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-57c01442-cb0f-4d5e-9e3f-b436b6f01ed5"}
+2026-10-31T17:26:17.680Z INFO  [ScannerEngine] Parsed 37 error records from Plus Error Excel ayqa4080_20261031114831.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:17.848Z INFO  [ScannerEngine] Plus error import done: 37 error records, 0 CVR rematched | file=ayqa4080_20261031114831.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:23.901Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031114858.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-d976d5bf-114b-4a3d-9775-b0f0273b5aa5"}
+2026-10-31T17:26:23.916Z INFO  [ScannerEngine] Parsed 17 error records from Plus Error Excel ayqa4080_20261031114858.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:24.002Z INFO  [ScannerEngine] Plus error import done: 17 error records, 0 CVR rematched | file=ayqa4080_20261031114858.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:30.036Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031114930.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-3b1b05ab-ad92-4e2d-9b31-1f0ae99af366"}
+2026-10-31T17:26:30.050Z INFO  [ScannerEngine] Parsed 31 error records from Plus Error Excel ayqa4080_20261031114930.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:30.202Z INFO  [CvrMatchingEngine] Rematched 3 CVR records with new PLUS/Error data {"module":"CvrMatchingEngine"}
+2026-10-31T17:26:30.202Z INFO  [ScannerEngine] Plus error import done: 31 error records, 3 CVR rematched | file=ayqa4080_20261031114930.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:36.230Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031114947.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-905eb2d9-846a-458b-9886-e8fa847e55bd"}
+2026-10-31T17:26:36.247Z INFO  [ScannerEngine] Parsed 35 error records from Plus Error Excel ayqa4080_20261031114947.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:36.426Z INFO  [CvrMatchingEngine] Rematched 3 CVR records with new PLUS/Error data {"module":"CvrMatchingEngine"}
+2026-10-31T17:26:36.427Z INFO  [ScannerEngine] Plus error import done: 35 error records, 3 CVR rematched | file=ayqa4080_20261031114947.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:42.486Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031115002.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-a26f2ebb-404e-4f63-b84e-4b3dd051314c"}
+2026-10-31T17:26:42.505Z INFO  [ScannerEngine] Parsed 15 error records from Plus Error Excel ayqa4080_20261031115002.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:42.597Z INFO  [CvrMatchingEngine] Rematched 3 CVR records with new PLUS/Error data {"module":"CvrMatchingEngine"}
+2026-10-31T17:26:42.597Z INFO  [ScannerEngine] Plus error import done: 15 error records, 3 CVR rematched | file=ayqa4080_20261031115002.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:48.633Z INFO  [ScannerEngine] Processing file: ayqa4080_20261031115020.xlsx (EXCEL)... {"module":"ScannerEngine","fileId":"file-1db2307a-01d7-4461-8458-d8dafcd92ece"}
+2026-10-31T17:26:48.646Z INFO  [ScannerEngine] Parsed 7 error records from Plus Error Excel ayqa4080_20261031115020.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:48.709Z INFO  [CvrMatchingEngine] Rematched 3 CVR records with new PLUS/Error data {"module":"CvrMatchingEngine"}
+2026-10-31T17:26:48.709Z INFO  [ScannerEngine] Plus error import done: 7 error records, 3 CVR rematched | file=ayqa4080_20261031115020.xlsx {"module":"ScannerEngine"}
+2026-10-31T17:26:48.718Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":8,"errors":0}
+2026-10-31T17:26:48.718Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T17:26:48.725Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T17:28:05.724Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:28:44.379Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:29:07.883Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T17:29:07.895Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T17:29:07.898Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T17:29:07.980Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T17:29:07.983Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T17:29:14.390Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:30:32.202Z INFO  [SSE] SSE client connected. Active clients: 2 {"module":"SSE"}
+2026-10-31T17:30:32.203Z INFO  [SSE] SSE client connected. Active clients: 3 {"module":"SSE"}
+2026-10-31T17:30:32.217Z INFO  [SSE] SSE client connected. Active clients: 4 {"module":"SSE"}
+2026-10-31T17:30:32.218Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T17:30:32.218Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T17:30:32.226Z INFO  [SSE] SSE client disconnected. Active clients: 5 {"module":"SSE"}
+2026-10-31T17:30:32.227Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:30:32.314Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T17:30:32.317Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T17:30:32.331Z INFO  [SSE] SSE client disconnected. Active clients: 4 {"module":"SSE"}
+2026-10-31T17:30:32.334Z INFO  [SSE] SSE client connected. Active clients: 5 {"module":"SSE"}
+2026-10-31T17:31:10.861Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:31:10.891Z INFO  [SSE] SSE client connected. Active clients: 6 {"module":"SSE"}
+2026-10-31T17:31:10.893Z INFO  [SSE] SSE client connected. Active clients: 7 {"module":"SSE"}
+2026-10-31T17:31:10.930Z INFO  [SSE] SSE client connected. Active clients: 8 {"module":"SSE"}
+2026-10-31T17:31:10.934Z INFO  [SSE] SSE client connected. Active clients: 9 {"module":"SSE"}
+2026-10-31T17:31:11.203Z INFO  [SSE] SSE client disconnected. Active clients: 8 {"module":"SSE"}
+2026-10-31T17:31:11.208Z INFO  [SSE] SSE client connected. Active clients: 9 {"module":"SSE"}
+2026-10-31T17:31:11.616Z INFO  [SSE] SSE client disconnected. Active clients: 8 {"module":"SSE"}
+2026-10-31T17:31:11.626Z INFO  [SSE] SSE client connected. Active clients: 9 {"module":"SSE"}
+2026-10-31T17:31:40.867Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:31:58.935Z INFO  [SSE] SSE client disconnected. Active clients: 8 {"module":"SSE"}
+2026-10-31T17:32:58.652Z INFO  [SSE] SSE client connected. Active clients: 9 {"module":"SSE"}
+2026-10-31T17:32:58.664Z INFO  [SSE] SSE client connected. Active clients: 10 {"module":"SSE"}
+2026-10-31T17:32:58.665Z INFO  [SSE] SSE client connected. Active clients: 11 {"module":"SSE"}
+2026-10-31T17:32:58.666Z INFO  [SSE] SSE client connected. Active clients: 12 {"module":"SSE"}
+2026-10-31T17:32:58.667Z INFO  [SSE] SSE client connected. Active clients: 13 {"module":"SSE"}
+2026-10-31T17:32:58.667Z INFO  [SSE] SSE client connected. Active clients: 14 {"module":"SSE"}
+2026-10-31T17:32:58.668Z INFO  [SSE] SSE client connected. Active clients: 15 {"module":"SSE"}
+2026-10-31T17:32:58.669Z INFO  [SSE] SSE client connected. Active clients: 16 {"module":"SSE"}
+2026-10-31T17:32:58.669Z INFO  [SSE] SSE client connected. Active clients: 17 {"module":"SSE"}
+2026-10-31T17:32:58.670Z INFO  [SSE] SSE client connected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:32:58.680Z INFO  [SSE] SSE client disconnected. Active clients: 17 {"module":"SSE"}
+2026-10-31T17:32:58.681Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:32:58.683Z INFO  [SSE] SSE client connected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:32:58.696Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:32:58.795Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:32:58.886Z INFO  [SSE] SSE client disconnected. Active clients: 17 {"module":"SSE"}
+2026-10-31T17:32:58.888Z INFO  [SSE] SSE client connected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:32:58.907Z INFO  [SSE] SSE client disconnected. Active clients: 17 {"module":"SSE"}
+2026-10-31T17:32:58.910Z INFO  [SSE] SSE client connected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:37.356Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:33:37.367Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:37.379Z INFO  [SSE] SSE client connected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:33:37.381Z INFO  [SSE] SSE client disconnected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:37.421Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:37.423Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:37.483Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:37.486Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:46.814Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:46.817Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:46.879Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:46.882Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:46.900Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:46.903Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:52.642Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:52.644Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:52.714Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:52.718Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:33:52.744Z INFO  [SSE] SSE client disconnected. Active clients: 18 {"module":"SSE"}
+2026-10-31T17:33:52.748Z INFO  [SSE] SSE client connected. Active clients: 19 {"module":"SSE"}
+2026-10-31T17:34:07.360Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:35:25.165Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:36:03.862Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:36:03.875Z INFO  [SSE] SSE client connected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:36:03.876Z INFO  [SSE] SSE client connected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:36:03.877Z INFO  [SSE] SSE client disconnected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:36:15.426Z INFO  [SSE] SSE client connected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:36:33.872Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:37:51.613Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:37:56.699Z INFO  [SSE] SSE client disconnected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:38:30.348Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:38:42.457Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T17:39:00.349Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:40:18.259Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:40:18.391Z INFO  [SSE] SSE client connected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:40:56.877Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:41:26.887Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:42:44.694Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:43:23.414Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:43:53.415Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:45:11.213Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:45:49.923Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:46:19.924Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:47:37.724Z INFO  [SSE] SSE client connected. Active clients: 22 {"module":"SSE"}
+2026-10-31T17:47:37.747Z INFO  [SSE] SSE client disconnected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:47:37.748Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:48:16.416Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:48:46.422Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:50:04.190Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:50:06.449Z INFO  [SSE] SSE client disconnected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:50:06.665Z INFO  [SSE] SSE client connected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:50:15.678Z INFO  [SSE] SSE client disconnected. Active clients: 20 {"module":"SSE"}
+2026-10-31T17:50:15.892Z INFO  [SSE] SSE client connected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:50:42.901Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:50:42.925Z INFO  [SSE] SSE client connected. Active clients: 22 {"module":"SSE"}
+2026-10-31T17:50:42.937Z INFO  [SSE] SSE client disconnected. Active clients: 21 {"module":"SSE"}
+2026-10-31T17:51:12.902Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:52:30.693Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:52:55.216Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T17:52:55.217Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T17:52:55.219Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T17:52:55.223Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T17:52:55.230Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T17:52:55.231Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T17:52:55.236Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_005255.sqlite (6668.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_005255.sqlite","fileSize":6828032}
+2026-10-31T17:55:03.403Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T17:55:03.408Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T17:55:03.424Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T17:56:21.410Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:56:45.200Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T17:56:45.201Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T17:56:45.202Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T17:56:45.205Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T17:56:45.211Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T17:56:45.211Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T17:56:45.217Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_005645.sqlite (6668.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_005645.sqlite","fileSize":6828032}
+2026-10-31T17:56:59.906Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:57:29.920Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:58:29.927Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T17:58:53.911Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T17:58:53.911Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T17:59:35.687Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:00:05.700Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:01:23.478Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:02:02.174Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:02:32.182Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:03:49.978Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:04:28.677Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:04:58.689Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:06:16.467Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:06:55.151Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:07:25.162Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:08:42.905Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:09:21.602Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:09:21.621Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:09:51.616Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:10:01.577Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:10:01.578Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:10:01.579Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:10:01.582Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:10:01.586Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:10:01.587Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:10:01.592Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_011001.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_011001.sqlite","fileSize":6836224}
+2026-10-31T18:12:22.257Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T18:12:22.262Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:12:22.268Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:12:43.101Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:13:40.086Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:14:18.794Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:14:48.798Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:16:06.588Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:16:45.292Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:17:15.296Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:18:33.088Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:19:11.781Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:19:41.783Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:20:59.579Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:21:38.277Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:22:08.282Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:22:47.303Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:22:47.304Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:22:47.305Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:22:47.308Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:22:47.313Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:22:47.313Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:22:47.319Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_012247.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_012247.sqlite","fileSize":6836224}
+2026-10-31T18:24:58.989Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T18:24:58.990Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:24:58.996Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:26:16.793Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:26:16.824Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:26:55.503Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:27:25.505Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:27:34.530Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:27:34.531Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:27:34.532Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:27:34.534Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:27:34.539Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:27:34.539Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:27:34.546Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_012734.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_012734.sqlite","fileSize":6836224}
+2026-10-31T18:27:34.552Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:27:34.554Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:27:39.724Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:28:04.555Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:28:34.561Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:29:04.567Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:29:34.580Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:29:55.250Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T18:30:34.585Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:31:04.600Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:31:34.601Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:32:04.611Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:33:04.632Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:33:34.635Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:34:04.636Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:34:34.650Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:35:34.673Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:36:04.688Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:36:34.693Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:37:04.707Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:38:04.722Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:38:34.727Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:39:04.739Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:39:34.010Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:39:34.011Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:39:34.012Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:39:34.015Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:39:34.020Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:39:34.020Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:39:34.027Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_013934.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_013934.sqlite","fileSize":6836224}
+2026-10-31T18:39:34.036Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:39:34.037Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:40:04.037Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:40:11.880Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:40:34.041Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:41:04.053Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:41:16.934Z INFO  [SSE] SSE client disconnected. Active clients: 0 {"module":"SSE"}
+2026-10-31T18:41:16.936Z INFO  [SSE] SSE client connected. Active clients: 1 {"module":"SSE"}
+2026-10-31T18:41:34.067Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:41:35.807Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:41:35.808Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:41:35.808Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:41:35.811Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:41:35.817Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:41:35.817Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:41:35.823Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_014135.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_014135.sqlite","fileSize":6836224}
+2026-10-31T18:41:35.829Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:41:35.831Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:42:05.839Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:42:35.850Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:43:05.861Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:43:35.871Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:43:56.519Z INFO  [Bootstrap] Initial file scan completed {"module":"Bootstrap","filesProcessed":0,"errors":0}
+2026-10-31T18:44:35.895Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:45:05.899Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:45:35.907Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:46:05.918Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}
+2026-10-31T18:48:49.286Z INFO  [Logger] Logger initialized successfully {"module":"Logger","logFile":"D:\\0._Long\\SEI\\4M Report Management & Aggregation System\\data\\logs\\scan4m-2026-10-31.log"}
+2026-10-31T18:48:49.287Z INFO  [Bootstrap] Starting Scan 4M Application Server... {"module":"Bootstrap"}
+2026-10-31T18:48:49.288Z INFO  [Database] Connecting to SQLite database: file:D:/0._Long/SEI/4M Report Management & Aggregation System/data/database/4m-aom-report.sqlite {"module":"Database"}
+2026-10-31T18:48:49.291Z INFO  [Migrations] Running database migrations... {"module":"Migrations"}
+2026-10-31T18:48:49.296Z INFO  [Migrations] Migrations completed successfully. {"module":"Migrations"}
+2026-10-31T18:48:49.297Z INFO  [BackupManager] Starting periodic backup: interval 24h, retention max 30 copies. {"module":"BackupManager","intervalHours":24,"maxRetentionCopies":30}
+2026-10-31T18:48:49.303Z INFO  [BackupManager] Database backup created successfully: 4m_aom_report_20261101_014849.sqlite (6676.0 KB) {"module":"BackupManager","backupFileName":"4m_aom_report_20261101_014849.sqlite","fileSize":6836224}
+2026-10-31T18:48:49.309Z INFO  [Server] Scan 4M Server is running at http://localhost:4000 {"module":"Server","port":4000}
+2026-10-31T18:48:49.310Z INFO  [ScannerEngine] Starting background periodic scanner every 30s... {"module":"ScannerEngine"}
+2026-10-31T18:49:19.320Z INFO  [ScannerEngine] Scan cycle already in progress, skipping... {"module":"ScannerEngine"}

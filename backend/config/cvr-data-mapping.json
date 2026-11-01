@@ -1,0 +1,467 @@
+{
+  "version": 1,
+  "wcsRequiredColumns": [
+    "Mã item",
+    "Số lot",
+    "Công đoạn số",
+    "Ngày tháng",
+    "Ca",
+    "Tên thiết bị",
+    "Tên sản phẩm",
+    "Tên chương trình",
+    "Số tấm input",
+    "Người thao tác C",
+    "Thời gian bắt đầu",
+    "Thời gian kết thúc",
+    "Độ phóng đại verify",
+    "Số hàng NG"
+  ],
+  "mappings": {
+    "processName": {
+      "outputColumn": "processName",
+      "source": "WCS",
+      "sourceColumn": "Process Name",
+      "dataType": "string",
+      "required": false
+    },
+    "machineCode": {
+      "outputColumn": "machineCode",
+      "source": "WCS",
+      "sourceColumn": "Thiết bị C",
+      "dataType": "string",
+      "required": false
+    },
+    "machine": {
+      "outputColumn": "Machine",
+      "source": "WCS",
+      "sourceColumn": "Tên thiết bị",
+      "dataType": "string",
+      "required": false
+    },
+    "date": {
+      "outputColumn": "Date",
+      "source": "WCS",
+      "sourceColumn": "Ngày tháng",
+      "dataType": "string",
+      "required": false
+    },
+    "shift": {
+      "outputColumn": "Shift",
+      "source": "WCS",
+      "sourceColumn": "Ca",
+      "dataType": "string",
+      "required": false
+    },
+    "operationTime": {
+      "outputColumn": "operationTime",
+      "source": "WCS",
+      "sourceColumn": "Thời gian thao tác",
+      "dataType": "string",
+      "required": false
+    },
+    "opCode": {
+      "outputColumn": "opCode",
+      "source": "WCS",
+      "sourceColumn": "Người thao tác C",
+      "dataType": "string",
+      "required": false
+    },
+    "opName": {
+      "outputColumn": "opName",
+      "source": "WCS",
+      "sourceColumn": "Tên người thao tác",
+      "dataType": "string",
+      "required": false
+    },
+    "opCode2": {
+      "outputColumn": "opCode2",
+      "source": "WCS",
+      "sourceColumn": "Người thao tác C2",
+      "dataType": "string",
+      "required": false
+    },
+    "opName2": {
+      "outputColumn": "opName2",
+      "source": "WCS",
+      "sourceColumn": "Tên người thao tác2",
+      "dataType": "string",
+      "required": false
+    },
+    "itemName": {
+      "outputColumn": "Item name",
+      "source": "WCS",
+      "sourceColumn": "Tên sản phẩm",
+      "dataType": "string",
+      "required": false
+    },
+    "itemCode": {
+      "outputColumn": "Item code",
+      "source": "WCS",
+      "sourceColumn": "Mã item",
+      "dataType": "string",
+      "required": true
+    },
+    "totalSheetVrf": {
+      "outputColumn": "Total sheet (VRF)",
+      "source": "WCS",
+      "sourceColumn": "Số tấm input",
+      "dataType": "integer",
+      "required": false
+    },
+    "lotNo": {
+      "outputColumn": "Lot no",
+      "source": "WCS",
+      "sourceColumn": "Số lot",
+      "dataType": "string",
+      "required": true
+    },
+    "okQty": {
+      "outputColumn": "okQty",
+      "source": "WCS",
+      "sourceColumn": "Số hàng Ok",
+      "dataType": "integer",
+      "required": false
+    },
+    "seqNo": {
+      "outputColumn": "Seq no",
+      "source": "WCS",
+      "sourceColumn": "Công đoạn số",
+      "dataType": "string",
+      "required": true
+    },
+    "totalPatternNg": {
+      "outputColumn": "Total pattern NG",
+      "source": "CALCULATED",
+      "rule": "accumulativeDefectA + accumulativeDefectB",
+      "dataType": "integer",
+      "required": false
+    },
+    "programName": {
+      "outputColumn": "Program name",
+      "source": "WCS",
+      "sourceColumn": "Tên chương trình",
+      "dataType": "string",
+      "required": false
+    },
+    "startTime": {
+      "outputColumn": "Start time",
+      "source": "WCS",
+      "sourceColumn": "Thời gian bắt đầu",
+      "dataType": "string",
+      "required": false
+    },
+    "finishTime": {
+      "outputColumn": "Finish time",
+      "source": "WCS",
+      "sourceColumn": "Thời gian kết thúc",
+      "dataType": "string",
+      "required": false
+    },
+    "verifyZoom": {
+      "outputColumn": "verifyZoom",
+      "source": "WCS",
+      "sourceColumn": "Độ phóng đại verify",
+      "dataType": "string",
+      "required": false
+    },
+    "airPressure": {
+      "outputColumn": "airPressure",
+      "source": "WCS",
+      "sourceColumn": "Áp suất khí đầu vào",
+      "dataType": "string",
+      "required": false
+    },
+    "totalSheetIndi": {
+      "outputColumn": "Total sheet (Indi)",
+      "source": "PLUS",
+      "sourceColumn": "Production Qty",
+      "dataType": "integer",
+      "required": false
+    },
+    "process": {
+      "outputColumn": "Process",
+      "source": "ITEM_MAPPING",
+      "sourceColumn": "process",
+      "dataType": "string",
+      "required": false
+    },
+    "totalPcs": {
+      "outputColumn": "Total pcs",
+      "source": "CALCULATED",
+      "rule": "totalSheetIndi * pcs_per_sheet",
+      "dataType": "integer",
+      "required": false
+    },
+    "ngRate": {
+      "outputColumn": "% NG",
+      "source": "CALCULATED",
+      "rule": "totalPatternNg / totalPcs * 100",
+      "dataType": "float",
+      "required": false
+    },
+    "totalTime": {
+      "outputColumn": "Total time",
+      "source": "CALCULATED",
+      "rule": "finishTime - startTime (minutes)",
+      "dataType": "string",
+      "required": false
+    },
+    "op": {
+      "outputColumn": "OP",
+      "source": "CALCULATED",
+      "rule": "opCode + opName",
+      "dataType": "string",
+      "required": false
+    },
+    "accumulativeDefectA": {
+      "outputColumn": " A side-Accumulative defect",
+      "source": "CALCULATED",
+      "rule": "sum side A defects",
+      "dataType": "integer",
+      "required": false
+    },
+    "discolorationA": {
+      "outputColumn": "Discoloration A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}1",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d1"
+    },
+    "fmA": {
+      "outputColumn": "FM A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}2",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d2"
+    },
+    "copperResidueA": {
+      "outputColumn": "Copper residue A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}3",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d3"
+    },
+    "brokenHoleA": {
+      "outputColumn": "Broken hole A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}4",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d4"
+    },
+    "bvhShiftA": {
+      "outputColumn": "BVH shift A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}5",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d5"
+    },
+    "missingHoleA": {
+      "outputColumn": "Missing hole A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}6",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d6"
+    },
+    "extraHoleA": {
+      "outputColumn": "Extra hole A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}7",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d7"
+    },
+    "dfrSeepageA": {
+      "outputColumn": "DFR seepage",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}8",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d8"
+    },
+    "otherA": {
+      "outputColumn": "Other A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}9",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d9"
+    },
+    "dfrRemainA": {
+      "outputColumn": "DFR remain A side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}10",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d10"
+    },
+    "verifyZoomA": {
+      "outputColumn": "Verify zoom magnification (A)",
+      "source": "WCS",
+      "sourceColumn": "Độ phóng đại verify",
+      "dataType": "string",
+      "required": false
+    },
+    "accumulativeDefectB": {
+      "outputColumn": " B side-Accumulative defect",
+      "source": "CALCULATED",
+      "rule": "sum side B defects",
+      "dataType": "integer",
+      "required": false
+    },
+    "discolorationB": {
+      "outputColumn": "Discoloration B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}1",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d1"
+    },
+    "fmB": {
+      "outputColumn": "FM B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}2",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d2"
+    },
+    "copperResidueB": {
+      "outputColumn": "Copper residue B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}3",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d3"
+    },
+    "brokenHoleB": {
+      "outputColumn": "Broken hole B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}4",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d4"
+    },
+    "bvhShiftB": {
+      "outputColumn": "BVH shift B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}5",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d5"
+    },
+    "missingHoleB": {
+      "outputColumn": "Missing hole B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}6",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d6"
+    },
+    "extraHoleB": {
+      "outputColumn": "Extra hole B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}7",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d7"
+    },
+    "dfrSeepageB": {
+      "outputColumn": "DFR seepage",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}8",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d8"
+    },
+    "otherB": {
+      "outputColumn": "Other B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}9",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d9"
+    },
+    "dfrRemainB": {
+      "outputColumn": "DFR remain B side",
+      "source": "PLUS_ERROR",
+      "sourceColumn": "{processType}10",
+      "dataType": "integer",
+      "required": false,
+      "storageColumn": "d10"
+    },
+    "verifyZoomB": {
+      "outputColumn": "Verify zoom magnification (B)",
+      "source": "WCS",
+      "sourceColumn": "Độ phóng đại verify",
+      "dataType": "string",
+      "required": false
+    },
+    "wcsNgQty": {
+      "outputColumn": "WCS NG quantity (raw)",
+      "source": "WCS",
+      "sourceColumn": "Số hàng NG",
+      "dataType": "integer",
+      "required": false
+    },
+    "ngRateA": {
+      "outputColumn": "% NG A side",
+      "source": "CALCULATED",
+      "rule": "accumulativeDefectA / totalPcs * 100",
+      "dataType": "float",
+      "required": false
+    },
+    "ngRateB": {
+      "outputColumn": "% NG B side",
+      "source": "CALCULATED",
+      "rule": "accumulativeDefectB / totalPcs * 100",
+      "dataType": "float",
+      "required": false
+    }
+  },
+  "errorProcessTypes": {
+    "sideA": [
+      "AEA",
+      "ASA",
+      "ASS"
+    ],
+    "sideB": [
+      "AEB",
+      "ASB",
+      "BSS"
+    ]
+  },
+  "plusErrorImport": {
+    "codeHeaderRow": 3,
+    "dataStartRow": 5,
+    "processTypes": [
+      "AEA",
+      "AEB",
+      "ASA",
+      "ASB",
+      "ASS",
+      "BSS"
+    ],
+    "columns": {
+      "itemCode": "D",
+      "batchNo": "E",
+      "productName": "C",
+      "inspectionDate": "J",
+      "totalNgQty": "R",
+      "inspectionQty": "O",
+      "ngRate": "S"
+    }
+  },
+  "errorMatching": {
+    "keys": [
+      "item_code",
+      "batch_no"
+    ],
+    "lotComparison": "exact",
+    "aggregation": "sum all configured process groups per side"
+  }
+}

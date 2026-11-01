@@ -1,0 +1,15 @@
+
+> scan4m-backend@1.0.0 test:cvr-mapping
+> node "node_modules/tsx/dist/cli.mjs" tests/cvr-mapping.test.ts
+
+2026-11-01T14:23:31.081Z INFO  [ConfigurationProvider] Loading configuration files... {"module":"ConfigurationProvider"}
+2026-11-01T14:23:31.084Z INFO  [ConfigurationProvider] All configuration files loaded and validated successfully. {"module":"ConfigurationProvider"}
+S_S+Verify+#5420261031.csv: 37 records verified
+S_S+Verify+#5620261031.csv: 42 records verified
+ayqa4080_20261031114831.xlsx: AEA 37 rows verified
+ayqa4080_20261031114858.xlsx: AEB 17 rows verified
+ayqa4080_20261031114930.xlsx: ASA 31 rows verified
+ayqa4080_20261031114947.xlsx: ASB 35 rows verified
+ayqa4080_20261031115002.xlsx: ASS 15 rows verified
+ayqa4080_20261031115020.xlsx: BSS 7 rows verified
+CVR mapping tests passed: samples, configurable header, BOM, numbers, identifiers, required columns
