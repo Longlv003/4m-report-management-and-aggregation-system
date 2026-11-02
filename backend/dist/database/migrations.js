@@ -4,7 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ensureCvrRateColumns = ensureCvrRateColumns;
+exports.ensureCvrPcsColumn = ensureCvrPcsColumn;
 exports.runMigrations = runMigrations;
+const mapping_sequence_migration_js_1 = require("./mapping-sequence-migration.js");
+const scanner_file_state_migration_js_1 = require("./scanner-file-state-migration.js");
+const scan_time_migration_js_1 = require("./scan-time-migration.js");
 const connection_js_1 = require("./connection.js");
 const logger_js_1 = require("../logging/logger.js");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
@@ -20,6 +24,12 @@ async function ensureCvrRateColumns(db) {
         if (!columns.rows.some(row => row.name === column)) {
             await db.execute(`ALTER TABLE cvr4m_records ADD COLUMN ${column} REAL`);
         }
+    }
+}
+async function ensureCvrPcsColumn(db) {
+    const columns = await db.execute('PRAGMA table_info(cvr4m_records)');
+    if (!columns.rows.some(column => column.name === 'total_pcs_cvr')) {
+        await db.execute('ALTER TABLE cvr4m_records ADD COLUMN total_pcs_cvr INTEGER');
     }
 }
 async function runMigrations() {
@@ -113,7 +123,8 @@ async function runMigrations() {
     await db.execute(`
     CREATE TABLE IF NOT EXISTS scan4m_records (
       id TEXT PRIMARY KEY,
-      match_key TEXT NOT NULL UNIQUE,
+      match_key TEXT NOT NULL,
+      record_key TEXT UNIQUE,
       wcs_record_id TEXT NOT NULL,
       plus_record_id TEXT,
       match_status TEXT NOT NULL,
@@ -212,14 +223,18 @@ async function runMigrations() {
     await db.execute(`
     CREATE TABLE IF NOT EXISTS item_mapping (
       id TEXT PRIMARY KEY,
-      item_name TEXT NOT NULL UNIQUE,
-      pcs_per_sheet INTEGER NOT NULL DEFAULT 0,
+      item_name TEXT NOT NULL,
+      seq_no TEXT NOT NULL DEFAULT '',
+      build TEXT NOT NULL DEFAULT '',
+      model TEXT NOT NULL DEFAULT '',
+      pcs_per_sheet INTEGER,
       process TEXT NOT NULL DEFAULT '',
       is_deleted INTEGER NOT NULL DEFAULT 0,
       created_by TEXT,
       updated_by TEXT,
       created_at TEXT NOT NULL,
-      updated_at TEXT NOT NULL
+      updated_at TEXT NOT NULL,
+      UNIQUE (item_name,seq_no)
     );
   `);
     await db.execute(`CREATE INDEX IF NOT EXISTS idx_item_mapping_item_name ON item_mapping(item_name);`);
@@ -246,6 +261,7 @@ async function runMigrations() {
       total_sheet_vrf INTEGER,
       op TEXT,
       total_pcs INTEGER,
+      total_pcs_cvr INTEGER,
       total_pattern_ng INTEGER,
       ng_rate REAL,
       accumulative_defect_a INTEGER,
@@ -281,6 +297,7 @@ async function runMigrations() {
   `);
     await db.execute(`CREATE INDEX IF NOT EXISTS idx_cvr4m_date ON cvr4m_records(date);`);
     await ensureCvrRateColumns(db);
+    await ensureCvrPcsColumn(db);
     await db.execute(`CREATE INDEX IF NOT EXISTS idx_cvr4m_item_code ON cvr4m_records(item_code);`);
     await db.execute(`CREATE INDEX IF NOT EXISTS idx_cvr4m_lot_no ON cvr4m_records(lot_no);`);
     await db.execute(`CREATE INDEX IF NOT EXISTS idx_cvr4m_machine ON cvr4m_records(machine);`);
@@ -399,8 +416,13 @@ async function runMigrations() {
         await db.execute({ sql: 'VACUUM INTO ?', args: [backup] });
         logger_js_1.logger.info('Saved backup before Plus duplicate migration', { module: 'Migrations', backup });
     }
+    await (0, mapping_sequence_migration_js_1.ensureMappingSequence)(db);
+    await (0, scan_time_migration_js_1.ensureWcsFinishTimeColumns)(db);
+    await (0, scanner_file_state_migration_js_1.ensureScannerFileState)(db);
+    await (0, scan_identity_migration_js_1.ensureScanRunIdentity)(db);
     await (0, plus_integrity_js_1.ensureUniquePlusKeys)(db);
     await (0, scan_matching_engine_js_1.rematchScanRecords)(db);
     await new cvr_matching_engine_js_1.CvrMatchingEngine(() => db).rematchCvrRecords();
     logger_js_1.logger.info('Migrations completed successfully.', { module: 'Migrations' });
 }
+const scan_identity_migration_js_1 = require("./scan-identity-migration.js");

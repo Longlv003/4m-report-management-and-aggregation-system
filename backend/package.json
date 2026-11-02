@@ -14,7 +14,13 @@
     "test:scanner": "node \"node_modules/tsx/dist/cli.mjs\" tests/scanner-and-matching.test.ts",
     "test:api": "node \"node_modules/tsx/dist/cli.mjs\" tests/api.test.ts",
     "test:regressions": "node \"node_modules/tsx/dist/cli.mjs\" tests/regressions.test.ts",
-    "test:record-audit": "node \"node_modules/tsx/dist/cli.mjs\" tests/record-audit.test.ts"
+    "test:record-audit": "node \"node_modules/tsx/dist/cli.mjs\" tests/record-audit.test.ts",
+    "test:report-updates": "node \"node_modules/typescript/bin/tsc\" && node tests/report-updates.test.cjs",
+    "test:scan-runs": "node \"node_modules/typescript/bin/tsc\" && node tests/scan-run-identity.test.cjs",
+    "test:mapping-sequence": "node \"node_modules/typescript/bin/tsc\" && node tests/mapping-sequence.test.cjs",
+    "test:audit-ip": "node \"node_modules/typescript/bin/tsc\" && node tests/audit-ip.test.cjs",
+    "test:cvr-pcs": "node \"node_modules/typescript/bin/tsc\" && node tests/cvr-pcs.test.cjs",
+    "test:scanner-incremental": "node \"node_modules/typescript/bin/tsc\" && node tests/scanner-incremental.test.cjs"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",

@@ -2,7 +2,7 @@ export type ReportType = 'scan4m' | 'cvr4m';
 export type DataRow = Record<string, unknown>;
 export interface Actor { id: string; username: string; ip?: string; }
 export interface AuditEntry {
-  actor?: Actor; action: string; resource: string; details?: unknown;
+  actor?: Actor; ip?: string; action: string; resource: string; details?: unknown;
   outcome: 'SUCCESS' | 'FAILED' | 'STARTED';
 }
 export interface AuditFilter { page: number; pageSize: number; search?: string; action?: string; from?: string; to?: string; }
@@ -17,7 +17,7 @@ export interface ExclusionRepository {
   save(report: ReportType, key: string, record: DataRow, excluded: boolean, reason: string, actor: Actor): Promise<void>;
 }
 export function recordKey(report: ReportType, row: DataRow): string {
-  return report === 'scan4m' ? String(row.match_key) : JSON.stringify(
+  return report === 'scan4m' ? scanRecordKey(row) : JSON.stringify(
     ['item_code','lot_no','seq_no','start_time','machine'].map(key => String(row[key] ?? '')));
 }
 export interface ManagementTransaction { exclusions: ExclusionRepository; audit: AuditRepository; }
@@ -28,3 +28,4 @@ export type MutationResource = 'accounts' | 'item_mapping' | 'password';
 export interface MutationSnapshotRepository {
   read(resource: MutationResource, targetId?: string): Promise<unknown[]>;
 }
+import { scanRecordKey } from './scan-record-identity.js';

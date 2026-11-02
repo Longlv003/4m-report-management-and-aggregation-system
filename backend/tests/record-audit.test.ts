@@ -92,8 +92,8 @@ async function main() {
     assert.equal((await send('/auth/change-password',viewer2,'POST',{currentPassword:'NewViewerPassword123!',newPassword:'FinalViewerPassword123!'})).status,200);
     assert.equal((await send('/auth/logout',viewer2,'POST')).status,200);
 
-    response = await send('/mapping',admin,'POST',{itemName:'Product',pcsPerSheet:100,process:'Test'}); const mappingId=(await response.json()).data.id;
-    await send('/mapping/'+mappingId,admin,'PUT',{itemName:'Product',pcsPerSheet:200,process:'Changed'});
+    response = await send('/mapping',admin,'POST',{itemName:'Product',seqNo:'0070',pcsPerSheet:100,process:'Test'}); const mappingId=(await response.json()).data.id;
+    await send('/mapping/'+mappingId,admin,'PUT',{itemName:'Product',seqNo:'0070',pcsPerSheet:200,process:'Changed'});
     await send('/mapping/'+mappingId,admin,'DELETE');
     await send('/mapping/'+mappingId+'/restore',admin,'POST');
     const original = scannerEngine.scanOnce;

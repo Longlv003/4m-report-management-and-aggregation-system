@@ -7,6 +7,7 @@ exports.parseNullableFloat = parseNullableFloat;
 exports.parseNullableInt = parseNullableInt;
 exports.aggregateWcsAndPlus = aggregateWcsAndPlus;
 exports.rematchScanRecords = rematchScanRecords;
+const scan_time_js_1 = require("../../domain/scan-time.js");
 const configuration_provider_js_1 = require("../../config/configuration-provider.js");
 const logger_js_1 = require("../../logging/logger.js");
 const app_error_js_1 = require("../../errors/app-error.js");
@@ -42,7 +43,7 @@ function calculateTotalTime(startTimeStr, finishTimeStr) {
         return { totalTime: null, anomalyFlag: 'Thời gian không hợp lệ' };
     }
     if (finishMs < startMs) {
-        // Work Result (Plus) < Start time (WCS) due to clock sync: display N/A with label 'Lệch giờ'
+        // Finish time (WCS) < Start time (WCS): display N/A with label 'Lệch giờ'
         const handling = configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling;
         return { totalTime: handling.fallbackValue, anomalyFlag: handling.anomalyFlag };
     }
@@ -72,7 +73,7 @@ function aggregateWcsAndPlus(id, wcsRecordId, wcsRow, plusRecord) {
     if (validation.requiredMatchingKeys.some(key => !keys[key]))
         throw new app_error_js_1.FileProcessingError('Thiếu khóa ghép dữ liệu Scan');
     const startTime = (wcsRow['Thời gian thao tác'] || '').trim();
-    const finishTime = plusRecord ? plusRecord.workResult : null;
+    const finishTime = (0, scan_time_js_1.latestWcsFinishTime)(wcsRow);
     const { totalTime, anomalyFlag } = calculateTotalTime(startTime, finishTime || undefined);
     const warnings = anomalyFlag ? [anomalyFlag] : [];
     const shift = (wcsRow['Ca'] || '').trim();
@@ -131,15 +132,24 @@ function aggregateWcsAndPlus(id, wcsRecordId, wcsRow, plusRecord) {
 }
 async function rematchScanRecords(db) {
     logger_js_1.logger.info('Refreshing Scan records from current Plus data...', { module: 'RematchEngine' });
-    // Refresh existing matches too, so revised Plus exports replace stale quantities/times.
+    // WCS owns timestamps; Plus only refreshes matching and production quantities.
     const unmatched = await db.execute(`
-    SELECT id, match_key, start_time, anomaly_flag FROM scan4m_records ;
+    SELECT s.id, s.match_key, s.start_time, s.anomaly_flag, w.finish_time
+    FROM scan4m_records s LEFT JOIN wcs_records w ON w.id = s.wcs_record_id;
   `);
     let rematchedCount = 0;
     for (const row of unmatched.rows) {
         const scanId = row.id;
         const key = row.match_key;
         const startTime = row.start_time;
+        const finishTime = row.finish_time;
+        const time = calculateTotalTime(startTime, finishTime || undefined);
+        const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning => !['Lệch giờ', 'Thời gian không hợp lệ', configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
+        const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
+        await db.execute({
+            sql: 'UPDATE scan4m_records SET finish_time = ?, total_time = ?, anomaly_flag = ? WHERE id = ?',
+            args: [finishTime, time.totalTime, anomalyFlag, scanId]
+        });
         // Check if Plus record is now available
         const plusRes = await db.execute({
             sql: `SELECT id, work_result, prod_qty FROM plus_records WHERE match_key = ? LIMIT 1;`,
@@ -147,20 +157,15 @@ async function rematchScanRecords(db) {
         });
         if (plusRes.rows.length > 0) {
             const p = plusRes.rows[0];
-            const finishTime = p.work_result;
             const prodQty = p.prod_qty;
             const plusRecordId = p.id;
-            const time = calculateTotalTime(startTime, finishTime);
-            const totalTime = time.totalTime;
-            const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning => !['Lệch giờ', 'Thời gian không hợp lệ', configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
-            const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
             const now = new Date().toISOString();
             await db.execute({
                 sql: `UPDATE scan4m_records 
-              SET plus_record_id = ?, finish_time = ?, total_time = ?, total_sheet_indi = ?, 
+              SET plus_record_id = ?, total_sheet_indi = ?,
                   anomaly_flag = ?, match_status = 'MATCHED', updated_at = ?
               WHERE id = ?;`,
-                args: [plusRecordId, finishTime, totalTime, prodQty, anomalyFlag, now, scanId]
+                args: [plusRecordId, prodQty, anomalyFlag, now, scanId]
             });
             rematchedCount++;
         }

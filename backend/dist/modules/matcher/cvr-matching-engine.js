@@ -5,6 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.cvrMatchingEngine = exports.CvrMatchingEngine = void 0;
 exports.calculateTotalTimeMinutes = calculateTotalTimeMinutes;
+const cvr_quantities_js_1 = require("../../domain/cvr-quantities.js");
+const item_mapping_repository_js_1 = require("../../infrastructure/repositories/item-mapping-repository.js");
 const crypto_1 = __importDefault(require("crypto"));
 const configuration_provider_js_1 = require("../../config/configuration-provider.js");
 const connection_js_1 = require("../../database/connection.js");
@@ -47,14 +49,10 @@ class CvrMatchingEngine {
         let updated = 0;
         const now = new Date().toISOString();
         for (const wcs of wcsRecords) {
-            // 1. Lookup item mapping (pcs_per_sheet & process)
-            const mappingRes = await db.execute({
-                sql: `SELECT pcs_per_sheet, process FROM item_mapping 
-              WHERE item_name = ? AND is_deleted = 0 LIMIT 1;`,
-                args: [wcs.itemName.trim()]
-            });
-            const pcsPerSheet = Number(mappingRes.rows[0]?.pcs_per_sheet || 0);
-            const processName = mappingRes.rows[0]?.process || '';
+            // Both item and process sequence must match; never use an item-only fallback.
+            const itemMapping = await new item_mapping_repository_js_1.ItemMappingRepository(db).findActive(wcs.itemName, wcs.seqNo);
+            const pcsPerSheet = Number(itemMapping?.pcs_per_sheet || 0);
+            const processName = String(itemMapping?.process || '');
             const totalTime = calculateTotalTimeMinutes(wcs.startTime, wcs.finishTime);
             const opDisplay = wcs.opName ? `${wcs.opCode} - ${wcs.opName}` : wcs.opCode;
             // 2. Lookup PLUS production data (ayda) for Total sheet (Indi)
@@ -100,7 +98,8 @@ class CvrMatchingEngine {
             };
             const accumB = dB.d1 + dB.d2 + dB.d3 + dB.d4 + dB.d5 + dB.d6 + dB.d7 + dB.d8 + dB.d9 + dB.d10;
             const totalPatternNg = accumA + accumB;
-            const totalPcs = totalSheetIndi !== null && pcsPerSheet > 0 ? totalSheetIndi * pcsPerSheet : null;
+            const totalPcs = (0, cvr_quantities_js_1.calculateTotalPcs)(totalSheetIndi, pcsPerSheet);
+            const totalPcsCvr = (0, cvr_quantities_js_1.calculateTotalPcs)(wcs.totalSheetVrf, pcsPerSheet);
             const percentage = (defects) => totalPcs !== null && totalPcs > 0
                 ? Number((defects / totalPcs * 100).toFixed(6)) : null;
             const ngRate = percentage(totalPatternNg);
@@ -126,7 +125,7 @@ class CvrMatchingEngine {
                     sql: `INSERT INTO cvr4m_records (
             id, wcs_file_id, date, machine, shift, start_time, finish_time, total_time,
             item_name, item_code, lot_no, seq_no, process, program_name,
-            total_sheet_indi, total_sheet_vrf, op, total_pcs, total_pattern_ng, ng_rate,
+            total_sheet_indi, total_sheet_vrf, op, total_pcs, total_pcs_cvr, total_pattern_ng, ng_rate,
             accumulative_defect_a, ng_rate_a, discoloration_a, fm_a, copper_residue_a, broken_hole_a,
             bvh_shift_a, missing_hole_a, extra_hole_a, dfr_seepage_a, other_a, dfr_remain_a, verify_zoom_a,
             accumulative_defect_b, ng_rate_b, discoloration_b, fm_b, copper_residue_b, broken_hole_b,
@@ -135,7 +134,7 @@ class CvrMatchingEngine {
           ) VALUES (
             ?, ?, ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?,
@@ -145,7 +144,7 @@ class CvrMatchingEngine {
                     args: [
                         id, wcsFileId, wcs.date, wcs.machine, wcs.shift, wcs.startTime, wcs.finishTime, totalTime,
                         wcs.itemName, wcs.itemCode, wcs.lotNo, wcs.seqNo, processName, wcs.programName,
-                        totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPatternNg, ngRate,
+                        totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPcsCvr, totalPatternNg, ngRate,
                         accumA, ngRateA, dA.d1, dA.d2, dA.d3, dA.d4, dA.d5, dA.d6, dA.d7, dA.d8, dA.d9, dA.d10, wcs.verifyZoomA,
                         accumB, ngRateB, dB.d1, dB.d2, dB.d3, dB.d4, dB.d5, dB.d6, dB.d7, dB.d8, dB.d9, dB.d10, wcs.verifyZoomB,
                         matchStatus, wcs.rawJson, now, now
@@ -159,7 +158,7 @@ class CvrMatchingEngine {
                     sql: `UPDATE cvr4m_records SET
             wcs_file_id = ?, date = ?, machine = ?, shift = ?, start_time = ?, finish_time = ?, total_time = ?,
             item_name = ?, item_code = ?, lot_no = ?, seq_no = ?, process = ?, program_name = ?,
-            total_sheet_indi = ?, total_sheet_vrf = ?, op = ?, total_pcs = ?, total_pattern_ng = ?, ng_rate = ?,
+            total_sheet_indi = ?, total_sheet_vrf = ?, op = ?, total_pcs = ?, total_pcs_cvr = ?, total_pattern_ng = ?, ng_rate = ?,
             accumulative_defect_a = ?, ng_rate_a = ?, discoloration_a = ?, fm_a = ?, copper_residue_a = ?, broken_hole_a = ?,
             bvh_shift_a = ?, missing_hole_a = ?, extra_hole_a = ?, dfr_seepage_a = ?, other_a = ?, dfr_remain_a = ?, verify_zoom_a = ?,
             accumulative_defect_b = ?, ng_rate_b = ?, discoloration_b = ?, fm_b = ?, copper_residue_b = ?, broken_hole_b = ?,
@@ -169,7 +168,7 @@ class CvrMatchingEngine {
                     args: [
                         wcsFileId, wcs.date, wcs.machine, wcs.shift, wcs.startTime, wcs.finishTime, totalTime,
                         wcs.itemName, wcs.itemCode, wcs.lotNo, wcs.seqNo, processName, wcs.programName,
-                        totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPatternNg, ngRate,
+                        totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPcsCvr, totalPatternNg, ngRate,
                         accumA, ngRateA, dA.d1, dA.d2, dA.d3, dA.d4, dA.d5, dA.d6, dA.d7, dA.d8, dA.d9, dA.d10, wcs.verifyZoomA,
                         accumB, ngRateB, dB.d1, dB.d2, dB.d3, dB.d4, dB.d5, dB.d6, dB.d7, dB.d8, dB.d9, dB.d10, wcs.verifyZoomB,
                         matchStatus, wcs.rawJson, now, id

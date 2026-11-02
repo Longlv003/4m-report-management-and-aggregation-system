@@ -1,3 +1,5 @@
+import { useScanner } from "../useScanner.js";
+import { ItemSearchFilters, ItemSearchValues } from "../components/ItemSearchFilters.js";
 import {
   AlertCircle,
   CheckCircle,
@@ -8,14 +10,12 @@ import {
   Filter,
   Layers,
   RefreshCw,
-  Search,
 } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   downloadExcelExport,
   getDashboardStats,
   getScan4mRecords,
-  triggerScan,
 } from "../api.js";
 import { RecordVisibilityAction } from "../components/RecordVisibilityAction.js";
 import { formatDurationMinutes } from "../formatters.js";
@@ -30,13 +30,13 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
   const [records, setRecords] = useState<Scan4MRecord[]>([]);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [loading, setLoading] = useState(false);
-  const [scanning, setScanning] = useState(false);
+  const { scanning, scan } = useScanner();
   const [exporting, setExporting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Filters
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState<number | "all">(50);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
 
@@ -45,7 +45,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
   const [shiftFilter, setShiftFilter] = useState("");
   const [machineFilter, setMachineFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [itemSearch, setItemSearch] = useState<ItemSearchValues>({ itemName: "", itemCode: "", lotNo: "" });
   const [visibility, setVisibility] = useState<"active" | "excluded">("active");
   const canManageRecords = user.permissions.includes("scan4m:manage");
 
@@ -70,13 +70,14 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
             shift: shiftFilter || undefined,
             machine: machineFilter || undefined,
             matchStatus: statusFilter || undefined,
-            search: searchTerm || undefined,
+            ...itemSearch,
           }),
           getDashboardStats(),
         ]);
 
         if (requestId !== latestRequest.current) return;
         setRecords(recordsRes.records);
+        setPage(recordsRes.pagination.page);
         setTotalPages(recordsRes.pagination.totalPages);
         setTotalRecords(recordsRes.pagination.total);
         setStats(statsRes);
@@ -96,7 +97,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
       shiftFilter,
       machineFilter,
       statusFilter,
-      searchTerm,
+      itemSearch,
     ],
   );
 
@@ -118,14 +119,12 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
   );
 
   const handleManualScan = async () => {
-    setScanning(true);
+    if (scanning) return;
     try {
-      await triggerScan();
+      await scan();
       await fetchData();
     } catch (err) {
       alert(err instanceof Error ? err.message : "Quét thất bại");
-    } finally {
-      setScanning(false);
     }
   };
 
@@ -138,7 +137,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
         shift: shiftFilter || undefined,
         machine: machineFilter || undefined,
         matchStatus: statusFilter || undefined,
-        search: searchTerm || undefined,
+        ...itemSearch,
       });
     } catch (err) {
       alert(err instanceof Error ? err.message : "Tải file Excel thất bại");
@@ -255,27 +254,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
 
         {/* Filter Bar */}
         <div className="filter-card">
-          <div className="filter-group">
-            <label className="filter-label">Tìm kiếm nhanh</label>
-            <div style={{ position: "relative" }}>
-              <input
-                type="text"
-                className="filter-input"
-                placeholder="Mã item, Lot, Tên SP, Recipe..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setPage(1);
-                }}
-                style={{ paddingLeft: 32, width: 220 }}
-              />
-              <Search
-                size={15}
-                color="var(--gray-400)"
-                style={{ position: "absolute", left: 10, top: 11 }}
-              />
-            </div>
-          </div>
+          <ItemSearchFilters value={itemSearch} onChange={value => { setItemSearch(value); setPage(1); }} />
 
           <div className="filter-group">
             <label className="filter-label">Từ ngày</label>
@@ -375,7 +354,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
             shiftFilter ||
             machineFilter ||
             statusFilter ||
-            searchTerm) && (
+            Object.values(itemSearch).some(Boolean)) && (
             <button
               className="btn btn-outline"
               onClick={() => {
@@ -384,7 +363,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                 setShiftFilter("");
                 setMachineFilter("");
                 setStatusFilter("");
-                setSearchTerm("");
+                setItemSearch({ itemName: "", itemCode: "", lotNo: "" });
                 setPage(1);
               }}
               style={{ alignSelf: "flex-end" }}
@@ -468,7 +447,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                       }
                     >
                       <td style={{ color: "var(--gray-400)" }}>
-                        {(page - 1) * pageSize + idx + 1}
+                        {(page - 1) * (pageSize === "all" ? totalRecords : pageSize) + idx + 1}
                       </td>
                       <td>{r.date}</td>
                       <td>{r.machine}</td>
@@ -478,17 +457,10 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                       <td>{r.start_time}</td>
                       <td>{r.finish_time || "-"}</td>
                       <td>
-                        {r.anomaly_flag ? (
-                          <span
-                            style={{ color: "var(--danger)", fontWeight: 600 }}
-                          >
-                            N/A
-                          </span>
-                        ) : r.total_time !== null ? (
-                          <strong>{formatDurationMinutes(r.total_time)}</strong>
-                        ) : (
-                          "-"
-                        )}
+                        <strong style={{ color: r.total_time === "N/A" ? "var(--danger)" : undefined }}
+                          title={r.total_time === "N/A" ? "Finish time trước Start time" : undefined}>
+                          {r.total_time === null ? "-" : formatDurationMinutes(r.total_time)}
+                        </strong>
                       </td>
                       <td className="text-left">{r.item_name}</td>
                       <td style={{ fontFamily: "monospace", fontWeight: 600 }}>
@@ -583,7 +555,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                 className="filter-select"
                 value={pageSize}
                 onChange={(e) => {
-                  setPageSize(Number(e.target.value));
+                  setPageSize(e.target.value === "all" ? "all" : Number(e.target.value));
                   setPage(1);
                 }}
                 style={{ height: 32 }}
@@ -591,6 +563,7 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                 <option value={50}>50 dòng / trang</option>
                 <option value={100}>100 dòng / trang</option>
                 <option value={200}>200 dòng / trang</option>
+                <option value="all">Tất cả</option>
               </select>
 
               <button

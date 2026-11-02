@@ -50,7 +50,7 @@ export async function loginController(req: Request, res: Response, next: NextFun
     };
 
     const token = signToken(authUser);
-    await auditService().record({ actor: { id: authUser.id,username: authUser.username,ip: req.ip }, action: 'LOGIN',resource: 'auth',outcome: 'SUCCESS' });
+    await auditService().record({ actor: { id: authUser.id,username: authUser.username,ip: req.clientIp }, action: 'LOGIN',resource: 'auth',outcome: 'SUCCESS' });
     req.auditRecorded = true;
 
     res.json({
@@ -104,7 +104,7 @@ export async function changePasswordController(req: Request, res: Response, next
     const newHash = bcrypt.hashSync(newPassword, 10);
     const now = new Date().toISOString();
 
-    await auditedMutation({ id: req.user!.id,username: req.user!.username,ip: req.ip },'password','CHANGE_PASSWORD',req.user!.id, async tx => {
+    await auditedMutation({ id: req.user!.id,username: req.user!.username,ip: req.clientIp },'password','CHANGE_PASSWORD',req.user!.id, async tx => {
     await tx.execute({
       sql: `UPDATE accounts SET password_hash = ?, updated_at = ? WHERE id = ?;`,
       args: [newHash, now, req.user!.id]
@@ -123,7 +123,7 @@ export async function changePasswordController(req: Request, res: Response, next
 
 export async function logoutController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    await auditService().record({ actor: { id: req.user!.id,username: req.user!.username,ip: req.ip },action: 'LOGOUT',resource: 'auth',outcome: 'SUCCESS' });
+    await auditService().record({ actor: { id: req.user!.id,username: req.user!.username,ip: req.clientIp },action: 'LOGOUT',resource: 'auth',outcome: 'SUCCESS' });
     req.auditRecorded = true;
     res.json({ success: true, data: null });
   } catch (error) { next(error); }

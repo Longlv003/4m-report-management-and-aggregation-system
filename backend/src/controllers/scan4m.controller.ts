@@ -1,3 +1,5 @@
+import { reportPagination } from '../application/report-query.js';
+import { appendItemFilters, REPORT_ORDER_BY } from '../infrastructure/repositories/report-filters.js';
 import { auditService } from '../composition/management.js';
 import { Request, Response, NextFunction } from 'express';
 import { getDb } from '../database/connection.js';
@@ -9,10 +11,6 @@ import { scannerEngine } from '../modules/scanner/scanner-engine.js';
 export async function getScan4mRecordsController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const db = getDb();
-    const page = Math.max(1, parseInt(req.query.page as string) || 1);
-    const pageSize = Math.min(500, Math.max(10, parseInt(req.query.pageSize as string) || 50));
-    const offset = (page - 1) * pageSize;
-
     const { date, fromDate, toDate, startDate, endDate, shift, machine, matchStatus, search } = req.query;
 
     const excluded = req.query.visibility === 'excluded';
@@ -54,6 +52,7 @@ export async function getScan4mRecordsController(req: Request, res: Response, ne
       args.push(s, s, s, s);
     }
 
+    appendItemFilters(req.query, conditions, args);
     const whereClause = conditions.join(' AND ');
 
     // Total count query
@@ -62,14 +61,15 @@ export async function getScan4mRecordsController(req: Request, res: Response, ne
       args
     });
     const total = Number(countRes.rows[0]?.total || 0);
+    const { page, pageSize, limit, offset, totalPages } = reportPagination(req.query, total);
 
     // Data query
     const dataRes = await db.execute({
       sql: `SELECT * FROM scan4m_records 
             WHERE ${whereClause} 
-            ORDER BY start_time DESC 
+            ORDER BY ${REPORT_ORDER_BY}
             LIMIT ? OFFSET ?;`,
-      args: [...args, pageSize, offset]
+      args: [...args, limit, offset]
     });
 
     res.json({
@@ -80,7 +80,7 @@ export async function getScan4mRecordsController(req: Request, res: Response, ne
           page,
           pageSize,
           total,
-          totalPages: Math.ceil(total / pageSize)
+          totalPages
         }
       }
     });
@@ -132,14 +132,14 @@ export async function getDashboardStatsController(req: Request, res: Response, n
 
 export async function triggerScanController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const result = await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.ip },
+    const result = await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.clientIp },
       action: 'MANUAL_SCAN',resource: 'scanner' }, async () => {
         req.auditRecorded = true;
         return scannerEngine.scanOnce();
       });
     res.json({
       success: true,
-      message: result.skipped ? 'Hệ thống đang quét; yêu cầu này không tạo lượt quét mới' : `Quét dữ liệu hoàn tất: Đã xử lý ${result.filesProcessed} file, ${result.errors} lỗi`,
+      message: result.skipped ? 'Hệ thống đang quét; yêu cầu này không tạo lượt quét mới' : `Quét dữ liệu hoàn tất: Đã xử lý ${result.filesProcessed} file, bỏ qua ${result.filesSkipped || 0} file, ${result.errors} lỗi`,
       data: result
     });
   } catch (err) {
@@ -189,21 +189,22 @@ export async function exportScan4mController(req: Request, res: Response, next: 
       args.push(s, s, s, s);
     }
 
+    appendItemFilters(req.query, conditions, args);
     const whereClause = conditions.join(' AND ');
 
     const records = await db.execute({
-      sql: `SELECT * FROM scan4m_records WHERE ${whereClause} ORDER BY start_time DESC;`,
+      sql: `SELECT * FROM scan4m_records WHERE ${whereClause} ORDER BY ${REPORT_ORDER_BY};`,
       args
     });
 
-    await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.ip },
+    await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.clientIp },
       action: 'EXPORT',resource: 'scan4m',details: { filters: req.query } }, async () => {
       req.auditRecorded = true;
     await exportScan4mToResponse(
       records.rows as any,
       res,
       req.user!.id,
-      req.ip
+      req.clientIp
     );
       return { recordCount: records.rows.length };
     });

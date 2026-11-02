@@ -28,13 +28,13 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
 
   // Add modal
   const [showAddModal, setShowAddModal] = useState(false);
-  const [addForm, setAddForm] = useState({ itemName: '', pcsPerSheet: '', process: 'Shadow S/S' });
+  const [addForm, setAddForm] = useState({ itemName: '', seqNo: '', build: '', model: '', pcsPerSheet: '', process: 'Shadow S/S' });
   const [addError, setAddError] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
 
   // Edit modal
   const [editTarget, setEditTarget] = useState<ItemMapping | null>(null);
-  const [editForm, setEditForm] = useState({ itemName: '', pcsPerSheet: '', process: 'Shadow S/S' });
+  const [editForm, setEditForm] = useState({ itemName: '', seqNo: '', build: '', model: '', pcsPerSheet: '', process: 'Shadow S/S' });
   const [editError, setEditError] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
 
@@ -71,9 +71,9 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
     setAddError(null);
     setAdding(true);
     try {
-      await createMapping({ itemName: addForm.itemName, pcsPerSheet: Number(addForm.pcsPerSheet), process: addForm.process });
+      await createMapping({ ...addForm, pcsPerSheet: addForm.pcsPerSheet.trim() ? Number(addForm.pcsPerSheet) : null, process: addForm.process });
       setShowAddModal(false);
-      setAddForm({ itemName: '', pcsPerSheet: '', process: 'Electroless' });
+      setAddForm({ itemName: '', seqNo: '', build: '', model: '', pcsPerSheet: '', process: 'Electroless' });
       await fetchMappings();
     } catch (err) {
       setAddError(err instanceof Error ? err.message : 'Thêm thất bại');
@@ -84,7 +84,7 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
 
   const openEdit = (m: ItemMapping) => {
     setEditTarget(m);
-    setEditForm({ itemName: m.item_name, pcsPerSheet: String(m.pcs_per_sheet), process: m.process });
+    setEditForm({ itemName: m.item_name, seqNo: m.seq_no, build: m.build, model: m.model, pcsPerSheet: m.pcs_per_sheet === null ? '' : String(m.pcs_per_sheet), process: m.process });
     setEditError(null);
   };
 
@@ -94,7 +94,7 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
     setEditError(null);
     setEditing(true);
     try {
-      await updateMapping(editTarget.id, { itemName: editForm.itemName, pcsPerSheet: Number(editForm.pcsPerSheet), process: editForm.process });
+      await updateMapping(editTarget.id, { ...editForm, pcsPerSheet: editForm.pcsPerSheet.trim() ? Number(editForm.pcsPerSheet) : null, process: editForm.process });
       setEditTarget(null);
       await fetchMappings();
     } catch (err) {
@@ -124,14 +124,14 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
         <div>
           <h2 className="page-title">Bảng Mapping Item</h2>
           <p style={{ fontSize: '0.8rem', color: 'var(--gray-500)' }}>
-            Danh sách Item name → Số pcs/sheet → Process
+            Tra theo Item name + Seq no → PT/1SH. Total pcs = Total sheet (Indi) × PT/1SH.
           </p>
         </div>
         <div className="top-actions">
           {canManage && (
             <button
               className="btn btn-primary"
-              onClick={() => { setShowAddModal(true); setAddError(null); setAddForm({ itemName: '', pcsPerSheet: '', process: 'Electroless' }); }}
+              onClick={() => { setShowAddModal(true); setAddError(null); setAddForm({ itemName: '', seqNo: '', build: '', model: '', pcsPerSheet: '', process: 'Electroless' }); }}
             >
               <Plus size={16} />
               <span>Thêm item</span>
@@ -152,7 +152,7 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
               <input
                 type="text"
                 className="filter-input"
-                placeholder="Item name hoặc Process..."
+                placeholder="Item name, Seq no, Process, BUILD, MODEL..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 style={{ paddingLeft: 34, width: 260 }}
@@ -196,17 +196,20 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                 <tr>
                   <th>STT</th>
                   <th style={{ textAlign: 'left', minWidth: 200 }}>Item name</th>
-                  <th>Số pcs / sheet</th>
+                  <th>Seq no</th>
+                  <th>PT/1SH</th>
+                  <th>BUILD</th>
+                  <th>MODEL</th>
                   <th style={{ minWidth: 140 }}>Process</th>
                   {canManage && <th>Hành động</th>}
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
-                  <tr><td colSpan={canManage ? 5 : 4} style={{ padding: 40, color: 'var(--gray-500)' }}>Đang tải...</td></tr>
+                  <tr><td colSpan={canManage ? 8 : 7} style={{ padding: 40, color: 'var(--gray-500)' }}>Đang tải...</td></tr>
                 ) : mappings.length === 0 ? (
                   <tr>
-                    <td colSpan={canManage ? 5 : 4} style={{ padding: 40, color: 'var(--gray-400)' }}>
+                    <td colSpan={canManage ? 8 : 7} style={{ padding: 40, color: 'var(--gray-400)' }}>
                       {statusFilter === 'deleted' ? 'Thùng rác trống (không có item nào bị xóa)' : 'Chưa có dữ liệu mapping'}
                     </td>
                   </tr>
@@ -215,7 +218,10 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                     <tr key={m.id} style={statusFilter === 'deleted' ? { opacity: 0.85, background: 'rgba(239, 68, 68, 0.03)' } : undefined}>
                       <td style={{ color: 'var(--gray-400)' }}>{idx + 1}</td>
                       <td style={{ textAlign: 'left', fontWeight: 600, fontFamily: 'monospace' }}>{m.item_name}</td>
-                      <td style={{ fontWeight: 700, color: 'var(--primary)' }}>{m.pcs_per_sheet}</td>
+                      <td style={{ fontFamily: 'monospace' }}>{m.seq_no || 'Chưa gán'}</td>
+                      <td style={{ fontWeight: 700, color: 'var(--primary)' }}>{m.pcs_per_sheet ?? 'Chưa có'}</td>
+                      <td>{m.build || '—'}</td>
+                      <td>{m.model || '—'}</td>
                       <td>
                         <span className={`badge ${m.process === 'Electroless' ? 'badge-success' : 'badge-gray'}`}>
                           {m.process}
@@ -284,12 +290,27 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                     onChange={e => setAddForm(f => ({ ...f, itemName: e.target.value }))} required autoFocus />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Số pcs / sheet <span style={{ color: 'var(--danger)' }}>*</span></label>
-                  <input type="number" className="form-input" placeholder="Ví dụ: 72" min={1} value={addForm.pcsPerSheet}
-                    onChange={e => setAddForm(f => ({ ...f, pcsPerSheet: e.target.value }))} required />
+                  <label>Seq no <span style={{ color: 'var(--danger)' }}>*</span></label>
+                  <input type="text" className="form-input" placeholder="Ví dụ: 0350" value={addForm.seqNo}
+                    onChange={e => setAddForm(f => ({ ...f, seqNo: e.target.value }))} required />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Process <span style={{ color: 'var(--danger)' }}>*</span></label>
+                  <label>BUILD</label>
+                  <input type="text" className="form-input" value={addForm.build}
+                    onChange={e => setAddForm(f => ({ ...f, build: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>MODEL</label>
+                  <input type="text" className="form-input" value={addForm.model}
+                    onChange={e => setAddForm(f => ({ ...f, model: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>PT/1SH (để trống nếu chưa biết)</label>
+                  <input type="number" className="form-input" placeholder="Ví dụ: 72" min={0} value={addForm.pcsPerSheet}
+                    onChange={e => setAddForm(f => ({ ...f, pcsPerSheet: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Process</label>
                   <input
                     type="text"
                     list="process-options-list"
@@ -297,7 +318,6 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                     placeholder="Chọn gợi ý hoặc gõ Process mới..."
                     value={addForm.process}
                     onChange={e => setAddForm(f => ({ ...f, process: e.target.value }))}
-                    required
                   />
                   <datalist id="process-options-list">
                     {availableProcesses.map(p => <option key={p} value={p}>{p}</option>)}
@@ -334,12 +354,27 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                     onChange={e => setEditForm(f => ({ ...f, itemName: e.target.value }))} required autoFocus />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Số pcs / sheet <span style={{ color: 'var(--danger)' }}>*</span></label>
-                  <input type="number" className="form-input" min={1} value={editForm.pcsPerSheet}
-                    onChange={e => setEditForm(f => ({ ...f, pcsPerSheet: e.target.value }))} required />
+                  <label>Seq no <span style={{ color: 'var(--danger)' }}>*</span></label>
+                  <input type="text" className="form-input" placeholder="Ví dụ: 0350" value={editForm.seqNo}
+                    onChange={e => setEditForm(f => ({ ...f, seqNo: e.target.value }))} required />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
-                  <label>Process <span style={{ color: 'var(--danger)' }}>*</span></label>
+                  <label>BUILD</label>
+                  <input type="text" className="form-input" value={editForm.build}
+                    onChange={e => setEditForm(f => ({ ...f, build: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>MODEL</label>
+                  <input type="text" className="form-input" value={editForm.model}
+                    onChange={e => setEditForm(f => ({ ...f, model: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>PT/1SH (để trống nếu chưa biết)</label>
+                  <input type="number" className="form-input" min={0} value={editForm.pcsPerSheet}
+                    onChange={e => setEditForm(f => ({ ...f, pcsPerSheet: e.target.value }))} />
+                </div>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label>Process</label>
                   <input
                     type="text"
                     list="process-options-list"
@@ -347,7 +382,6 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
                     placeholder="Chọn gợi ý hoặc gõ Process mới..."
                     value={editForm.process}
                     onChange={e => setEditForm(f => ({ ...f, process: e.target.value }))}
-                    required
                   />
                 </div>
               </div>
@@ -374,7 +408,7 @@ export const ItemMappingPage: React.FC<ItemMappingPageProps> = ({ canManage }) =
             </div>
             <div className="modal-body">
               <p style={{ color: 'var(--gray-700)', lineHeight: 1.6 }}>
-                Bạn có chắc muốn xóa item <strong style={{ color: 'var(--danger)' }}>{deleteTarget.item_name}</strong>?
+                Bạn có chắc muốn xóa item <strong style={{ color: 'var(--danger)' }}>{deleteTarget.item_name} / {deleteTarget.seq_no}</strong>?
               </p>
               <p style={{ fontSize: '0.82rem', color: 'var(--gray-500)', marginTop: 8 }}>
                 Dữ liệu sẽ được xóa mềm (soft delete) — có thể khôi phục nếu cần.

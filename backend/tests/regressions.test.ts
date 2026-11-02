@@ -139,11 +139,11 @@ async function main() {
       method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: body ? JSON.stringify(body) : undefined
     });
-    let response = await request('/mapping', 'POST', { itemName: 'Product', pcsPerSheet: 100, process: 'Test' });
+    let response = await request('/mapping', 'POST', { itemName: 'Product', seqNo: '0070', pcsPerSheet: 100, process: 'Test' });
     assert.equal(response.status, 201);
     const id = (await response.json()).data.id;
     assert.equal((await db.execute("SELECT total_pcs FROM cvr4m_records WHERE id='cvr'")).rows[0].total_pcs, 2500);
-    response = await request('/mapping/' + id, 'PUT', { itemName: 'Product', pcsPerSheet: 200, process: 'Test' });
+    response = await request('/mapping/' + id, 'PUT', { itemName: 'Product', seqNo: '0070', pcsPerSheet: 200, process: 'Test' });
     assert.equal(response.status, 200);
     assert.equal((await db.execute("SELECT total_pcs FROM cvr4m_records WHERE id='cvr'")).rows[0].total_pcs, 5000);
     await request('/mapping/' + id, 'DELETE');
@@ -151,11 +151,11 @@ async function main() {
     await request('/mapping/' + id + '/restore', 'POST');
     assert.equal((await db.execute("SELECT total_pcs FROM cvr4m_records WHERE id='cvr'")).rows[0].total_pcs, 5000);
     assert.ok(events.includes('record_updated'));
-    assert.equal((await request('/mapping/' + id, 'PUT', { itemName: 'Product', pcsPerSheet: -1, process: 'Test' })).status, 400);
+    assert.equal((await request('/mapping/' + id, 'PUT', { itemName: 'Product', seqNo: '0070', pcsPerSheet: -1, process: 'Test' })).status, 400);
 
     // A failed derived update must also roll back the mapping edit.
     await db.execute("CREATE TRIGGER fail_cvr BEFORE UPDATE ON cvr4m_records BEGIN SELECT RAISE(ABORT,'CVR failure'); END");
-    assert.equal((await request('/mapping/' + id, 'PUT', { itemName: 'Product', pcsPerSheet: 300, process: 'Test' })).status, 500);
+    assert.equal((await request('/mapping/' + id, 'PUT', { itemName: 'Product', seqNo: '0070', pcsPerSheet: 300, process: 'Test' })).status, 500);
     assert.equal((await db.execute('SELECT pcs_per_sheet FROM item_mapping')).rows[0].pcs_per_sheet, 200);
     await db.execute('DROP TRIGGER fail_cvr');
     response = await request('/accounts', 'POST', { username: 'cvr-user', password: 'Password123!', fullName: 'CVR',

@@ -50,7 +50,7 @@ async function loginController(req, res, next) {
             permissions
         };
         const token = (0, auth_middleware_js_1.signToken)(authUser);
-        await (0, management_js_1.auditService)().record({ actor: { id: authUser.id, username: authUser.username, ip: req.ip }, action: 'LOGIN', resource: 'auth', outcome: 'SUCCESS' });
+        await (0, management_js_1.auditService)().record({ actor: { id: authUser.id, username: authUser.username, ip: req.clientIp }, action: 'LOGIN', resource: 'auth', outcome: 'SUCCESS' });
         req.auditRecorded = true;
         res.json({
             success: true,
@@ -98,7 +98,7 @@ async function changePasswordController(req, res, next) {
         }
         const newHash = bcryptjs_1.default.hashSync(newPassword, 10);
         const now = new Date().toISOString();
-        await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.ip }, 'password', 'CHANGE_PASSWORD', req.user.id, async (tx) => {
+        await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.clientIp }, 'password', 'CHANGE_PASSWORD', req.user.id, async (tx) => {
             await tx.execute({
                 sql: `UPDATE accounts SET password_hash = ?, updated_at = ? WHERE id = ?;`,
                 args: [newHash, now, req.user.id]
@@ -116,7 +116,7 @@ async function changePasswordController(req, res, next) {
 }
 async function logoutController(req, res, next) {
     try {
-        await (0, management_js_1.auditService)().record({ actor: { id: req.user.id, username: req.user.username, ip: req.ip }, action: 'LOGOUT', resource: 'auth', outcome: 'SUCCESS' });
+        await (0, management_js_1.auditService)().record({ actor: { id: req.user.id, username: req.user.username, ip: req.clientIp }, action: 'LOGOUT', resource: 'auth', outcome: 'SUCCESS' });
         req.auditRecorded = true;
         res.json({ success: true, data: null });
     }

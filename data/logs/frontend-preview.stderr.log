@@ -1,9 +1,0 @@
-8:43:49 PM [vite] http proxy error: /api/v1/realtime/stream
-Error: read ECONNRESET
-    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
-9:10:31 PM [vite] http proxy error: /api/v1/realtime/stream
-Error: read ECONNRESET
-    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
-9:15:42 PM [vite] http proxy error: /api/v1/realtime/stream
-Error: read ECONNRESET
-    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)

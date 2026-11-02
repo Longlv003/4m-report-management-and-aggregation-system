@@ -1,3 +1,4 @@
+import { scannerEngine } from '../modules/scanner/scanner-engine.js';
 import { Router, Request, Response } from 'express';
 import { getAuditController, recordVisibilityController } from '../controllers/management.controller.js';
 import { loginController, getMeController, changePasswordController, logoutController } from '../controllers/auth.controller.js';
@@ -78,4 +79,5 @@ apiRouter.get('/realtime/stream', (req: Request, res: Response) => {
   });
   res.flushHeaders();
   sseManager.addClient(res);
+  res.write(`event: scanner_status\ndata: ${JSON.stringify(scannerEngine.getStatus())}\n\n`);
 });

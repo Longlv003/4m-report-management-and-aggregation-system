@@ -186,7 +186,7 @@
       "required": false
     },
     "totalPcs": {
-      "outputColumn": "Total pcs",
+      "outputColumn": "Total pcs (lot)",
       "source": "CALCULATED",
       "rule": "totalSheetIndi * pcs_per_sheet",
       "dataType": "integer",
@@ -420,6 +420,13 @@
       "source": "CALCULATED",
       "rule": "accumulativeDefectB / totalPcs * 100",
       "dataType": "float",
+      "required": false
+    },
+    "totalPcsCvr": {
+      "outputColumn": "Total pcs (cvr)",
+      "source": "CALCULATED",
+      "rule": "totalSheetVrf * pcs_per_sheet",
+      "dataType": "integer",
       "required": false
     }
   },

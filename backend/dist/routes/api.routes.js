@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.apiRouter = void 0;
+const scanner_engine_js_1 = require("../modules/scanner/scanner-engine.js");
 const express_1 = require("express");
 const management_controller_js_1 = require("../controllers/management.controller.js");
 const auth_controller_js_1 = require("../controllers/auth.controller.js");
@@ -52,4 +53,5 @@ exports.apiRouter.get('/realtime/stream', (req, res) => {
     });
     res.flushHeaders();
     sse_manager_js_1.sseManager.addClient(res);
+    res.write(`event: scanner_status\ndata: ${JSON.stringify(scanner_engine_js_1.scannerEngine.getStatus())}\n\n`);
 });

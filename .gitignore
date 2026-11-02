@@ -1,0 +1,18 @@
+# Local runtimes, credentials, dependencies and caches
+/runtime/
+**/node_modules/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+# Operational databases, backups, logs and imported production data
+/data/
+/data_input/
+/data-input/
+/data_input.zip
+/data-input.zip
+/Seq no.xlsx
+
+# Temporary test runners
+backend/tests/.*-run.cjs

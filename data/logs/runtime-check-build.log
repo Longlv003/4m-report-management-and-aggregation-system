@@ -1,4 +1,0 @@
-
-> scan4m-backend@1.0.0 build
-> node "node_modules/typescript/bin/tsc"
-

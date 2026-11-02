@@ -1,3 +1,4 @@
+import { latestWcsFinishTime } from '../../domain/scan-time.js';
 import { configurationProvider } from '../../config/configuration-provider.js';
 import { ParsedPlusRecord } from '../parser/excel-parser.js';
 import { Client } from '@libsql/client';
@@ -80,7 +81,7 @@ export function calculateTotalTime(startTimeStr?: string, finishTimeStr?: string
   }
 
   if (finishMs < startMs) {
-    // Work Result (Plus) < Start time (WCS) due to clock sync: display N/A with label 'Lệch giờ'
+    // Finish time (WCS) < Start time (WCS): display N/A with label 'Lệch giờ'
     const handling = configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling;
     return { totalTime: handling.fallbackValue, anomalyFlag: handling.anomalyFlag };
   }
@@ -117,7 +118,7 @@ export function aggregateWcsAndPlus(
   if (validation.requiredMatchingKeys.some(key => !keys[key])) throw new FileProcessingError('Thiếu khóa ghép dữ liệu Scan');
 
   const startTime = (wcsRow['Thời gian thao tác'] || '').trim();
-  const finishTime = plusRecord ? plusRecord.workResult : null;
+  const finishTime = latestWcsFinishTime(wcsRow);
 
   const { totalTime, anomalyFlag } = calculateTotalTime(startTime, finishTime || undefined);
   const warnings = anomalyFlag ? [anomalyFlag] : [];
@@ -179,9 +180,10 @@ export function aggregateWcsAndPlus(
 export async function rematchScanRecords(db: Pick<Client, 'execute'>): Promise<{ rematchedCount: number }> {
   logger.info('Refreshing Scan records from current Plus data...', { module: 'RematchEngine' });
 
-  // Refresh existing matches too, so revised Plus exports replace stale quantities/times.
+  // WCS owns timestamps; Plus only refreshes matching and production quantities.
   const unmatched = await db.execute(`
-    SELECT id, match_key, start_time, anomaly_flag FROM scan4m_records ;
+    SELECT s.id, s.match_key, s.start_time, s.anomaly_flag, w.finish_time
+    FROM scan4m_records s LEFT JOIN wcs_records w ON w.id = s.wcs_record_id;
   `);
 
   let rematchedCount = 0;
@@ -189,6 +191,16 @@ export async function rematchScanRecords(db: Pick<Client, 'execute'>): Promise<{
     const scanId = row.id as string;
     const key = row.match_key as string;
     const startTime = row.start_time as string;
+
+    const finishTime = row.finish_time as string | null;
+    const time = calculateTotalTime(startTime, finishTime || undefined);
+    const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning =>
+      !['Lệch giờ', 'Thời gian không hợp lệ', configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
+    const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
+    await db.execute({
+      sql: 'UPDATE scan4m_records SET finish_time = ?, total_time = ?, anomaly_flag = ? WHERE id = ?',
+      args: [finishTime, time.totalTime, anomalyFlag, scanId]
+    });
 
     // Check if Plus record is now available
     const plusRes = await db.execute({
@@ -198,23 +210,16 @@ export async function rematchScanRecords(db: Pick<Client, 'execute'>): Promise<{
 
     if (plusRes.rows.length > 0) {
       const p = plusRes.rows[0];
-      const finishTime = p.work_result as string;
       const prodQty = p.prod_qty as number | null;
       const plusRecordId = p.id as string;
-
-      const time = calculateTotalTime(startTime, finishTime);
-      const totalTime = time.totalTime;
-      const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning =>
-        !['Lệch giờ', 'Thời gian không hợp lệ', configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
-      const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
       const now = new Date().toISOString();
 
       await db.execute({
         sql: `UPDATE scan4m_records 
-              SET plus_record_id = ?, finish_time = ?, total_time = ?, total_sheet_indi = ?, 
+              SET plus_record_id = ?, total_sheet_indi = ?,
                   anomaly_flag = ?, match_status = 'MATCHED', updated_at = ?
               WHERE id = ?;`,
-        args: [plusRecordId, finishTime, totalTime, prodQty, anomalyFlag, now, scanId]
+        args: [plusRecordId, prodQty, anomalyFlag, now, scanId]
       });
 
       rematchedCount++;

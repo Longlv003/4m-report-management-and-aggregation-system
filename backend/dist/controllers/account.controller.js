@@ -58,7 +58,7 @@ async function getAccountsController(req, res, next) {
 }
 async function createAccountController(req, res, next) {
     try {
-        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.ip }, 'accounts', 'CREATE', undefined, async (db) => {
+        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.clientIp }, 'accounts', 'CREATE', undefined, async (db) => {
             const { username, password, fullName, roleName, permissions } = req.body;
             if (!username || !password || !fullName) {
                 throw new app_error_js_1.ValidationError('Tất cả các trường thông tin tài khoản đều bắt buộc');
@@ -100,7 +100,7 @@ async function createAccountController(req, res, next) {
 }
 async function toggleAccountActiveController(req, res, next) {
     try {
-        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.ip }, 'accounts', 'TOGGLE_ACTIVE', req.params.id, async (db) => {
+        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.clientIp }, 'accounts', 'TOGGLE_ACTIVE', req.params.id, async (db) => {
             const { id } = req.params;
             const accRes = await db.execute({
                 sql: `SELECT id, username, is_active FROM accounts WHERE id = ? LIMIT 1;`,
@@ -133,7 +133,7 @@ async function toggleAccountActiveController(req, res, next) {
 }
 async function resetPasswordController(req, res, next) {
     try {
-        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.ip }, 'accounts', 'RESET_PASSWORD', req.params.id, async (db) => {
+        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.clientIp }, 'accounts', 'RESET_PASSWORD', req.params.id, async (db) => {
             const { id } = req.params;
             const { newPassword } = req.body;
             if (!newPassword || newPassword.length < 6) {
@@ -161,7 +161,7 @@ async function resetPasswordController(req, res, next) {
 }
 async function updateAccountController(req, res, next) {
     try {
-        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.ip }, 'accounts', 'UPDATE', req.params.id, async (db) => {
+        const payload = await (0, audited_mutation_js_1.auditedMutation)({ id: req.user.id, username: req.user.username, ip: req.clientIp }, 'accounts', 'UPDATE', req.params.id, async (db) => {
             const { id } = req.params;
             const { fullName, permissions } = req.body;
             if (!fullName) {

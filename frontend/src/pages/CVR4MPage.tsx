@@ -1,3 +1,5 @@
+import { useScanner } from "../useScanner.js";
+import { ItemSearchFilters, ItemSearchValues } from "../components/ItemSearchFilters.js";
 import {
   AlertCircle,
   CheckCircle,
@@ -7,14 +9,12 @@ import {
   Filter,
   Layers,
   RefreshCw,
-  Search,
 } from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   downloadCvrExcelExport,
   getCvr4mRecords,
   getCvrDashboardStats,
-  triggerScan,
 } from "../api.js";
 import { RecordVisibilityAction } from "../components/RecordVisibilityAction.js";
 import { formatDurationMinutes, formatPercentage } from "../formatters.js";
@@ -29,13 +29,13 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
   const [records, setRecords] = useState<Cvr4mRecord[]>([]);
   const [stats, setStats] = useState<CvrDashboardStats | null>(null);
   const [loading, setLoading] = useState(false);
-  const [scanning, setScanning] = useState(false);
+  const { scanning, scan } = useScanner();
   const [exporting, setExporting] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   // Filters
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState<number | "all">(50);
   const [totalPages, setTotalPages] = useState(1);
   const [totalRecords, setTotalRecords] = useState(0);
 
@@ -44,7 +44,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
   const [shiftFilter, setShiftFilter] = useState("");
   const [machineFilter, setMachineFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [itemSearch, setItemSearch] = useState<ItemSearchValues>({ itemName: "", itemCode: "", lotNo: "" });
   const [visibility, setVisibility] = useState<"active" | "excluded">("active");
   const canManageRecords = user.permissions.includes("cvr4m:manage");
 
@@ -69,13 +69,14 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
             shift: shiftFilter || undefined,
             machine: machineFilter || undefined,
             matchStatus: statusFilter || undefined,
-            search: searchTerm || undefined,
+            ...itemSearch,
           }),
           getCvrDashboardStats(),
         ]);
 
         if (requestId !== latestRequest.current) return;
         setRecords(recordsRes.records);
+        setPage(recordsRes.pagination.page);
         setTotalPages(recordsRes.pagination.totalPages);
         setTotalRecords(recordsRes.pagination.total);
         setStats(statsRes);
@@ -97,7 +98,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
       shiftFilter,
       machineFilter,
       statusFilter,
-      searchTerm,
+      itemSearch,
     ],
   );
 
@@ -119,14 +120,12 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
   );
 
   const handleManualScan = async () => {
-    setScanning(true);
+    if (scanning) return;
     try {
-      await triggerScan();
+      await scan();
       await fetchData();
     } catch (err) {
       alert(err instanceof Error ? err.message : "Quét thất bại");
-    } finally {
-      setScanning(false);
     }
   };
 
@@ -139,7 +138,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
         shift: shiftFilter || undefined,
         machine: machineFilter || undefined,
         matchStatus: statusFilter || undefined,
-        search: searchTerm || undefined,
+        ...itemSearch,
       });
     } catch (err) {
       alert(err instanceof Error ? err.message : "Tải file Excel thất bại");
@@ -274,27 +273,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
 
         {/* Filter Bar */}
         <div className="filter-card">
-          <div className="filter-group">
-            <label className="filter-label">Tìm kiếm nhanh</label>
-            <div style={{ position: "relative" }}>
-              <input
-                type="text"
-                className="filter-input"
-                placeholder="Mã item, Lot, Tên SP, Program..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setPage(1);
-                }}
-                style={{ paddingLeft: 32, width: 220 }}
-              />
-              <Search
-                size={15}
-                color="var(--gray-400)"
-                style={{ position: "absolute", left: 10, top: 11 }}
-              />
-            </div>
-          </div>
+          <ItemSearchFilters value={itemSearch} onChange={value => { setItemSearch(value); setPage(1); }} />
 
           <div className="filter-group">
             <label className="filter-label">Từ ngày</label>
@@ -399,7 +378,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
             shiftFilter ||
             machineFilter ||
             statusFilter ||
-            searchTerm) && (
+            Object.values(itemSearch).some(Boolean)) && (
             <button
               className="btn btn-outline"
               onClick={() => {
@@ -408,7 +387,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                 setShiftFilter("");
                 setMachineFilter("");
                 setStatusFilter("");
-                setSearchTerm("");
+                setItemSearch({ itemName: "", itemCode: "", lotNo: "" });
                 setPage(1);
               }}
               style={{ alignSelf: "flex-end" }}
@@ -442,7 +421,8 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                   <th>Total sheet (Indi)</th>
                   <th>Total sheet (VRF)</th>
                   <th>OP</th>
-                  <th>Total pcs</th>
+                  <th>Total pcs (lot)</th>
+                  <th>Total pcs (cvr)</th>
                   <th>Total pattern NG</th>
                   <th>% NG</th>
                   <th style={{ background: "#f0fdf4", color: "#166534" }}>
@@ -487,7 +467,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                 {records.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={canManageRecords ? 47 : 46}
+                      colSpan={canManageRecords ? 48 : 47}
                       style={{
                         textAlign: "center",
                         padding: "32px 0",
@@ -501,7 +481,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                   </tr>
                 ) : (
                   records.map((r, idx) => {
-                    const rowNo = (page - 1) * pageSize + idx + 1;
+                    const rowNo = (page - 1) * (pageSize === "all" ? totalRecords : pageSize) + idx + 1;
                     const isMatched = r.match_status === "MATCHED";
                     const isMatchedError =
                       r.match_status === "MATCHED_ERROR_ONLY";
@@ -575,6 +555,9 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                         </td>
                         <td style={{ textAlign: "right" }}>
                           {r.total_pcs?.toLocaleString() ?? "—"}
+                        </td>
+                        <td style={{ textAlign: "right" }}>
+                          {r.total_pcs_cvr?.toLocaleString() ?? "—"}
                         </td>
                         <td
                           style={{
@@ -806,7 +789,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                 className="filter-select"
                 value={pageSize}
                 onChange={(e) => {
-                  setPageSize(Number(e.target.value));
+                  setPageSize(e.target.value === "all" ? "all" : Number(e.target.value));
                   setPage(1);
                 }}
                 style={{ height: 32 }}
@@ -814,6 +797,7 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                 <option value={50}>50 dòng / trang</option>
                 <option value={100}>100 dòng / trang</option>
                 <option value={200}>200 dòng / trang</option>
+                <option value="all">Tất cả</option>
               </select>
 
               <button

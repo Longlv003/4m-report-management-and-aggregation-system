@@ -49,7 +49,7 @@ export async function getMe(): Promise<User> {
 // Scan 4M API
 export async function getScan4mRecords(params: {
   page: number;
-  pageSize: number;
+  pageSize: number | "all";
   visibility?: 'active' | 'excluded';
   date?: string;
   fromDate?: string;
@@ -58,7 +58,10 @@ export async function getScan4mRecords(params: {
   machine?: string;
   matchStatus?: string;
   search?: string;
-}): Promise<{ records: Scan4MRecord[]; pagination: { total: number; totalPages: number } }> {
+  itemName?: string;
+  itemCode?: string;
+  lotNo?: string;
+}): Promise<{ records: Scan4MRecord[]; pagination: { page: number; total: number; totalPages: number } }> {
   const query = new URLSearchParams();
   query.set('page', String(params.page));
   query.set('pageSize', String(params.pageSize));
@@ -70,6 +73,9 @@ export async function getScan4mRecords(params: {
   if (params.machine) query.set('machine', params.machine);
   if (params.matchStatus) query.set('matchStatus', params.matchStatus);
   if (params.search) query.set('search', params.search);
+  if (params.itemName) query.set('itemName', params.itemName);
+  if (params.itemCode) query.set('itemCode', params.itemCode);
+  if (params.lotNo) query.set('lotNo', params.lotNo);
 
   return request(`/scan4m/records?${query.toString()}`);
 }
@@ -93,6 +99,9 @@ export async function downloadExcelExport(params: {
   machine?: string;
   matchStatus?: string;
   search?: string;
+  itemName?: string;
+  itemCode?: string;
+  lotNo?: string;
 }): Promise<void> {
   const query = new URLSearchParams();
   if (params.date) query.set('date', params.date);
@@ -102,6 +111,9 @@ export async function downloadExcelExport(params: {
   if (params.machine) query.set('machine', params.machine);
   if (params.matchStatus) query.set('matchStatus', params.matchStatus);
   if (params.search) query.set('search', params.search);
+  if (params.itemName) query.set('itemName', params.itemName);
+  if (params.itemCode) query.set('itemCode', params.itemCode);
+  if (params.lotNo) query.set('lotNo', params.lotNo);
 
   const token = localStorage.getItem('scan4m_token');
   const response = await fetch(`${BASE_URL}/scan4m/export?${query.toString()}`, {
@@ -179,11 +191,11 @@ export async function getMappings(search?: string, status?: 'active' | 'deleted'
   return request(`/mapping?${query.toString()}`);
 }
 
-export async function createMapping(data: { itemName: string; pcsPerSheet: number; process: string }): Promise<void> {
+export async function createMapping(data: { itemName: string; seqNo: string; pcsPerSheet: number | null; process: string; build?: string; model?: string }): Promise<void> {
   return request('/mapping', { method: 'POST', body: JSON.stringify(data) });
 }
 
-export async function updateMapping(id: string, data: { itemName: string; pcsPerSheet: number; process: string }): Promise<void> {
+export async function updateMapping(id: string, data: { itemName: string; seqNo: string; pcsPerSheet: number | null; process: string; build?: string; model?: string }): Promise<void> {
   return request(`/mapping/${id}`, { method: 'PUT', body: JSON.stringify(data) });
 }
 
@@ -198,7 +210,7 @@ export async function restoreMapping(id: string): Promise<void> {
 // CVR 4M API
 export async function getCvr4mRecords(params: {
   page: number;
-  pageSize: number;
+  pageSize: number | "all";
   visibility?: 'active' | 'excluded';
   date?: string;
   fromDate?: string;
@@ -207,7 +219,10 @@ export async function getCvr4mRecords(params: {
   machine?: string;
   matchStatus?: string;
   search?: string;
-}): Promise<{ records: import('./types.js').Cvr4mRecord[]; pagination: { total: number; totalPages: number } }> {
+  itemName?: string;
+  itemCode?: string;
+  lotNo?: string;
+}): Promise<{ records: import('./types.js').Cvr4mRecord[]; pagination: { page: number; total: number; totalPages: number } }> {
   const query = new URLSearchParams();
   query.set('page', String(params.page));
   query.set('pageSize', String(params.pageSize));
@@ -219,6 +234,9 @@ export async function getCvr4mRecords(params: {
   if (params.machine) query.set('machine', params.machine);
   if (params.matchStatus) query.set('matchStatus', params.matchStatus);
   if (params.search) query.set('search', params.search);
+  if (params.itemName) query.set('itemName', params.itemName);
+  if (params.itemCode) query.set('itemCode', params.itemCode);
+  if (params.lotNo) query.set('lotNo', params.lotNo);
 
   return request(`/cvr4m/records?${query.toString()}`);
 }
@@ -235,6 +253,9 @@ export async function downloadCvrExcelExport(params: {
   machine?: string;
   matchStatus?: string;
   search?: string;
+  itemName?: string;
+  itemCode?: string;
+  lotNo?: string;
 }): Promise<void> {
   const query = new URLSearchParams();
   if (params.date) query.set('date', params.date);
@@ -244,6 +265,9 @@ export async function downloadCvrExcelExport(params: {
   if (params.machine) query.set('machine', params.machine);
   if (params.matchStatus) query.set('matchStatus', params.matchStatus);
   if (params.search) query.set('search', params.search);
+  if (params.itemName) query.set('itemName', params.itemName);
+  if (params.itemCode) query.set('itemCode', params.itemCode);
+  if (params.lotNo) query.set('lotNo', params.lotNo);
 
   const token = localStorage.getItem('scan4m_token');
   const headers: Record<string, string> = token ? { Authorization: `Bearer ${token}` } : {};

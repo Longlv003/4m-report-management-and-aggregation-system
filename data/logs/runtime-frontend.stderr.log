@@ -1,3 +1,0 @@
-9:52:59 PM [vite] http proxy error: /api/v1/realtime/stream
-Error: read ECONNRESET
-    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)

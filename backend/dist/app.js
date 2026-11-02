@@ -7,6 +7,7 @@ exports.createApp = createApp;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const audit_middleware_js_1 = require("./middlewares/audit.middleware.js");
+const client_ip_middleware_js_1 = require("./middlewares/client-ip.middleware.js");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const request_id_middleware_js_1 = require("./middlewares/request-id.middleware.js");
@@ -16,7 +17,10 @@ const path_provider_js_1 = require("./config/path-provider.js");
 const configuration_provider_js_1 = require("./config/configuration-provider.js");
 function createApp() {
     const app = (0, express_1.default)();
+    // Only the local frontend proxy can supply a forwarded client address.
+    app.set('trust proxy', 'loopback');
     app.use(request_id_middleware_js_1.requestIdMiddleware);
+    app.use(client_ip_middleware_js_1.clientIpMiddleware);
     app.use(audit_middleware_js_1.auditMiddleware);
     app.use((0, cors_1.default)({ origin: configuration_provider_js_1.configurationProvider.getAppConfig().app.corsOrigins }));
     app.use(express_1.default.json({ limit: '10mb' }));

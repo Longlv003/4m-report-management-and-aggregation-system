@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { auditMiddleware } from './middlewares/audit.middleware.js';
+import { clientIpMiddleware } from './middlewares/client-ip.middleware.js';
 import path from 'path';
 import fs from 'fs';
 import { requestIdMiddleware } from './middlewares/request-id.middleware.js';
@@ -11,8 +12,11 @@ import { configurationProvider } from './config/configuration-provider.js';
 
 export function createApp(): express.Application {
   const app = express();
+  // Only the local frontend proxy can supply a forwarded client address.
+  app.set('trust proxy', 'loopback');
 
   app.use(requestIdMiddleware);
+  app.use(clientIpMiddleware);
   app.use(auditMiddleware);
 
   app.use(cors({ origin: configurationProvider.getAppConfig().app.corsOrigins }));

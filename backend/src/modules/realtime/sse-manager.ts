@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { logger } from '../../logging/logger.js';
 
 export interface SseEvent {
-  event: 'ping' | 'data_imported' | 'record_updated' | 'error_detected';
+  event: 'scanner_status' | 'ping' | 'data_imported' | 'record_updated' | 'error_detected';
   data: unknown;
   id?: string;
 }

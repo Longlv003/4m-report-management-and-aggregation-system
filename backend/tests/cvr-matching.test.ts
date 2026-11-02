@@ -5,14 +5,14 @@ import { CvrMatchingEngine } from '../src/modules/matcher/cvr-matching-engine.js
 import { parseCvrWcsRow } from '../src/modules/parser/cvr-wcs-parser.js';
 import { parseCvrWcsCsv } from '../src/modules/parser/cvr-wcs-parser.js';
 import { parsePlusErrorExcel } from '../src/modules/parser/plus-error-parser.js';
-import { ensureCvrRateColumns } from '../src/database/migrations.js';
+import { ensureCvrRateColumns, ensureCvrPcsColumn } from '../src/database/migrations.js';
 import { configurationProvider } from '../src/config/configuration-provider.js';
 const CVR_EXPORT_COLUMNS = configurationProvider.getCvrOutputSchema().columns;
 
 async function test() {
   const db = createClient({ url: ':memory:' });
   try {
-    await db.execute('CREATE TABLE item_mapping (item_name TEXT, pcs_per_sheet INTEGER, process TEXT, is_deleted INTEGER)');
+    await db.execute('CREATE TABLE item_mapping (item_name TEXT, pcs_per_sheet INTEGER, process TEXT, is_deleted INTEGER, seq_no TEXT)');
     await db.execute('CREATE TABLE plus_records (item_code TEXT, batch_no TEXT, prod_qty INTEGER, created_at TEXT)');
     await db.execute(`CREATE TABLE plus_error_records (item_code TEXT, batch_no TEXT, process_type TEXT,
       d1 INTEGER, d2 INTEGER, d3 INTEGER, d4 INTEGER, d5 INTEGER, d6 INTEGER, d7 INTEGER, d8 INTEGER, d9 INTEGER, d10 INTEGER)`);
@@ -25,14 +25,15 @@ async function test() {
       textColumns.push(`verify_zoom_${side}`);
     }
     await db.execute(`CREATE TABLE cvr4m_records (${textColumns.map(c => `${c} TEXT`).join(',')}, ${numberColumns.map(c => `${c} REAL`).join(',')})`);
+    await ensureCvrPcsColumn(db);
     await ensureCvrRateColumns(db);
     await ensureCvrRateColumns(db); // Safe for an existing database on every startup.
-    assert.equal(CVR_EXPORT_COLUMNS.length, 44);
+    assert.equal(CVR_EXPORT_COLUMNS.length, 45);
     for (const side of ['a', 'b']) {
       const index = CVR_EXPORT_COLUMNS.findIndex(column => column.key === `accumulative_defect_${side}`);
       assert.equal(CVR_EXPORT_COLUMNS[index + 1].key, `ng_rate_${side}`);
     }
-    await db.execute("INSERT INTO item_mapping VALUES ('Product', 100, 'Electroless', 0)");
+    await db.execute("INSERT INTO item_mapping VALUES ('Product', 100, 'Electroless', 0, '0070')");
     await db.execute("INSERT INTO plus_records VALUES ('ITEM', '00001', 10, '2026-11-01')");
     for (const [type, value] of [['AEA', 1], ['ASA', 10], ['ASS', 100], ['AEB', 2], ['ASB', 20], ['BSS', 200]] as const) {
       await db.execute({ sql: 'INSERT INTO plus_error_records VALUES (?, ?, ?, ?, ?, 0, 0, 0, 0, 0, 0, 0, 0)', args: ['ITEM', '00001', type, value, value * 2] });
@@ -67,6 +68,7 @@ async function test() {
     assert.equal(record.accumulative_defect_b, 666);
     assert.equal(record.total_pattern_ng, 999); // A + B, independent of source Display/WCS quantities.
     assert.equal(record.total_pcs, 1000);
+    assert.equal(record.total_pcs_cvr, 200);
     assert.equal(record.ng_rate, 99.9);
     assert.equal(record.ng_rate_a, 33.3);
     assert.equal(record.ng_rate_b, 66.6);
@@ -94,10 +96,10 @@ async function test() {
             error.d1,error.d2,error.d3,error.d4,error.d5,error.d6,error.d7,error.d8,error.d9,error.d10] });
       }
     }
-    await db.execute("INSERT INTO item_mapping VALUES ('6HRAV',384,'Electroless',0)");
     await db.execute("INSERT INTO plus_records VALUES ('7M028H01000B','00005',334,'2026-11-01')");
     const sample = parseCvrWcsCsv(fixturePath('wcsCvr','S_S+Verify+#5620261031.csv'))
       .find(row => row.itemCode === '7M028H01000B' && row.lotNo === '00005')!;
+    await db.execute({ sql: "INSERT INTO item_mapping VALUES ('6HRAV',384,'Electroless',0,?)", args: [sample.seqNo] });
     assert.equal(sample.wcsNgQty, 0);
     await engine.processAndMatchCvrRecords([sample], 'test-file');
     const actual = (await db.execute("SELECT * FROM cvr4m_records WHERE item_code='7M028H01000B' AND lot_no='00005'")).rows[0];

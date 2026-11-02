@@ -46,8 +46,8 @@
     },
     "finishTime": {
       "outputColumn": "Finish time",
-      "source": "PLUS",
-      "sourceColumn": "Work Result",
+      "source": "WCS",
+      "rule": "latestValidTimestamp(Time01, Time02, Time03, Time04, Time05)",
       "dataType": "datetime",
       "required": false
     },

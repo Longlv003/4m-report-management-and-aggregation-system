@@ -98,176 +98,182 @@
     {
       "index": 15,
       "key": "total_pcs",
-      "header": "Total pcs",
+      "header": "Total pcs (lot)",
       "width": 14
     },
     {
-      "index": 16,
+      "key": "total_pcs_cvr",
+      "header": "Total pcs (cvr)",
+      "width": 18,
+      "index": 16
+    },
+    {
+      "index": 17,
       "key": "total_pattern_ng",
       "header": "Total pattern NG",
       "width": 16
     },
     {
-      "index": 17,
+      "index": 18,
       "key": "ng_rate",
       "header": "% NG",
       "width": 12,
       "format": "0.000\"%\""
     },
     {
-      "index": 18,
+      "index": 19,
       "key": "accumulative_defect_a",
       "header": " A side-Accumulative defect",
       "width": 24
     },
     {
-      "index": 19,
+      "index": 20,
       "key": "ng_rate_a",
       "header": "% NG A side",
       "width": 16,
       "format": "0.000\"%\""
     },
     {
-      "index": 20,
+      "index": 21,
       "key": "discoloration_a",
       "header": "Discoloration A side",
       "width": 18
     },
     {
-      "index": 21,
+      "index": 22,
       "key": "fm_a",
       "header": "FM A side",
       "width": 14
     },
     {
-      "index": 22,
+      "index": 23,
       "key": "copper_residue_a",
       "header": "Copper residue A side",
       "width": 20
     },
     {
-      "index": 23,
+      "index": 24,
       "key": "broken_hole_a",
       "header": "Broken hole A side",
       "width": 18
     },
     {
-      "index": 24,
+      "index": 25,
       "key": "bvh_shift_a",
       "header": "BVH shift A side",
       "width": 16
     },
     {
-      "index": 25,
+      "index": 26,
       "key": "missing_hole_a",
       "header": "Missing hole A side",
       "width": 18
     },
     {
-      "index": 26,
+      "index": 27,
       "key": "extra_hole_a",
       "header": "Extra hole A side",
       "width": 16
     },
     {
-      "index": 27,
+      "index": 28,
       "key": "dfr_seepage_a",
       "header": "DFR seepage",
       "width": 14
     },
     {
-      "index": 28,
+      "index": 29,
       "key": "other_a",
       "header": "Other A side",
       "width": 14
     },
     {
-      "index": 29,
+      "index": 30,
       "key": "dfr_remain_a",
       "header": "DFR remain A side",
       "width": 18
     },
     {
-      "index": 30,
+      "index": 31,
       "key": "verify_zoom_a",
       "header": "Verify zoom magnification (A)",
       "width": 26
     },
     {
-      "index": 31,
+      "index": 32,
       "key": "accumulative_defect_b",
       "header": " B side-Accumulative defect",
       "width": 24
     },
     {
-      "index": 32,
+      "index": 33,
       "key": "ng_rate_b",
       "header": "% NG B side",
       "width": 16,
       "format": "0.000\"%\""
     },
     {
-      "index": 33,
+      "index": 34,
       "key": "discoloration_b",
       "header": "Discoloration B side",
       "width": 18
     },
     {
-      "index": 34,
+      "index": 35,
       "key": "fm_b",
       "header": "FM B side",
       "width": 14
     },
     {
-      "index": 35,
+      "index": 36,
       "key": "copper_residue_b",
       "header": "Copper residue B side",
       "width": 20
     },
     {
-      "index": 36,
+      "index": 37,
       "key": "broken_hole_b",
       "header": "Broken hole B side",
       "width": 18
     },
     {
-      "index": 37,
+      "index": 38,
       "key": "bvh_shift_b",
       "header": "BVH shift B side",
       "width": 16
     },
     {
-      "index": 38,
+      "index": 39,
       "key": "missing_hole_b",
       "header": "Missing hole B side",
       "width": 18
     },
     {
-      "index": 39,
+      "index": 40,
       "key": "extra_hole_b",
       "header": "Extra hole B side",
       "width": 16
     },
     {
-      "index": 40,
+      "index": 41,
       "key": "dfr_seepage_b",
       "header": "DFR seepage",
       "width": 14
     },
     {
-      "index": 41,
+      "index": 42,
       "key": "other_b",
       "header": "Other B side",
       "width": 14
     },
     {
-      "index": 42,
+      "index": 43,
       "key": "dfr_remain_b",
       "header": "DFR remain B side",
       "width": 18
     },
     {
-      "index": 43,
+      "index": 44,
       "key": "verify_zoom_b",
       "header": "Verify zoom magnification (B)",
       "width": 26

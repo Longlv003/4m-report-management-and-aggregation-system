@@ -10,7 +10,7 @@ export function recordVisibilityController(report: ReportType, excluded: boolean
       const reason = req.body.reason ?? '';
       if (typeof reason !== 'string') throw new ValidationError('Lý do phải là chuỗi');
       const data = await recordManagement.setExcluded(report,req.params.id,excluded,reason,
-        { id: req.user!.id, username: req.user!.username, ip: req.ip });
+        { id: req.user!.id, username: req.user!.username, ip: req.clientIp });
       req.auditRecorded = true;
       sseManager.broadcast({ event: 'record_updated', data: { report, ...data } });
       res.json({ success: true, data });

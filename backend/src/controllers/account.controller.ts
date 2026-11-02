@@ -50,7 +50,7 @@ export async function getAccountsController(req: Request, res: Response, next: N
 
 export async function createAccountController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.ip },
+    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.clientIp },
       'accounts','CREATE',undefined, async db => {
       const { username, password, fullName, roleName, permissions } = req.body;
       if (!username || !password || !fullName) {
@@ -99,7 +99,7 @@ export async function createAccountController(req: Request, res: Response, next:
 
 export async function toggleAccountActiveController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.ip },
+    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.clientIp },
       'accounts','TOGGLE_ACTIVE',req.params.id, async db => {
       const { id } = req.params;
 
@@ -138,7 +138,7 @@ export async function toggleAccountActiveController(req: Request, res: Response,
 
 export async function resetPasswordController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.ip },
+    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.clientIp },
       'accounts','RESET_PASSWORD',req.params.id, async db => {
       const { id } = req.params;
       const { newPassword } = req.body;
@@ -168,7 +168,7 @@ export async function resetPasswordController(req: Request, res: Response, next:
 
 export async function updateAccountController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
-    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.ip },
+    const payload = await auditedMutation({ id: req.user!.id, username: req.user!.username, ip: req.clientIp },
       'accounts','UPDATE',req.params.id, async db => {
       const { id } = req.params;
       const { fullName, permissions } = req.body;

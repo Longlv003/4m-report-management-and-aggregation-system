@@ -3,8 +3,8 @@ import { Actor, DataRow, ExclusionRepository, ReportType } from '../../domain/re
 
 export function visibilitySql(report: ReportType, excluded = false): string {
   const table = report === 'scan4m' ? 'scan4m_records' : 'cvr4m_records';
-  const key = report === 'scan4m' ? table + '.match_key' :
-    `json_array(${['item_code','lot_no','seq_no','start_time','machine'].map(key => `COALESCE(${table}.${key},'')`).join(',')})`;
+  const tuple = `json_array(${['item_code','lot_no','seq_no','start_time','machine'].map(key => `COALESCE(${table}.${key},'')`).join(',')})`;
+  const key = report === 'scan4m' ? `COALESCE(${table}.record_key,${tuple})` : tuple;
   return `${excluded ? '' : 'NOT '}EXISTS (SELECT 1 FROM record_exclusions e WHERE e.report_type='${report}' AND e.record_key=${key} AND e.is_excluded=1)`;
 }
 export class SqlExclusionRepository implements ExclusionRepository {

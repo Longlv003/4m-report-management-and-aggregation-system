@@ -1,3 +1,6 @@
+import { canSkipUnchangedFile, FileFingerprint, sameFingerprint } from '../../domain/source-file-state.js';
+import { ScannerFileStateRepository } from '../../infrastructure/repositories/scanner-file-state-repository.js';
+import { latestWcsFinishTime } from '../../domain/scan-time.js';
 import fs from 'fs';
 import path from 'path';
 import { getDb } from '../../database/connection.js';
@@ -17,20 +20,35 @@ import { withWriteTransaction } from '../../database/transaction.js';
 import { FileProcessingError } from '../../errors/app-error.js';
 import { sseManager } from '../realtime/sse-manager.js';
 
+class SourceFileChangedError extends Error {}
+function fingerprint(filePath: string): FileFingerprint {
+  const stat = fs.statSync(filePath);
+  return { size: stat.size, mtimeMs: stat.mtimeMs, ctimeMs: stat.ctimeMs };
+}
+function stillMatches(filePath: string, expected: FileFingerprint): boolean {
+  try { return sameFingerprint(fingerprint(filePath), expected); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return false; throw error; }
+}
+
 export class ScannerEngine {
   constructor(private readonly database: () => Client = getDb) {}
 
   private isScanning = false;
   private intervalId: NodeJS.Timeout | null = null;
 
-  public async scanOnce(): Promise<{ filesProcessed: number; errors: number; skipped?: boolean }> {
+  public getStatus(): { scanning: boolean } { return { scanning: this.isScanning }; }
+
+  public async scanOnce(): Promise<{ filesProcessed: number; errors: number; filesSkipped?: number; skipped?: boolean }> {
     if (this.isScanning) {
       logger.info('Scan cycle already in progress, skipping...', { module: 'ScannerEngine' });
       return { filesProcessed: 0, errors: 0, skipped: true };
     }
 
     this.isScanning = true;
+    sseManager.broadcast({ event: 'scanner_status', data: this.getStatus() });
     let filesProcessed = 0;
+    let filesSkipped = 0;
+    const startedAt = Date.now();
     let errors = 0;
     let removedFiles = 0;
 
@@ -65,6 +83,7 @@ export class ScannerEngine {
             for (let attempt = 0; ; attempt++) {
               try {
                 if (await this.processFile(db, sourceKey, source.type, filePath, fileName)) filesProcessed++;
+                else filesSkipped++;
                 break;
               } catch (err) {
                 if (!(err instanceof FileProcessingError) && attempt < config.retryAttempts) {
@@ -86,12 +105,15 @@ export class ScannerEngine {
 
     } finally {
       this.isScanning = false;
+      sseManager.broadcast({ event: 'scanner_status', data: this.getStatus() });
     }
 
     if (filesProcessed > 0 || errors > 0 || removedFiles > 0) {
       sseManager.broadcast({ event: 'data_imported', data: { timestamp: new Date().toISOString(), filesProcessed, errors } });
     }
-    return { filesProcessed, errors };
+    logger.info('Scan cycle completed', { module: 'ScannerEngine', filesProcessed, filesSkipped, errors,
+      durationMs: Date.now() - startedAt });
+    return { filesProcessed, filesSkipped, errors };
   }
 
   /**
@@ -126,14 +148,52 @@ export class ScannerEngine {
     db: Client, sourceKey: string, sourceType: 'CSV' | 'EXCEL', filePath: string, fileName: string
   ): Promise<boolean> {
     const config = configurationProvider.getScannerConfig().scanner;
+    filePath = path.resolve(filePath);
+    const parserVersion = sourceKey === 'wcsScan' ? WCS_SCAN_PARSER_VERSION : 0;
+    const stateRepository = new ScannerFileStateRepository(db);
+    const initialStat = fs.statSync(filePath);
+    if (!initialStat.isFile()) return false;
+    const previousState = await stateRepository.find(sourceKey, filePath);
+    if (canSkipUnchangedFile(previousState, initialStat, parserVersion)) return false;
+    // Upgrade existing installations without waiting/reparsing every successful file once again.
+    // The complete hash must still match an already imported snapshot before caching metadata.
+    if (!previousState) {
+      const known = await stateRepository.findSuccessfulPath(sourceKey,filePath,initialStat.size,parserVersion);
+      if (known) {
+        const hash = await computeFileSha256(filePath);
+        if (!stillMatches(filePath,initialStat)) return false;
+        if (hash === known.sha256) {
+          const warmed = await withWriteTransaction(async tx => {
+            const states = new ScannerFileStateRepository(tx);
+            const current = await states.findSuccessfulPath(sourceKey,filePath,initialStat.size,parserVersion);
+            if (current?.sha256 !== hash || !stillMatches(filePath,initialStat)) return false;
+            await states.save(sourceKey,filePath,current.id,hash,initialStat,parserVersion,'SUCCESS');
+            await states.supersedeFailures(sourceKey,filePath,current.id);
+            return true;
+          },db);
+          if (warmed) return false;
+        }
+      }
+    }
     if (!await isFileStable(filePath, config.stabilityCheckMs, config.stabilityChecks)) return false;
+    const stat = fingerprint(filePath);
     const sha256 = await computeFileSha256(filePath);
-    const stat = fs.statSync(filePath);
+    if (!stillMatches(filePath, stat)) return false;
     let fileId = 'file-' + crypto.randomUUID();
     try {
       return await withWriteTransaction(async tx => {
-        const existing = await tx.execute({ sql: 'SELECT id, status FROM source_files WHERE sha256 = ?', args: [sha256] });
-        if (existing.rows[0]?.status === 'SUCCESS') return false;
+        const existing = await tx.execute({ sql: 'SELECT id, status, parser_version FROM source_files WHERE sha256 = ?', args: [sha256] });
+        if (!stillMatches(filePath, stat)) throw new SourceFileChangedError('Source file changed before parsing');
+        const states = new ScannerFileStateRepository(tx);
+        const currentState = await states.find(sourceKey, filePath);
+        if (canSkipUnchangedFile(currentState, stat, parserVersion)) return false;
+        // A revision returning to older bytes must be applied again, rather than discarded as a duplicate.
+        const sameRevision = !currentState || currentState.status === 'SUCCESS' && currentState.sha256 === sha256;
+        if (existing.rows[0]?.status === 'SUCCESS' && Number(existing.rows[0].parser_version) >= parserVersion && sameRevision) {
+          await states.save(sourceKey,filePath,String(existing.rows[0].id),sha256,stat,parserVersion,'SUCCESS');
+          await states.supersedeFailures(sourceKey,filePath,String(existing.rows[0].id));
+          return false;
+        }
         fileId = String(existing.rows[0]?.id || fileId);
         await tx.execute({
           sql: `INSERT INTO source_files (id,file_path,file_name,file_type,source_system,file_size,sha256,detected_at,status)
@@ -145,11 +205,15 @@ export class ScannerEngine {
         else if (sourceKey === 'plusError') await this.importPlusErrorExcel(tx, fileId, filePath, fileName);
         else if (sourceType === 'CSV') await this.importWcsCsv(tx, fileId, filePath, fileName);
         else await this.importPlusExcel(tx, fileId, filePath, fileName);
-        await tx.execute({ sql: "UPDATE source_files SET status='SUCCESS',error_message=NULL,processed_at=? WHERE id=?",
-          args: [new Date().toISOString(),fileId] });
+        if (!stillMatches(filePath, stat)) throw new SourceFileChangedError('Source file changed during parsing');
+        await tx.execute({ sql: "UPDATE source_files SET status='SUCCESS',error_message=NULL,processed_at=?,parser_version=? WHERE id=?",
+          args: [new Date().toISOString(),parserVersion,fileId] });
+        await states.save(sourceKey,filePath,fileId,sha256,stat,parserVersion,'SUCCESS');
+        await states.supersedeFailures(sourceKey,filePath,fileId);
         return true;
       }, db);
     } catch (error) {
+      if (error instanceof SourceFileChangedError) return false;
       // The data transaction rolled back. Persist only failure metadata for the dashboard/retry.
       await withWriteTransaction(async tx => {
         await tx.execute({
@@ -159,6 +223,7 @@ export class ScannerEngine {
           args: [fileId,filePath,fileName,sourceType,sourceKey,stat.size,sha256,new Date().toISOString(),
             error instanceof Error ? error.message : String(error),new Date().toISOString()]
         });
+        await new ScannerFileStateRepository(tx).save(sourceKey,filePath,fileId,sha256,stat,parserVersion,'FAILED');
       }, db);
       throw error;
     }
@@ -178,13 +243,16 @@ export class ScannerEngine {
       const lotNo = (r['Số lot'] || '').trim();
       const seqNo = (r['Công đoạn số'] || '').trim();
       const matchKey = `${itemCode}_${lotNo}_${seqNo}`;
+      const recordKey = scanRecordKey({ item_code: itemCode, lot_no: lotNo, seq_no: seqNo,
+        start_time: r['Thời gian thao tác'], machine: r['Tên thiết bị'] });
       const now = new Date().toISOString();
 
       // --- Check if WCS row already exists in scan4m_records ---
       const existingWcs = await db.execute({
-        sql: `SELECT start_time, machine, shift, program_name, total_sheet_scan, op, air_pressure
-              FROM scan4m_records WHERE match_key = ? LIMIT 1;`,
-        args: [matchKey]
+        sql: `SELECT start_time, finish_time, machine, shift, program_name, total_sheet_scan, op, air_pressure,
+                     (SELECT finish_time FROM wcs_records WHERE id = scan4m_records.wcs_record_id) AS wcs_finish_time
+              FROM scan4m_records WHERE record_key = ? LIMIT 1;`,
+        args: [recordKey]
       });
 
       const newStartTime = (r['Thời gian thao tác'] || '').trim();
@@ -202,6 +270,8 @@ export class ScannerEngine {
 
         const changed =
           e.start_time !== newStartTime ||
+          e.finish_time !== latestWcsFinishTime(r) ||
+          e.wcs_finish_time !== latestWcsFinishTime(r) ||
           e.machine !== newMachine ||
           e.shift !== newShift ||
           e.program_name !== newProgram ||
@@ -241,7 +311,7 @@ export class ScannerEngine {
           cpk_outer_top_a, inner_bottom_avg_a, cpk_inner_bottom_a, outer_top_avg_b,
           cpk_outer_top_b, inner_bottom_avg_b, cpk_inner_bottom_b, check_light,
           check_master_machine, check_master_sample, exp_master_sample, roll_cleaning,
-          air_pressure, created_at
+          air_pressure, created_at, finish_time
         ) VALUES (
           ?, ?, ?, ?, ?, ?, ?, ?,
           ?, ?, ?, ?, ?,
@@ -249,7 +319,7 @@ export class ScannerEngine {
           ?, ?, ?, ?,
           ?, ?, ?, ?,
           ?, ?, ?, ?,
-          ?, ?
+          ?, ?, ?
         );`,
         args: [
           wcsRecordId, fileId, matchKey, itemCode, lotNo, seqNo, r['Ngày tháng'] || null, r['Ca'] || null,
@@ -270,7 +340,7 @@ export class ScannerEngine {
           r['Hạn sử dụng mẫu Master sample'] || 'NA',
           r['Bóc roll làm sạch'] || 'NA',
           parseNullableFloat(r['Áp suất khí đầu vào']),
-          now
+          now, latestWcsFinishTime(r)
         ]
       });
 
@@ -302,7 +372,7 @@ export class ScannerEngine {
       const aggregated = aggregateWcsAndPlus(scanId, wcsRecordId, r, plusRecord);
       aggregated.plusRecordId = plusRes.rows[0]?.id as string || null;
 
-      // Upsert into scan4m_records by match_key
+      // One record per WCS machine run; match_key remains the Plus matching key.
       await db.execute({
         sql: `INSERT INTO scan4m_records (
           id, match_key, wcs_record_id, plus_record_id, match_status, date, machine,
@@ -311,7 +381,7 @@ export class ScannerEngine {
           total_sheet_scan, op, outer_top_avg_a, cpk_outer_top_a, inner_bottom_avg_a,
           cpk_inner_bottom_a, outer_top_avg_b, cpk_outer_top_b, inner_bottom_avg_b,
           cpk_inner_bottom_b, check_light, check_master_machine, check_master_sample,
-          exp_master_sample, roll_cleaning, air_pressure, anomaly_flag, created_at, updated_at
+          exp_master_sample, roll_cleaning, air_pressure, anomaly_flag, created_at, updated_at, record_key
         ) VALUES (
           ?, ?, ?, ?, ?, ?, ?,
           ?, ?, ?, ?, ?, ?,
@@ -319,9 +389,9 @@ export class ScannerEngine {
           ?, ?, ?, ?, ?,
           ?, ?, ?, ?,
           ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?
+          ?, ?, ?, ?, ?, ?, ?
         )
-        ON CONFLICT(match_key) DO UPDATE SET
+        ON CONFLICT(record_key) DO UPDATE SET
           wcs_record_id = excluded.wcs_record_id,
           plus_record_id = COALESCE(excluded.plus_record_id, scan4m_records.plus_record_id),
           match_status = excluded.match_status,
@@ -329,8 +399,8 @@ export class ScannerEngine {
           machine = excluded.machine,
           shift = excluded.shift,
           start_time = excluded.start_time,
-          finish_time = COALESCE(excluded.finish_time, scan4m_records.finish_time),
-          total_time = COALESCE(excluded.total_time, scan4m_records.total_time),
+          finish_time = excluded.finish_time,
+          total_time = excluded.total_time,
           item_name = excluded.item_name,
           process = excluded.process,
           layer = excluded.layer,
@@ -364,7 +434,7 @@ export class ScannerEngine {
           aggregated.cpkInnerBottomA, aggregated.outerTopAvgB, aggregated.cpkOuterTopB,
           aggregated.innerBottomAvgB, aggregated.cpkInnerBottomB, aggregated.checkLight,
           aggregated.checkMasterMachine, aggregated.checkMasterSample, aggregated.expMasterSample,
-          aggregated.rollCleaning, aggregated.airPressure, aggregated.anomalyFlag, now, now
+          aggregated.rollCleaning, aggregated.airPressure, aggregated.anomalyFlag, now, now, recordKey
         ]
       });
 
@@ -548,3 +618,4 @@ export class ScannerEngine {
 }
 
 export const scannerEngine = new ScannerEngine();
+import { scanRecordKey, WCS_SCAN_PARSER_VERSION } from '../../domain/scan-record-identity.js';

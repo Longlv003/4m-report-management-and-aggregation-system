@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCvr4mRecordsController = getCvr4mRecordsController;
 exports.getCvr4mStatsController = getCvr4mStatsController;
 exports.exportCvr4mController = exportCvr4mController;
+const report_query_js_1 = require("../application/report-query.js");
+const report_filters_js_1 = require("../infrastructure/repositories/report-filters.js");
 const management_js_1 = require("../composition/management.js");
 const connection_js_1 = require("../database/connection.js");
 const exclusion_repository_js_1 = require("../infrastructure/repositories/exclusion-repository.js");
@@ -11,9 +13,6 @@ const cvr_excel_export_js_1 = require("../modules/export/cvr-excel-export.js");
 async function getCvr4mRecordsController(req, res, next) {
     try {
         const db = (0, connection_js_1.getDb)();
-        const page = Math.max(1, parseInt(req.query.page) || 1);
-        const pageSize = Math.min(500, Math.max(10, parseInt(req.query.pageSize) || 50));
-        const offset = (page - 1) * pageSize;
         const { date, fromDate, toDate, startDate, endDate, shift, machine, matchStatus, search } = req.query;
         const excluded = req.query.visibility === 'excluded';
         if (excluded && !req.user.permissions.includes('cvr4m:manage'))
@@ -55,6 +54,7 @@ async function getCvr4mRecordsController(req, res, next) {
             const s = `%${search}%`;
             args.push(s, s, s, s);
         }
+        (0, report_filters_js_1.appendItemFilters)(req.query, conditions, args);
         const whereClause = conditions.join(' AND ');
         // Total count query
         const countRes = await db.execute({
@@ -62,13 +62,14 @@ async function getCvr4mRecordsController(req, res, next) {
             args
         });
         const total = Number(countRes.rows[0]?.total || 0);
+        const { page, pageSize, limit, offset, totalPages } = (0, report_query_js_1.reportPagination)(req.query, total);
         // Data query
         const dataRes = await db.execute({
             sql: `SELECT * FROM cvr4m_records 
             WHERE ${whereClause} 
-            ORDER BY start_time DESC 
+            ORDER BY ${report_filters_js_1.REPORT_ORDER_BY}
             LIMIT ? OFFSET ?;`,
-            args: [...args, pageSize, offset]
+            args: [...args, limit, offset]
         });
         res.json({
             success: true,
@@ -78,7 +79,7 @@ async function getCvr4mRecordsController(req, res, next) {
                     page,
                     pageSize,
                     total,
-                    totalPages: Math.ceil(total / pageSize)
+                    totalPages
                 }
             }
         });
@@ -176,16 +177,17 @@ async function exportCvr4mController(req, res, next) {
             const s = `%${search}%`;
             args.push(s, s, s, s);
         }
+        (0, report_filters_js_1.appendItemFilters)(req.query, conditions, args);
         const whereClause = conditions.join(' AND ');
         const dataRes = await db.execute({
-            sql: `SELECT * FROM cvr4m_records WHERE ${whereClause} ORDER BY start_time DESC LIMIT 10000;`,
+            sql: `SELECT * FROM cvr4m_records WHERE ${whereClause} ORDER BY ${report_filters_js_1.REPORT_ORDER_BY} LIMIT 10000;`,
             args
         });
         const user = req.user;
-        await (0, management_js_1.auditService)().operation({ actor: { id: req.user.id, username: req.user.username, ip: req.ip },
+        await (0, management_js_1.auditService)().operation({ actor: { id: req.user.id, username: req.user.username, ip: req.clientIp },
             action: 'EXPORT', resource: 'cvr4m', details: { filters: req.query } }, async () => {
             req.auditRecorded = true;
-            await (0, cvr_excel_export_js_1.exportCvr4mToResponse)(dataRes.rows, res, user?.id || 'anonymous', req.ip);
+            await (0, cvr_excel_export_js_1.exportCvr4mToResponse)(dataRes.rows, res, user?.id || 'anonymous', req.clientIp);
             return { recordCount: dataRes.rows.length };
         });
     }

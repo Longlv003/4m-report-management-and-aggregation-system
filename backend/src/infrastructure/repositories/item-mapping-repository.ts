@@ -1,0 +1,38 @@
+import { Client } from '@libsql/client';
+import { ItemMappingInput, ItemMappingStore, normalizeSeqNo } from '../../domain/item-mapping.js';
+
+export class ItemMappingRepository implements ItemMappingStore {
+  constructor(private readonly db: Pick<Client, 'execute'>) {}
+
+  async findActive(itemName: string, seqNo: string) {
+    const result = await this.db.execute({
+      sql: 'SELECT pcs_per_sheet,process FROM item_mapping WHERE item_name=? AND seq_no=? AND is_deleted=0',
+      args: [itemName.trim(), normalizeSeqNo(seqNo)]
+    });
+    return result.rows[0];
+  }
+
+  async findKey(itemName: string, seqNo: string) {
+    const result = await this.db.execute({ sql: 'SELECT id,is_deleted FROM item_mapping WHERE item_name=? AND seq_no=?',
+      args: [itemName, seqNo] });
+    const row = result.rows[0];
+    return row ? { id: String(row.id), is_deleted: Number(row.is_deleted) } : undefined;
+  }
+
+  async save(id: string, input: ItemMappingInput, actorId: string | null, exists: boolean): Promise<void> {
+    const now = new Date().toISOString();
+    if (exists) {
+      await this.db.execute({
+        sql: `UPDATE item_mapping SET item_name=?,seq_no=?,pcs_per_sheet=?,process=?,build=?,model=?,
+              is_deleted=0,updated_by=?,updated_at=? WHERE id=?`,
+        args: [input.itemName,input.seqNo,input.pcsPerSheet,input.process,input.build,input.model,actorId,now,id]
+      });
+    } else {
+      await this.db.execute({
+        sql: `INSERT INTO item_mapping (id,item_name,seq_no,pcs_per_sheet,process,build,model,is_deleted,created_by,updated_by,created_at,updated_at)
+              VALUES (?,?,?,?,?,?,?,0,?,?,?,?)`,
+        args: [id,input.itemName,input.seqNo,input.pcsPerSheet,input.process,input.build,input.model,actorId,actorId,now,now]
+      });
+    }
+  }
+}

@@ -68,8 +68,11 @@ export interface AccountItem {
 
 export interface ItemMapping {
   id: string;
+  seq_no: string;
+  build: string;
+  model: string;
   item_name: string;
-  pcs_per_sheet: number;
+  pcs_per_sheet: number | null;
   process: string;
   is_deleted: number;
   created_by: string | null;
@@ -98,6 +101,7 @@ export interface Cvr4mRecord {
   total_sheet_vrf: number | null;
   op: string;
   total_pcs: number | null;
+  total_pcs_cvr: number | null;
   total_pattern_ng: number | null;
   ng_rate: number | null;
   accumulative_defect_a: number | null;

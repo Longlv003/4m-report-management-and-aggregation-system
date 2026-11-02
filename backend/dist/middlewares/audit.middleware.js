@@ -13,8 +13,8 @@ function auditMiddleware(req, res, next) {
             return;
         if (res.statusCode < 400 && req.method !== 'GET')
             return;
-        const actor = req.user ? { id: req.user.id, username: req.user.username, ip: req.ip } : undefined;
-        void (0, transaction_js_1.withWriteTransaction)(tx => new audit_repository_js_1.SqlAuditRepository(tx).append({ actor,
+        const actor = req.user ? { id: req.user.id, username: req.user.username, ip: req.clientIp } : undefined;
+        void (0, transaction_js_1.withWriteTransaction)(tx => new audit_repository_js_1.SqlAuditRepository(tx).append({ actor, ip: req.clientIp,
             action: req.method === 'GET' ? 'VIEW' : req.method + '_ATTEMPT', resource,
             outcome: res.statusCode >= 400 ? 'FAILED' : 'SUCCESS',
             details: { statusCode: res.statusCode, query: req.query, error: res.locals.auditError, requestId: req.headers['x-request-id'],

@@ -8,7 +8,15 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://localhost:4000',
-        changeOrigin: true
+        changeOrigin: true,
+        configure(proxy) {
+          proxy.on('proxyReq', (proxyReq, req) => {
+            // Replace incoming headers so the client cannot choose the audit address.
+            const address = req.socket.remoteAddress;
+            if (address) proxyReq.setHeader('x-forwarded-for', address);
+            else proxyReq.removeHeader('x-forwarded-for');
+          });
+        }
       }
     }
   }

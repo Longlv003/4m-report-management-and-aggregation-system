@@ -19,10 +19,11 @@ async function bootstrap() {
     // Serve existing data immediately; network discovery must not delay the API.
     const app = (0, app_js_1.createApp)();
     const port = configuration_provider_js_1.configurationProvider.getAppConfig().app.port || 4000;
+    const displayUrl = `http://${process.env.SCAN4M_HOST_IP || 'localhost'}:${port}`;
     const server = app.listen(port, () => {
-        logger_js_1.logger.info(`Scan 4M Server is running at http://localhost:${port}`, { module: 'Server', port });
+        logger_js_1.logger.info(`Scan 4M Server is running at ${displayUrl}`, { module: 'Server', port });
         console.log(`\n======================================================`);
-        console.log(`  SCAN 4M SERVER IS RUNNING AT: http://localhost:${port} `);
+        console.log(`  SCAN 4M SERVER IS RUNNING AT: ${displayUrl} `);
         console.log(`======================================================\n`);
         if (configuration_provider_js_1.configurationProvider.getScannerConfig().scanner.enabled)
             scanner_engine_js_1.scannerEngine.scanOnce().then(initialScan => {

@@ -16,7 +16,7 @@ export class SqlAuditRepository implements AuditRepository {
     await this.db.execute({ sql: `INSERT INTO audit_logs
       (id,account_id,actor_username,action,resource,details,ip_address,created_at,outcome)
       VALUES (?,?,?,?,?,?,?,?,?)`, args: [id,entry.actor?.id || null,entry.actor?.username || 'anonymous',
-      entry.action,entry.resource,JSON.stringify(redact(entry.details ?? {})),entry.actor?.ip || null,new Date().toISOString(),entry.outcome] });
+      entry.action,entry.resource,JSON.stringify(redact(entry.details ?? {})),entry.ip || entry.actor?.ip || null,new Date().toISOString(),entry.outcome] });
     return id;
   }
   async complete(id: string, outcome: 'SUCCESS' | 'FAILED', details: unknown) {

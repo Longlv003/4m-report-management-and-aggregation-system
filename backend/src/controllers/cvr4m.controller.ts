@@ -1,3 +1,5 @@
+import { reportPagination } from '../application/report-query.js';
+import { appendItemFilters, REPORT_ORDER_BY } from '../infrastructure/repositories/report-filters.js';
 import { auditService } from '../composition/management.js';
 import { Request, Response, NextFunction } from 'express';
 import { getDb } from '../database/connection.js';
@@ -8,10 +10,6 @@ import { exportCvr4mToResponse } from '../modules/export/cvr-excel-export.js';
 export async function getCvr4mRecordsController(req: Request, res: Response, next: NextFunction): Promise<void> {
   try {
     const db = getDb();
-    const page = Math.max(1, parseInt(req.query.page as string) || 1);
-    const pageSize = Math.min(500, Math.max(10, parseInt(req.query.pageSize as string) || 50));
-    const offset = (page - 1) * pageSize;
-
     const { date, fromDate, toDate, startDate, endDate, shift, machine, matchStatus, search } = req.query;
 
     const excluded = req.query.visibility === 'excluded';
@@ -53,6 +51,7 @@ export async function getCvr4mRecordsController(req: Request, res: Response, nex
       args.push(s, s, s, s);
     }
 
+    appendItemFilters(req.query, conditions, args);
     const whereClause = conditions.join(' AND ');
 
     // Total count query
@@ -61,14 +60,15 @@ export async function getCvr4mRecordsController(req: Request, res: Response, nex
       args
     });
     const total = Number(countRes.rows[0]?.total || 0);
+    const { page, pageSize, limit, offset, totalPages } = reportPagination(req.query, total);
 
     // Data query
     const dataRes = await db.execute({
       sql: `SELECT * FROM cvr4m_records 
             WHERE ${whereClause} 
-            ORDER BY start_time DESC 
+            ORDER BY ${REPORT_ORDER_BY}
             LIMIT ? OFFSET ?;`,
-      args: [...args, pageSize, offset]
+      args: [...args, limit, offset]
     });
 
     res.json({
@@ -79,7 +79,7 @@ export async function getCvr4mRecordsController(req: Request, res: Response, nex
           page,
           pageSize,
           total,
-          totalPages: Math.ceil(total / pageSize)
+          totalPages
         }
       }
     });
@@ -181,22 +181,23 @@ export async function exportCvr4mController(req: Request, res: Response, next: N
       args.push(s, s, s, s);
     }
 
+    appendItemFilters(req.query, conditions, args);
     const whereClause = conditions.join(' AND ');
 
     const dataRes = await db.execute({
-      sql: `SELECT * FROM cvr4m_records WHERE ${whereClause} ORDER BY start_time DESC LIMIT 10000;`,
+      sql: `SELECT * FROM cvr4m_records WHERE ${whereClause} ORDER BY ${REPORT_ORDER_BY} LIMIT 10000;`,
       args
     });
 
     const user = (req as any).user;
-    await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.ip },
+    await auditService().operation({ actor: { id: req.user!.id,username: req.user!.username,ip: req.clientIp },
       action: 'EXPORT',resource: 'cvr4m',details: { filters: req.query } }, async () => {
       req.auditRecorded = true;
     await exportCvr4mToResponse(
       dataRes.rows as Array<Record<string, unknown>>,
       res,
       user?.id || 'anonymous',
-      req.ip
+      req.clientIp
     );
       return { recordCount: dataRes.rows.length };
     });
