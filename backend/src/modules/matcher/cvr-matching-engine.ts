@@ -1,3 +1,4 @@
+import { createPlusProductionMatcher } from '../../composition/plus-production-matcher.js';
 import { calculateTotalPcs } from '../../domain/cvr-quantities.js';
 import { ItemMappingRepository } from '../../infrastructure/repositories/item-mapping-repository.js';
 import crypto from 'crypto';
@@ -44,6 +45,7 @@ export class CvrMatchingEngine {
     let updated = 0;
     const now = new Date().toISOString();
 
+    const plusMatcher = createPlusProductionMatcher(db,wcsRecords.map(row => ({ itemCode: row.itemCode, lotNo: row.lotNo, seqNo: row.seqNo })));
     for (const wcs of wcsRecords) {
       // Both item and process sequence must match; never use an item-only fallback.
       const itemMapping = await new ItemMappingRepository(db).findActive(wcs.itemName, wcs.seqNo);
@@ -53,17 +55,8 @@ export class CvrMatchingEngine {
       const totalTime = calculateTotalTimeMinutes(wcs.startTime, wcs.finishTime);
       const opDisplay = wcs.opName ? `${wcs.opCode} - ${wcs.opName}` : wcs.opCode;
 
-      // 2. Lookup PLUS production data (ayda) for Total sheet (Indi)
-      const plusProdRes = await db.execute({
-        sql: `SELECT prod_qty as production_qty FROM plus_records
-              WHERE item_code = ? AND batch_no = ?
-              ORDER BY created_at DESC LIMIT 1;`,
-        args: [wcs.itemCode.trim(), wcs.lotNo.trim()]
-      });
-
-      const totalSheetIndi = plusProdRes.rows.length > 0 
-        ? Number(plusProdRes.rows[0].production_qty || 0) 
-        : null;
+      const plusMatch = await plusMatcher.match(wcs.itemCode,wcs.lotNo,wcs.seqNo);
+      const totalSheetIndi = plusMatch.quantity;
 
       // Match exact item + lot across every configured group for each side.
       const mapping = configurationProvider.getCvrDataMapping();
@@ -135,7 +128,7 @@ export class CvrMatchingEngine {
             bvh_shift_a, missing_hole_a, extra_hole_a, dfr_seepage_a, other_a, dfr_remain_a, verify_zoom_a,
             accumulative_defect_b, ng_rate_b, discoloration_b, fm_b, copper_residue_b, broken_hole_b,
             bvh_shift_b, missing_hole_b, extra_hole_b, dfr_seepage_b, other_b, dfr_remain_b, verify_zoom_b,
-            match_status, raw_wcs_json, created_at, updated_at
+            match_status, raw_wcs_json, created_at, updated_at, plus_match_method, plus_match_details
           ) VALUES (
             ?, ?, ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?,
@@ -144,7 +137,7 @@ export class CvrMatchingEngine {
             ?, ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?,
             ?, ?, ?, ?, ?, ?, ?,
-            ?, ?, ?, ?
+            ?, ?, ?, ?, ?, ?
           );`,
           args: [
             id, wcsFileId, wcs.date, wcs.machine, wcs.shift, wcs.startTime, wcs.finishTime, totalTime,
@@ -152,7 +145,7 @@ export class CvrMatchingEngine {
             totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPcsCvr, totalPatternNg, ngRate,
             accumA, ngRateA, dA.d1, dA.d2, dA.d3, dA.d4, dA.d5, dA.d6, dA.d7, dA.d8, dA.d9, dA.d10, wcs.verifyZoomA,
             accumB, ngRateB, dB.d1, dB.d2, dB.d3, dB.d4, dB.d5, dB.d6, dB.d7, dB.d8, dB.d9, dB.d10, wcs.verifyZoomB,
-            matchStatus, wcs.rawJson, now, now
+            matchStatus, wcs.rawJson, now, now, plusMatch.method, JSON.stringify(plusMatch)
           ]
         });
         inserted++;
@@ -167,7 +160,7 @@ export class CvrMatchingEngine {
             bvh_shift_a = ?, missing_hole_a = ?, extra_hole_a = ?, dfr_seepage_a = ?, other_a = ?, dfr_remain_a = ?, verify_zoom_a = ?,
             accumulative_defect_b = ?, ng_rate_b = ?, discoloration_b = ?, fm_b = ?, copper_residue_b = ?, broken_hole_b = ?,
             bvh_shift_b = ?, missing_hole_b = ?, extra_hole_b = ?, dfr_seepage_b = ?, other_b = ?, dfr_remain_b = ?, verify_zoom_b = ?,
-            match_status = ?, raw_wcs_json = ?, updated_at = ?
+            match_status = ?, raw_wcs_json = ?, updated_at = ?, plus_match_method = ?, plus_match_details = ?
             WHERE id = ?;`,
           args: [
             wcsFileId, wcs.date, wcs.machine, wcs.shift, wcs.startTime, wcs.finishTime, totalTime,
@@ -175,7 +168,7 @@ export class CvrMatchingEngine {
             totalSheetIndi, wcs.totalSheetVrf, opDisplay, totalPcs, totalPcsCvr, totalPatternNg, ngRate,
             accumA, ngRateA, dA.d1, dA.d2, dA.d3, dA.d4, dA.d5, dA.d6, dA.d7, dA.d8, dA.d9, dA.d10, wcs.verifyZoomA,
             accumB, ngRateB, dB.d1, dB.d2, dB.d3, dB.d4, dB.d5, dB.d6, dB.d7, dB.d8, dB.d9, dB.d10, wcs.verifyZoomB,
-            matchStatus, wcs.rawJson, now, id
+            matchStatus, wcs.rawJson, now, plusMatch.method, JSON.stringify(plusMatch), id
           ]
         });
         updated++;
@@ -198,8 +191,12 @@ export class CvrMatchingEngine {
   }
 
   /** Recalculate all stored CVR rows, including already-matched rows, after source updates. */
-  public async rematchCvrRecords(): Promise<{ rematchedCount: number }> {
-    const rows = await this.database().execute('SELECT wcs_file_id, raw_wcs_json FROM cvr4m_records WHERE raw_wcs_json IS NOT NULL');
+  public async rematchCvrRecords(ids?: readonly string[]): Promise<{ rematchedCount: number }> {
+    if (ids && !ids.length) return { rematchedCount: 0 };
+    const rows = await this.database().execute({
+      sql: `SELECT wcs_file_id,raw_wcs_json FROM cvr4m_records WHERE raw_wcs_json IS NOT NULL ${ids ? `AND id IN (${ids.map(() => '?').join(',')})` : ''}`,
+      args: ids ? [...ids] : []
+    });
     let rematchedCount = 0;
     for (const row of rows.rows) {
       const wcs = parseCvrWcsRow(JSON.parse(row.raw_wcs_json as string));

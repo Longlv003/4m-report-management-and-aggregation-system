@@ -7,6 +7,7 @@ exports.parseNullableFloat = parseNullableFloat;
 exports.parseNullableInt = parseNullableInt;
 exports.aggregateWcsAndPlus = aggregateWcsAndPlus;
 exports.rematchScanRecords = rematchScanRecords;
+const plus_production_matcher_js_1 = require("../../composition/plus-production-matcher.js");
 const scan_time_js_1 = require("../../domain/scan-time.js");
 const configuration_provider_js_1 = require("../../config/configuration-provider.js");
 const logger_js_1 = require("../../logging/logger.js");
@@ -130,45 +131,36 @@ function aggregateWcsAndPlus(id, wcsRecordId, wcsRow, plusRecord) {
         anomalyFlag: warnings.join('; ') || null
     };
 }
-async function rematchScanRecords(db) {
+async function rematchScanRecords(db, ids) {
+    if (ids && !ids.length)
+        return { rematchedCount: 0 };
     logger_js_1.logger.info('Refreshing Scan records from current Plus data...', { module: 'RematchEngine' });
     // WCS owns timestamps; Plus only refreshes matching and production quantities.
-    const unmatched = await db.execute(`
-    SELECT s.id, s.match_key, s.start_time, s.anomaly_flag, w.finish_time
-    FROM scan4m_records s LEFT JOIN wcs_records w ON w.id = s.wcs_record_id;
-  `);
+    const unmatched = await db.execute({ sql: `
+    SELECT s.id, s.item_code, s.lot_no, s.seq_no, s.start_time, s.anomaly_flag, w.finish_time
+    FROM scan4m_records s LEFT JOIN wcs_records w ON w.id = s.wcs_record_id
+    ${ids ? `WHERE s.id IN (${ids.map(() => '?').join(',')})` : ''};
+  `, args: ids ? [...ids] : [] });
+    const matcher = (0, plus_production_matcher_js_1.createPlusProductionMatcher)(db);
     let rematchedCount = 0;
     for (const row of unmatched.rows) {
         const scanId = row.id;
-        const key = row.match_key;
+        const plusMatch = await matcher.match(String(row.item_code), String(row.lot_no), String(row.seq_no));
         const startTime = row.start_time;
         const finishTime = row.finish_time;
         const time = calculateTotalTime(startTime, finishTime || undefined);
         const oldWarnings = String(row.anomaly_flag || '').split('; ').filter(Boolean).filter(warning => !['Lệch giờ', 'Thời gian không hợp lệ', configuration_provider_js_1.configurationProvider.getCalculationRules().calculations.totalTime.anomalyHandling.anomalyFlag].includes(warning));
         const anomalyFlag = [...oldWarnings, ...(time.anomalyFlag ? [time.anomalyFlag] : [])].join('; ') || null;
+        const matched = plusMatch.quantity !== null;
+        const plusId = plusMatch.method === 'EXACT' ? plusMatch.records[0].id : null;
         await db.execute({
-            sql: 'UPDATE scan4m_records SET finish_time = ?, total_time = ?, anomaly_flag = ? WHERE id = ?',
-            args: [finishTime, time.totalTime, anomalyFlag, scanId]
+            sql: `UPDATE scan4m_records SET finish_time=?,total_time=?,anomaly_flag=?,plus_record_id=?,
+        total_sheet_indi=?,match_status=?,plus_match_method=?,plus_match_details=?,updated_at=? WHERE id=?`,
+            args: [finishTime, time.totalTime, anomalyFlag, plusId, plusMatch.quantity, matched ? 'MATCHED' : 'UNMATCHED_PLUS',
+                plusMatch.method, JSON.stringify(plusMatch), new Date().toISOString(), scanId]
         });
-        // Check if Plus record is now available
-        const plusRes = await db.execute({
-            sql: `SELECT id, work_result, prod_qty FROM plus_records WHERE match_key = ? LIMIT 1;`,
-            args: [key]
-        });
-        if (plusRes.rows.length > 0) {
-            const p = plusRes.rows[0];
-            const prodQty = p.prod_qty;
-            const plusRecordId = p.id;
-            const now = new Date().toISOString();
-            await db.execute({
-                sql: `UPDATE scan4m_records 
-              SET plus_record_id = ?, total_sheet_indi = ?,
-                  anomaly_flag = ?, match_status = 'MATCHED', updated_at = ?
-              WHERE id = ?;`,
-                args: [plusRecordId, prodQty, anomalyFlag, now, scanId]
-            });
+        if (matched)
             rematchedCount++;
-        }
     }
     logger_js_1.logger.info(`Rematch completed. Rematched ${rematchedCount} records.`, { module: 'RematchEngine' });
     return { rematchedCount };

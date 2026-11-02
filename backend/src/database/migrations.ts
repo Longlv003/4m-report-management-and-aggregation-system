@@ -1,3 +1,4 @@
+import { ensurePlusMatchColumns } from './plus-match-migration.js';
 import { ensureMappingSequence } from './mapping-sequence-migration.js';
 import { ensureScannerFileState } from './scanner-file-state-migration.js';
 import { ensureWcsFinishTimeColumns } from './scan-time-migration.js';
@@ -431,6 +432,7 @@ export async function runMigrations(): Promise<void> {
   await ensureWcsFinishTimeColumns(db);
   await ensureScannerFileState(db);
   await ensureScanRunIdentity(db);
+  await ensurePlusMatchColumns(db);
   await ensureUniquePlusKeys(db);
   await rematchScanRecords(db);
   await new CvrMatchingEngine(() => db).rematchCvrRecords();

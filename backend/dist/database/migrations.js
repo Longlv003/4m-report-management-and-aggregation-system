@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ensureCvrRateColumns = ensureCvrRateColumns;
 exports.ensureCvrPcsColumn = ensureCvrPcsColumn;
 exports.runMigrations = runMigrations;
+const plus_match_migration_js_1 = require("./plus-match-migration.js");
 const mapping_sequence_migration_js_1 = require("./mapping-sequence-migration.js");
 const scanner_file_state_migration_js_1 = require("./scanner-file-state-migration.js");
 const scan_time_migration_js_1 = require("./scan-time-migration.js");
@@ -420,6 +421,7 @@ async function runMigrations() {
     await (0, scan_time_migration_js_1.ensureWcsFinishTimeColumns)(db);
     await (0, scanner_file_state_migration_js_1.ensureScannerFileState)(db);
     await (0, scan_identity_migration_js_1.ensureScanRunIdentity)(db);
+    await (0, plus_match_migration_js_1.ensurePlusMatchColumns)(db);
     await (0, plus_integrity_js_1.ensureUniquePlusKeys)(db);
     await (0, scan_matching_engine_js_1.rematchScanRecords)(db);
     await new cvr_matching_engine_js_1.CvrMatchingEngine(() => db).rematchCvrRecords();

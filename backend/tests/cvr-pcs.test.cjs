@@ -28,6 +28,9 @@ async function main(){
       VALUES ('plus','source','ITEM_LOT_0350','ITEM','LOT','0350','2026-11-01 09:00:00',10,'')`);
     await db.execute(`INSERT INTO plus_error_records(id,file_id,item_code,batch_no,process_type,d1,created_at)
       VALUES ('error','source','ITEM','LOT','AEA',10,'')`);
+    await db.execute(`INSERT INTO plus_records(id,file_id,match_key,item_code,batch_no,seq_no,work_result,prod_qty,created_at)
+      SELECT 'plus-0600',file_id,item_code || '_' || batch_no || '_0600',item_code,batch_no,'0600',work_result,prod_qty,created_at
+      FROM plus_records LIMIT 1`);
     for(const [seq,pcs] of [['0350',100],['0600',200]])await db.execute({
       sql:"INSERT INTO item_mapping(id,item_name,seq_no,pcs_per_sheet,created_at,updated_at) VALUES (?,'Product',?,?,'','')",args:[seq,seq,pcs]});
     const raw={'Mã item':'ITEM','Số lot':'LOT','Công đoạn số':'0350','Tên sản phẩm':'Product',

@@ -10,6 +10,8 @@ export interface User {
 export interface Scan4MRecord {
   id: string;
   match_key: string;
+  plus_match_method?: string | null;
+  plus_match_details?: string | null;
   match_status: 'MATCHED' | 'UNMATCHED_PLUS' | 'CONFLICT_DUPLICATE';
   date: string;
   machine: string;
@@ -84,6 +86,8 @@ export interface ItemMapping {
 export interface Cvr4mRecord {
   id: string;
   wcs_file_id: string | null;
+  plus_match_method?: string | null;
+  plus_match_details?: string | null;
   match_status: 'MATCHED' | 'MATCHED_ERROR_ONLY' | 'UNMATCHED_PLUS';
   date: string;
   machine: string;

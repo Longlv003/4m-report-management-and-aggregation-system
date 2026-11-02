@@ -1,3 +1,4 @@
+import { PlusMatchBadge } from "../components/PlusMatchBadge.js";
 import { useScanner } from "../useScanner.js";
 import { ItemSearchFilters, ItemSearchValues } from "../components/ItemSearchFilters.js";
 import {
@@ -482,9 +483,6 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                 ) : (
                   records.map((r, idx) => {
                     const rowNo = (page - 1) * (pageSize === "all" ? totalRecords : pageSize) + idx + 1;
-                    const isMatched = r.match_status === "MATCHED";
-                    const isMatchedError =
-                      r.match_status === "MATCHED_ERROR_ONLY";
 
                     return (
                       <tr
@@ -727,31 +725,8 @@ export const CVR4MPage: React.FC<CVR4MPageProps> = ({ user }) => {
                         >
                           {r.verify_zoom_b || "—"}
                         </td>
-                        <td style={{ textAlign: "center" }}>
-                          <span
-                            className={`badge ${isMatched ? "badge-success" : isMatchedError ? "badge-gray" : "badge-warning"}`}
-                            style={{
-                              background: isMatched
-                                ? "#ecfdf5"
-                                : isMatchedError
-                                  ? "#eff6ff"
-                                  : "#fffbeb",
-                              color: isMatched
-                                ? "#059669"
-                                : isMatchedError
-                                  ? "#2563eb"
-                                  : "#d97706",
-                              border: `1px solid ${isMatched ? "#a7f3d0" : isMatchedError ? "#bfdbfe" : "#fde68a"}`,
-                              padding: "2px 6px",
-                              borderRadius: 4,
-                            }}
-                          >
-                            {isMatched
-                              ? "Matched"
-                              : isMatchedError
-                                ? "Chỉ có lỗi Plus"
-                                : "Chưa có Plus"}
-                          </span>
+                        <td>
+                          <PlusMatchBadge status={r.match_status} method={r.plus_match_method} details={r.plus_match_details} />
                         </td>
                         {canManageRecords && (
                           <td>

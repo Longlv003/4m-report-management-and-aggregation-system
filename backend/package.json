@@ -20,7 +20,9 @@
     "test:mapping-sequence": "node \"node_modules/typescript/bin/tsc\" && node tests/mapping-sequence.test.cjs",
     "test:audit-ip": "node \"node_modules/typescript/bin/tsc\" && node tests/audit-ip.test.cjs",
     "test:cvr-pcs": "node \"node_modules/typescript/bin/tsc\" && node tests/cvr-pcs.test.cjs",
-    "test:scanner-incremental": "node \"node_modules/typescript/bin/tsc\" && node tests/scanner-incremental.test.cjs"
+    "test:scanner-incremental": "node \"node_modules/typescript/bin/tsc\" && node tests/scanner-incremental.test.cjs",
+    "test:plus-production": "node \"node_modules/typescript/bin/tsc\" && node tests/plus-production-match.test.cjs",
+    "test:wcs-child-ownership": "node \"node_modules/typescript/bin/tsc\" && node tests/wcs-child-ownership.test.cjs"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",

@@ -1,13 +1,15 @@
-# Local runtimes, credentials, dependencies and caches
+# Local runtimes, credentials and build caches
 /runtime/
-**/node_modules/
 .env
 .env.*
 !.env.example
 *.tsbuildinfo
 
-# Operational databases, backups, logs and imported production data
-/data/
+# Include the application database; exclude backups, logs and imported source files
+/data/*
+!/data/database/
+/data/database/*
+!/data/database/4m-aom-report.sqlite
 /data_input/
 /data-input/
 /data_input.zip

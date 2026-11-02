@@ -1,3 +1,4 @@
+import { PlusMatchBadge } from "../components/PlusMatchBadge.js";
 import { useScanner } from "../useScanner.js";
 import { ItemSearchFilters, ItemSearchValues } from "../components/ItemSearchFilters.js";
 import {
@@ -513,15 +514,8 @@ export const Scan4MPage: React.FC<Scan4MPageProps> = ({ user }) => {
                           : "-"}
                       </td>
                       <td>
-                        {r.anomaly_flag ? (
-                          <span className="badge badge-danger">Lệch giờ</span>
-                        ) : r.match_status === "MATCHED" ? (
-                          <span className="badge badge-success">Matched</span>
-                        ) : (
-                          <span className="badge badge-warning">
-                            Chưa có Plus
-                          </span>
-                        )}
+                        <PlusMatchBadge status={r.match_status} method={r.plus_match_method} details={r.plus_match_details} />
+                        {r.anomaly_flag && <span className="badge badge-danger" title={r.anomaly_flag}>Cảnh báo</span>}
                       </td>
                       {canManageRecords && (
                         <td>

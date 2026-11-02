@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.scannerEngine = exports.ScannerEngine = void 0;
+const wcs_lot_repository_js_1 = require("../../infrastructure/repositories/wcs-lot-repository.js");
+const plus_production_matcher_js_1 = require("../../composition/plus-production-matcher.js");
 const source_file_state_js_1 = require("../../domain/source-file-state.js");
 const scanner_file_state_repository_js_1 = require("../../infrastructure/repositories/scanner-file-state-repository.js");
 const scan_time_js_1 = require("../../domain/scan-time.js");
@@ -242,9 +244,18 @@ class ScannerEngine {
             throw error;
         }
     }
+    async refreshSplitParents(db, incoming) {
+        const affected = await new wcs_lot_repository_js_1.SqlWcsLotRepository(db).findAffectedSplitParents(incoming);
+        if (affected.scanIds.length)
+            await (0, scan_matching_engine_js_1.rematchScanRecords)(db, affected.scanIds);
+        if (affected.cvrIds.length)
+            await new cvr_matching_engine_js_1.CvrMatchingEngine(() => db).rematchCvrRecords(affected.cvrIds);
+    }
     async importWcsCsv(db, fileId, filePath, fileName) {
         const { rows } = (0, csv_parser_js_1.parseWcsCsv)(filePath);
         logger_js_1.logger.info(`Parsed ${rows.length} rows from CSV ${fileName}`, { module: 'ScannerEngine' });
+        const incoming = rows.map(row => ({ itemCode: row['Mã item'] || '', lotNo: row['Số lot'] || '', seqNo: row['Công đoạn số'] || '' }));
+        const plusMatcher = (0, plus_production_matcher_js_1.createPlusProductionMatcher)(db, incoming);
         let successCount = 0;
         let skippedCount = 0;
         let updatedCount = 0;
@@ -346,31 +357,11 @@ class ScannerEngine {
                     now, (0, scan_time_js_1.latestWcsFinishTime)(r)
                 ]
             });
-            // Try matching with Plus
-            const plusRes = await db.execute({
-                sql: `SELECT * FROM plus_records WHERE match_key = ? LIMIT 1;`,
-                args: [matchKey]
-            });
-            let plusRecord = null;
-            if (plusRes.rows.length > 0) {
-                const p = plusRes.rows[0];
-                plusRecord = {
-                    itemCode: p.item_code,
-                    batchNo: p.batch_no,
-                    seqNo: p.seq_no,
-                    matchKey: p.match_key,
-                    workStart: p.work_start,
-                    workResult: p.work_result,
-                    prodQty: p.prod_qty,
-                    acceptedQty: p.accepted_qty,
-                    badQty: p.bad_qty,
-                    picCode: p.pic_code,
-                    picName: p.pic_name
-                };
-            }
+            const plusMatch = await plusMatcher.match(itemCode, lotNo, seqNo);
+            const plusRecord = plusMatch.quantity === null ? null : { prodQty: plusMatch.quantity };
             const scanId = `scan-${crypto_1.default.randomUUID()}`;
             const aggregated = (0, scan_matching_engine_js_1.aggregateWcsAndPlus)(scanId, wcsRecordId, r, plusRecord);
-            aggregated.plusRecordId = plusRes.rows[0]?.id || null;
+            aggregated.plusRecordId = plusMatch.method === 'EXACT' ? plusMatch.records[0].id : null;
             // One record per WCS machine run; match_key remains the Plus matching key.
             await db.execute({
                 sql: `INSERT INTO scan4m_records (
@@ -380,7 +371,7 @@ class ScannerEngine {
           total_sheet_scan, op, outer_top_avg_a, cpk_outer_top_a, inner_bottom_avg_a,
           cpk_inner_bottom_a, outer_top_avg_b, cpk_outer_top_b, inner_bottom_avg_b,
           cpk_inner_bottom_b, check_light, check_master_machine, check_master_sample,
-          exp_master_sample, roll_cleaning, air_pressure, anomaly_flag, created_at, updated_at, record_key
+          exp_master_sample, roll_cleaning, air_pressure, anomaly_flag, created_at, updated_at, record_key, plus_match_method, plus_match_details
         ) VALUES (
           ?, ?, ?, ?, ?, ?, ?,
           ?, ?, ?, ?, ?, ?,
@@ -388,11 +379,11 @@ class ScannerEngine {
           ?, ?, ?, ?, ?,
           ?, ?, ?, ?,
           ?, ?, ?, ?,
-          ?, ?, ?, ?, ?, ?, ?
+          ?, ?, ?, ?, ?, ?, ?, ?, ?
         )
         ON CONFLICT(record_key) DO UPDATE SET
           wcs_record_id = excluded.wcs_record_id,
-          plus_record_id = COALESCE(excluded.plus_record_id, scan4m_records.plus_record_id),
+          plus_record_id = excluded.plus_record_id,
           match_status = excluded.match_status,
           date = excluded.date,
           machine = excluded.machine,
@@ -404,7 +395,7 @@ class ScannerEngine {
           process = excluded.process,
           layer = excluded.layer,
           program_name = excluded.program_name,
-          total_sheet_indi = COALESCE(excluded.total_sheet_indi, scan4m_records.total_sheet_indi),
+          total_sheet_indi = excluded.total_sheet_indi,
           total_sheet_scan = excluded.total_sheet_scan,
           op = excluded.op,
           outer_top_avg_a = excluded.outer_top_avg_a,
@@ -422,6 +413,8 @@ class ScannerEngine {
           roll_cleaning = excluded.roll_cleaning,
           air_pressure = excluded.air_pressure,
           anomaly_flag = excluded.anomaly_flag,
+          plus_match_method = excluded.plus_match_method,
+          plus_match_details = excluded.plus_match_details,
           updated_at = excluded.updated_at;`,
                 args: [
                     aggregated.id, aggregated.matchKey, aggregated.wcsRecordId, aggregated.plusRecordId,
@@ -433,7 +426,7 @@ class ScannerEngine {
                     aggregated.cpkInnerBottomA, aggregated.outerTopAvgB, aggregated.cpkOuterTopB,
                     aggregated.innerBottomAvgB, aggregated.cpkInnerBottomB, aggregated.checkLight,
                     aggregated.checkMasterMachine, aggregated.checkMasterSample, aggregated.expMasterSample,
-                    aggregated.rollCleaning, aggregated.airPressure, aggregated.anomalyFlag, now, now, recordKey
+                    aggregated.rollCleaning, aggregated.airPressure, aggregated.anomalyFlag, now, now, recordKey, plusMatch.method, JSON.stringify(plusMatch)
                 ]
             });
             if (!plusRecord) {
@@ -443,6 +436,7 @@ class ScannerEngine {
                 successCount++;
             }
         }
+        await this.refreshSplitParents(db, incoming);
         logger_js_1.logger.info(`WCS import done: ${successCount} matched, ${errorCount} unmatched, ${skippedCount} skipped (no change), ${updatedCount} updated | file=${fileName}`, { module: 'ScannerEngine' });
         await db.execute({
             sql: `UPDATE source_files SET record_count = ?, success_count = ?, error_count = ? WHERE id = ?;`,
@@ -523,6 +517,7 @@ class ScannerEngine {
         const records = (0, cvr_wcs_parser_js_1.parseCvrWcsCsv)(filePath);
         logger_js_1.logger.info(`Parsed ${records.length} records from CVR CSV ${fileName}`, { module: 'ScannerEngine' });
         const { inserted, updated } = await new cvr_matching_engine_js_1.CvrMatchingEngine(() => db).processAndMatchCvrRecords(records, fileId);
+        await this.refreshSplitParents(db, records.map(row => ({ itemCode: row.itemCode, lotNo: row.lotNo, seqNo: row.seqNo })));
         logger_js_1.logger.info(`CVR WCS import done: ${inserted} inserted, ${updated} updated | file=${fileName}`, { module: 'ScannerEngine' });
         await db.execute({
             sql: `UPDATE source_files SET record_count = ?, success_count = ?, error_count = ? WHERE id = ?;`,

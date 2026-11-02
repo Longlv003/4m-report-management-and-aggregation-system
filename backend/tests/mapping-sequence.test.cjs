@@ -49,6 +49,9 @@ async function main() {
       VALUES ('source','','','CSV','test',0,'test','','SUCCESS')`);
     await db.execute(`INSERT INTO plus_records(id,file_id,match_key,item_code,batch_no,seq_no,work_result,prod_qty,created_at)
       VALUES ('plus','source','ITEM_00001_0350','ITEM','00001','0350','2026-11-01 09:00:00',10,'')`);
+    await db.execute(`INSERT INTO plus_records(id,file_id,match_key,item_code,batch_no,seq_no,work_result,prod_qty,created_at)
+      SELECT 'plus-0600',file_id,item_code || '_' || batch_no || '_0600',item_code,batch_no,'0600',work_result,prod_qty,created_at
+      FROM plus_records LIMIT 1`);
     for (const seq of ['0350','0600','035','0999']) {
       const raw = { 'Mã item': 'ITEM', 'Số lot': '00001', 'Công đoạn số': seq, 'Tên sản phẩm': 'Product',
         'Tên thiết bị': 'Verify', 'Thời gian bắt đầu': '2026-11-01 07:00:00', 'Thời gian kết thúc': '2026-11-01 08:00:00' };

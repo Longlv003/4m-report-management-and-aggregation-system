@@ -6,6 +6,7 @@ import { parseCvrWcsRow } from '../src/modules/parser/cvr-wcs-parser.js';
 import { parseCvrWcsCsv } from '../src/modules/parser/cvr-wcs-parser.js';
 import { parsePlusErrorExcel } from '../src/modules/parser/plus-error-parser.js';
 import { ensureCvrRateColumns, ensureCvrPcsColumn } from '../src/database/migrations.js';
+import { ensurePlusMatchColumns } from '../src/database/plus-match-migration.js';
 import { configurationProvider } from '../src/config/configuration-provider.js';
 const CVR_EXPORT_COLUMNS = configurationProvider.getCvrOutputSchema().columns;
 
@@ -13,7 +14,8 @@ async function test() {
   const db = createClient({ url: ':memory:' });
   try {
     await db.execute('CREATE TABLE item_mapping (item_name TEXT, pcs_per_sheet INTEGER, process TEXT, is_deleted INTEGER, seq_no TEXT)');
-    await db.execute('CREATE TABLE plus_records (item_code TEXT, batch_no TEXT, prod_qty INTEGER, created_at TEXT)');
+    await db.execute('CREATE TABLE wcs_records (item_code TEXT,batch_no TEXT,seq_no TEXT)');
+    await db.execute('CREATE TABLE plus_records (item_code TEXT, batch_no TEXT, prod_qty INTEGER, created_at TEXT, seq_no TEXT DEFAULT '0070', id TEXT DEFAULT 'test-plus')');
     await db.execute(`CREATE TABLE plus_error_records (item_code TEXT, batch_no TEXT, process_type TEXT,
       d1 INTEGER, d2 INTEGER, d3 INTEGER, d4 INTEGER, d5 INTEGER, d6 INTEGER, d7 INTEGER, d8 INTEGER, d9 INTEGER, d10 INTEGER)`);
     const textColumns = ['id', 'wcs_file_id', 'date', 'machine', 'shift', 'start_time', 'finish_time', 'total_time',
@@ -28,19 +30,20 @@ async function test() {
     await ensureCvrPcsColumn(db);
     await ensureCvrRateColumns(db);
     await ensureCvrRateColumns(db); // Safe for an existing database on every startup.
+    await ensurePlusMatchColumns(db);
     assert.equal(CVR_EXPORT_COLUMNS.length, 45);
     for (const side of ['a', 'b']) {
       const index = CVR_EXPORT_COLUMNS.findIndex(column => column.key === `accumulative_defect_${side}`);
       assert.equal(CVR_EXPORT_COLUMNS[index + 1].key, `ng_rate_${side}`);
     }
     await db.execute("INSERT INTO item_mapping VALUES ('Product', 100, 'Electroless', 0, '0070')");
-    await db.execute("INSERT INTO plus_records VALUES ('ITEM', '00001', 10, '2026-11-01')");
+    await db.execute("INSERT INTO plus_records (item_code,batch_no,prod_qty,created_at) VALUES ('ITEM', '00001', 10, '2026-11-01')");
     for (const [type, value] of [['AEA', 1], ['ASA', 10], ['ASS', 100], ['AEB', 2], ['ASB', 20], ['BSS', 200]] as const) {
       await db.execute({ sql: 'INSERT INTO plus_error_records VALUES (?, ?, ?, ?, ?, 0, 0, 0, 0, 0, 0, 0, 0)', args: ['ITEM', '00001', type, value, value * 2] });
     }
     // A more recent production export for a similar lot must not supply this lot's denominator.
-    await db.execute("INSERT INTO plus_records VALUES ('ITEM', '000010', 99999, '2027-01-01')");
-    await db.execute("INSERT INTO plus_records VALUES ('ITEM', '1', 88888, '2027-01-02')");
+    await db.execute("INSERT INTO plus_records (item_code,batch_no,prod_qty,created_at) VALUES ('ITEM', '000010', 99999, '2027-01-01')");
+    await db.execute("INSERT INTO plus_records (item_code,batch_no,prod_qty,created_at) VALUES ('ITEM', '1', 88888, '2027-01-02')");
     // Similar lots, other items and unrelated PF codes must never be included.
     await db.execute("INSERT INTO plus_error_records VALUES ('ITEM', '000010', 'AEA', 9999, 0, 0, 0, 0, 0, 0, 0, 0, 0)");
     await db.execute("INSERT INTO plus_error_records VALUES ('OTHER', '00001', 'ASA', 9999, 0, 0, 0, 0, 0, 0, 0, 0, 0)");
@@ -96,10 +99,11 @@ async function test() {
             error.d1,error.d2,error.d3,error.d4,error.d5,error.d6,error.d7,error.d8,error.d9,error.d10] });
       }
     }
-    await db.execute("INSERT INTO plus_records VALUES ('7M028H01000B','00005',334,'2026-11-01')");
+    await db.execute("INSERT INTO plus_records (item_code,batch_no,prod_qty,created_at) VALUES ('7M028H01000B','00005',334,'2026-11-01')");
     const sample = parseCvrWcsCsv(fixturePath('wcsCvr','S_S+Verify+#5620261031.csv'))
       .find(row => row.itemCode === '7M028H01000B' && row.lotNo === '00005')!;
     await db.execute({ sql: "INSERT INTO item_mapping VALUES ('6HRAV',384,'Electroless',0,?)", args: [sample.seqNo] });
+    await db.execute({sql: "UPDATE plus_records SET seq_no=? WHERE item_code='7M028H01000B'",args:[sample.seqNo]});
     assert.equal(sample.wcsNgQty, 0);
     await engine.processAndMatchCvrRecords([sample], 'test-file');
     const actual = (await db.execute("SELECT * FROM cvr4m_records WHERE item_code='7M028H01000B' AND lot_no='00005'")).rows[0];
@@ -123,7 +127,7 @@ async function test() {
     assert.equal(noPlus.ng_rate, null);
     assert.equal(noPlus.ng_rate_a, null);
     assert.equal(noPlus.ng_rate_b, null);
-    await db.execute("INSERT INTO plus_records VALUES ('7M028H01000B','00005',0,'2026-11-01')");
+    await db.execute({ sql: "INSERT INTO plus_records (item_code,batch_no,prod_qty,created_at,seq_no) VALUES ('7M028H01000B','00005',0,'2026-11-01',?)", args: [sample.seqNo] });
     await engine.rematchCvrRecords();
     assert.equal((await db.execute("SELECT ng_rate FROM cvr4m_records WHERE item_code='7M028H01000B'")).rows[0].ng_rate, null);
     await db.execute("UPDATE plus_records SET prod_qty=334 WHERE item_code='7M028H01000B'");
